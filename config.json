@@ -74,6 +74,15 @@
     "category": "Samochód",
     "drive_folder_id": "1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO"
   },
+  {
+    "company": "Ergo_Hestia",
+    "product": "ERGO 1",
+    "url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/",
+    "filter": "Ergo 1",
+    "exclude": "Przekład",
+    "category": "Dom i mieszkanie",
+    "drive_folder_id": "1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca"
+  },
    {
     "company": "Ergo_Hestia",
     "product": "DOM",
