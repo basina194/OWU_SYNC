@@ -7,15 +7,39 @@
   },
   {
     "company": "Warta",
-    "product": "Autocasco_Standard",
-    "url": "https://www.warta.pl/documents/oferta_dla_ciebie/WARTA_OWU_AutoCasco_Standard_ACS_C6204_int.pdf",
+    "product": "AC",
+    "url": "https://www.warta.pl/ubezpieczenie-ac/",
     "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
   },
   {
     "company": "Warta",
-    "product": "Autocasco_komfort",
-    "url": "https://www.warta.pl/documents/oferta_dla_ciebie/WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf",
-    "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
+    "product": "DOM",
+    "url": "https://www.warta.pl/ubezpieczenie-mieszkania/",
+    "drive_folder_id": "1dcP21RHZ1NtHg1u9qifD07hDXDocu2wo"
+  },
+  {
+    "company": "Warta",
+    "product": "Travel",
+    "url": "https://www.warta.pl/ubezpieczenie-turystyczne-zagraniczne-warta-travel/",
+    "drive_folder_id": "1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE"
+  },
+    {
+    "company": "Warta",
+    "product": "Koszty_rezygnacji",
+    "url": "https://www.warta.pl/ubezpieczenie-kosztow-odwolania-podrozy/",
+    "drive_folder_id": "1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE"
+  },
+  {
+    "company": "Warta",
+    "product": "Turysta",
+    "url": "https://www.warta.pl/ubezpieczenie-turystyczne-polska/",
+    "drive_folder_id": "1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE"
+  },
+  {
+    "company": "PZU",
+    "product": "OC",
+    "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc",
+    "drive_folder_id": "1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI"
   },
   {
     "company": "BBC",
