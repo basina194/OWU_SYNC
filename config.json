@@ -65,6 +65,18 @@
     "url": "https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/",
     "drive_folder_id": "1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO"
   },
+   {
+    "company": "Ergo_Hestia",
+    "product": "DOM",
+    "url": "https://www.ergohestia.pl/ubezpieczenie-domu-i-mieszkania/dom/",
+    "drive_folder_id": "1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca"
+  },
+   {
+    "company": "Ergo_Hestia",
+    "product": "Travel",
+    "url": "https://www.ergohestia.pl/ubezpieczenie-podrozy/",
+    "drive_folder_id": "1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr"
+  },
   {
     "company": "BBC",
     "product": "Test",
