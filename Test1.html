@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pogłębiona Analiza Handheldów 2026</title>
+    <style>
+        :root {
+            --bg-page: #f0f2f5;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --color-ally: #ef4444;
+            --color-deck: #3b82f6;
+            --color-switch: #eab308;
+            --border-color: #e2e8f0;
+            --header-bg: #0f172a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--header-bg);
+            color: #fff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 { margin: 0 0 10px 0; font-size: 2.2rem; }
+        .header p { margin: 0; color: #94a3b8; font-size: 1.1rem; }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 16px 20px;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover { background: #f1f5f9; color: var(--text-main); }
+        .tab-btn.active { color: #0f172a; border-bottom: 3px solid #3b82f6; background: #fff; }
+
+        .tab-content { padding: 40px 30px; display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 30px; color: #0f172a; }
+
+        .device-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #cbd5e1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .device-card.switch { border-left-color: var(--color-switch); }
+        .device-card.deck { border-left-color: var(--color-deck); }
+        .device-card.ally { border-left-color: var(--color-ally); }
+
+        .device-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .device-card h3 span {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-left: 15px;
+            color: #fff;
+        }
+
+        .switch h3 span { background: var(--color-switch); color: #000; }
+        .deck h3 span { background: var(--color-deck); }
+        .ally h3 span { background: var(--color-ally); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background: #f8fafc; font-weight: 600; color: #334155; }
+        tr:hover { background: #f1f5f9; }
+        td strong { color: #0f172a; }
+
+        .summary-box {
+            background: #0f172a;
+            color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        @media print {
+            .tabs { display: none; }
+            .tab-content { display: block !important; padding: 20px 0; page-break-inside: avoid; }
+            body, .dashboard { background: #fff; box-shadow: none; }
+            .device-card { border: 1px solid #e2e8f0; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="header">
+        <h1>Handheldy 2026: Analiza Ekspercka</h1>
+        <p>Szczegółowe zestawienie architektur, ergonomii i wydajności</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'tabela')">Baza Danych</button>
+        <button class="tab-btn" onclick="openTab(event, 'tv')">TV i Salon</button>
+        <button class="tab-btn" onclick="openTab(event, 'kultura')">Kultura Pracy</button>
+        <button class="tab-btn" onclick="openTab(event, 'ekran')">Ekran i VRR</button>
+        <button class="tab-btn" onclick="openTab(event, 'wydajnosc')">Wydajność</button>
+        <button class="tab-btn" onclick="openTab(event, 'system')">UX i Zasilanie</button>
+    </div>
+
+    <!-- ZAKŁADKA 1: TABELA -->
+    <div id="tabela" class="tab-content active">
+        <h2>Zestawienie Parametrów</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parametr / Cecha</th>
+                        <th>ASUS ROG Ally X</th>
+                        <th>Steam Deck OLED</th>
+                        <th>Nintendo Switch 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Układ Graficzny i RAM</strong></td>
+                        <td>Z1 Extreme (RDNA 3) / 24 GB RAM</td>
+                        <td>Zen 2 (RDNA 2) / 16 GB RAM</td>
+                        <td>Nvidia T239 (Ampere) / 12 GB RAM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ekran i Płynność</strong></td>
+                        <td>7.0" IPS LCD / 120 Hz z VRR</td>
+                        <td>7.4" OLED / 90 Hz HDR (Brak VRR)</td>
+                        <td>8.0" LCD / 120 Hz</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Upscaling na TV 4K</strong></td>
+                        <td>Przeciętny (FSR / RSR)</td>
+                        <td>Słaby (Brak mocy na natywne 1080p)</td>
+                        <td>Wybitny (Sprzętowy Nvidia DLSS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bateria</strong></td>
+                        <td>80 Wh (do 3.5h AAA)</td>
+                        <td>50 Wh (do 2.5h AAA / 8h Indie)</td>
+                        <td>B.d. (szacunkowo 50-60 Wh)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Głośność (Handheld)</strong></td>
+                        <td>Niska (~30 dB przy 15W)</td>
+                        <td>Prawie bezgłośny (~25 dB)</td>
+                        <td>Bezgłośny (pasywny/cichy obieg)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Usypianie gier (Sleep)</strong></td>
+                        <td>Loteria (Windows Modern Standby)</td>
+                        <td>Perfekcyjne (Linux)</td>
+                        <td>Perfekcyjne (Horizon OS)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ZAKŁADKA 2: TV -->
+    <div id="tv" class="tab-content">
+        <h2>Podłączenie pod TV (Tryb stacjonarny i salon)</h2>
+        
+        <div class="device-card switch">
+            <h3>Nintendo Switch 2 <span>Król Salonu</span></h3>
+            <p>Jest to jedyne urządzenie projektowane od podstaw jako hybryda. W zestawie otrzymujesz dedykowany dock. Co najważniejsze, Switch 2 posiada architekturę Nvidii wspierającą sprzętowe skalowanie obrazu <strong>DLSS</strong>. Oznacza to, że gra renderowana w trybie przenośnym np. w 1080p, po wpięciu do telewizora 4K jest "magicznie" wyostrzana przez sztuczną inteligencję do wysokiej rozdzielczości bez potężnych spadków klatek. Dodatkowo odpinasz dwa Joy-Cony i od razu masz kontrolery dla siebie i drugiego gracza.</p>
+        </div>
+
+        <div class="device-card deck">
+            <h3>Steam Deck OLED <span>Słaby na dużym ekranie</span></h3>
+            <p>Posiada doskonały interfejs telewizyjny (Steam Big Picture, bliźniaczy z systemami konsol), ale potężnym ograniczeniem jest moc układu RDNA 2. Steam Deck w handheldzie świetnie radzi sobie z rozdzielczością 800p, ale próba rozciągnięcia nowej gry AAA na 65-calowy telewizor w 1080p lub 4K kończy się mroczkiem na ekranie z powodu narzutu algorytmu FSR (jest on wyraźnie gorszy od DLSS). Genialnie sprawdza się za to do emulacji retro.</p>
+        </div>
+
+        <div class="device-card ally">
+            <h3>ASUS ROG Ally X <span>Zapas mocy stłumiony systemem</span></h3>
+            <p>Konsola z największą mocą czystą, pozwalająca generować przyzwoity obraz 1080p na telewizorze. Posiada port USB4 z obsługą zewnętrznych kart graficznych eGPU. Prawdziwym problemem jest środowisko Windows 11. Bez myszki bezprzewodowej obsługa launchera z grami na telewizorze to droga przez mękę. Wyskakujący błąd EA App zablokuje grę, a kursor będziesz przesuwać gałką analogową. Dock trzeba dokupić oddzielnie.</p>
+        </div>
+    </div>
+
+    <!-- ZAKŁADKA 3: KULTURA PRACY -->
+    <div id="kultura" class="tab-content">
+        <h2>Kultura Pracy (Głośność, Temperatury)</h2>
+        
+        <div class="device-card deck">
+            <h3>Steam Deck OLED <span>Klasa sama w sobie</span></h3>
+            <p>Wybitne osiągnięcie inżynieryjne. Konsola konsumuje maksymalnie 15W. Zastosowany ogromny miedziany radiator i wentylator sprawiają, że podczas gry sprzęt jest praktycznie bezgłośny (ok. 25-28 dB), wydając z siebie ledwo słyszalny pomruk. Miejsca chwytów pozostają całkowicie chłodne bez względu na czas trwania sesji.</p>
+        </div>
+
+        <div class="device-card ally">
+            <h3>ASUS ROG Ally X <span>Skuteczna poprawa termiki</span></h3>
+            <p>ASUS odrobił lekcję. Ally X posiada nową sekcję chłodzenia (mniejsze wentylatory, grubsze łopatki). Przy domyślnym profilu (15W) gra się niesłyszalnie, w trybie Turbo (25-30W) sprzęt wydaje jednostajny, niski szum powietrza (~40 dB). Ciepło ucieka górą, więc ekran bywa ciepły, ale plastikowe rączki dla dłoni pozostają chłodne.</p>
+        </div>
+
+        <div class="device-card switch">
+            <h3>Nintendo Switch 2 <span>Cisza architektury ARM</span></h3>
+            <p>Energooszczędna architektura mobilna ARM (T239) nie wymaga potężnego chłodzenia w dłoniach – sprzęt jest bezgłośny w trybie przenośnym. Wentylator aktywuje się na wyższe obroty po włożeniu do stacji dokującej (aby zrzucić blokady na procesor i wysłać sygnał na TV), jednak z poziomu kanapy pozostaje niesłyszalny.</p>
+        </div>
+    </div>
+
+    <!-- ZAKŁADKA 4: EKRAN -->
+    <div id="ekran" class="tab-content">
+        <h2>Ekran i Wrażenia Wizualne</h2>
+        
+        <div class="device-card deck">
+            <h3>Steam Deck OLED <span>Jakość obrazu</span></h3>
+            <p>Technologia OLED zapewnia perfekcyjną czerń i obłędnie jasny tryb HDR (do 1000 nitów). W mrocznych tytułach jakość deklasuje konkurencję. Brak tu niestety sprzętowego VRR, więc każdą grę musisz ręcznie optymalizować, aby uniknąć szarpania obrazu (stutteringu).</p>
+        </div>
+
+        <div class="device-card ally">
+            <h3>ASUS ROG Ally X <span>Płynność i VRR (Game-Changer)</span></h3>
+            <p>Zastosowano matrycę IPS LCD (słabsza czerń), jednak nadrabia to technologia <strong>VRR (zmienne odświeżanie)</strong>. Układ sprzętowo zrównuje częstotliwość odświeżania z liczbą klatek. Jeśli gra dusi się przy 48 fpsach, na ekranie z VRR obraz wydaje się całkowicie płynny. To krytyczna przewaga nad Deckiem w wymagających tytułach.</p>
+        </div>
+
+        <div class="device-card switch">
+            <h3>Nintendo Switch 2 <span>Przestrzeń robocza</span></h3>
+            <p>Największa matryca w zestawieniu (ok. 8 cali) przy zredukowanych ramkach bocznych. Wysokiej jakości LCD do 120 Hz, ale z założeniem twardej blokady klatek (30 lub 60 fps) zaszytej w zoptymalizowanym kodzie gier Nintendo.</p>
+        </div>
+    </div>
+
+    <!-- ZAKŁADKA 5: WYDAJNOŚĆ -->
+    <div id="wydajnosc" class="tab-content">
+        <h2>Wydajność, Pamięć RAM i Zapas Mocy</h2>
+        
+        <div class="device-card ally">
+            <h3>ASUS ROG Ally X <span>Przewaga pojemności VRAM</span></h3>
+            <p>Montaż 24 GB superszybkiej pamięci LPDDR5X (7500 MHz) deklasuje konkurencję. Możesz sztywno przypisać 8 GB VRAM do układu graficznego (wymagane w Unreal Engine 5), zostawiając bezpieczne 16 GB dla zasobożernego Windowsa. Najdłużej pociągnie gry nowej generacji.</p>
+        </div>
+
+        <div class="device-card switch">
+            <h3>Nintendo Switch 2 <span>Magia zamkniętej platformy</span></h3>
+            <p>12 GB pamięci LPDDR5X i układ Nvidii. Na papierze najniższe parametry, ale platformy zamknięte wyciskają cuda. Grę optymalizuje się pod jedną konfigurację bez obciążenia Windowsem w tle, dlatego architektura Nvidii w zupełności wystarczy do pięknej oprawy graficznej.</p>
+        </div>
+
+        <div class="device-card deck">
+            <h3>Steam Deck OLED <span>Ograniczenia wieku RDNA 2</span></h3>
+            <p>System Linux i 16 GB RAM wystarczają do starszych gier, ale ten sprzęt dostaje zadyszki w tytułach AAA z 2024 i nowszych. Architektura RDNA 2 powoli się starzeje przy próbie renderowania zaawansowanych tekstur.</p>
+        </div>
+    </div>
+
+    <!-- ZAKŁADKA 6: SYSTEM I BATERIA -->
+    <div id="system" class="tab-content">
+        <h2>System, Codzienna Wygoda (UX) i Bateria</h2>
+        
+        <div class="device-card deck">
+            <h3>Steam Deck OLED <span>Perfekcja UX i czas w Indie</span></h3>
+            <p>Jako jedyny oferuje dwa gładziki (trackpady) - granie w strategie z poziomu kanapy jest wybitnie wygodne. Perfekcyjne usypianie gier: wciskasz pauzę, wyłączasz i wracasz do sekundy w której skończyłeś po 2 dniach. Bateria zużywa aptekarskie dawki prądu przy grach 2D (nawet do 8 godzin).</p>
+        </div>
+
+        <div class="device-card ally">
+            <h3>ASUS ROG Ally X <span>Potwór czasowy AAA z uciążliwym usypianiem</span></h3>
+            <p>Bateria 80 Wh trzyma nawet do 3.5 godziny w potężnych grach 3D. Jednak usypianie sprzętu zarządza Windows (Modern Standby). To loteria: po wybudzeniu może brakować dźwięku z powodu błędu sterownika audio, a sama konsola czasem zawiesza się w etui rozładowując plecak do zera.</p>
+        </div>
+
+        <div class="device-card switch">
+            <h3>Nintendo Switch 2 <span>Niezawodność kanapowa</span></h3>
+            <p>Odpinane Joy-Cony to dostęp do bezbłędnego sterowania ruchem. System zamyka się i usypia gry błyskawicznie, będąc niezawodnym towarzyszem podróży i błyskawicznych, krótkich sesji (pick-up and play).</p>
+        </div>
+        
+        <div class="summary-box">
+            <h3 style="margin-top:0">Werdykt Ostateczny</h3>
+            <ul style="line-height:1.8">
+                <li><strong>Wybierz ROG Ally X</strong> – jeśli masz PC Game Pass, zależy Ci na czystej wydajności i największej baterii.</li>
+                <li><strong>Wybierz Steam Deck OLED</strong> – jeśli oczekujesz konsolowej wygody obsługi, masz gry na Steamie i uwielbiasz perfekcyjną czerń.</li>
+                <li><strong>Wybierz Switch 2</strong> – jeśli sprzęt ma służyć za centrum salonowe pod TV dla znajomych/rodziny z natychmiastowym wznawianiem gier.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>
