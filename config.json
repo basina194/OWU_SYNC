@@ -70,6 +70,8 @@
     "product": "ERGO1",
     "url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/",
     "filter": "Ergo 1",
+    "exclude": "Przekład",
+    "category": "Samochód",
     "drive_folder_id": "1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO"
   },
    {
