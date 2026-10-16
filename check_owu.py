@@ -70,7 +70,8 @@ def extract_pdf_items_from_html(base_url, html_text, headers):
         # 1. Klasyczne linki <a> z .pdf
         for m in re.finditer(r'<a[^>]+href=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27][^>]*>(.*?)</a>', section_html, re.I | re.S):
             link_url = urljoin(base_url, m.group(1).strip())
-            link_text = re.sub(r'<[^>]+>', '', m.group(2)).strip()
+            raw_text = re.sub(r'<[^>]+>', ' ', m.group(2)).strip()
+            link_text = re.sub(r'\s+', ' ', raw_text)
             link_pos = m.start()
 
             is_arch = False
@@ -78,14 +79,17 @@ def extract_pdf_items_from_html(base_url, html_text, headers):
                 is_arch = True
             elif '/archiwum/' in link_url.lower() or '/archive/' in link_url.lower():
                 is_arch = True
-            elif re.search(r'(?:obowi[aą]zuj[aącecy]{1,3}\s+do|wa[zż]n[ey]\s+do|\bdo\s+\d{1,2}[\.\-/]\d{1,2}[\.\-/]\d{2,4})', link_text, re.I):
+            elif re.search(r'(?:obowi[aą]zuj[aącecy]{1,3}\s+do|wa[zż]n[ey]\s+do|\bdo\s+\d{1,2}[\.\-/]\d{1,2}[\.\-/]\d{2,4}|archiwaln)', link_text, re.I):
                 is_arch = True
+
+            # Czyszczenie dopisków o rozmiarze pliku np. "PDF 409,1 KB" aby cyfry nie zakłócały filtrów
+            clean_text = re.sub(r'(?:PDF\s*)?\d+(?:[.,]\d+)?\s*(?:[kKmMgGtT]?[bB]|bajt[oó]w)\b', '', link_text, flags=re.I).strip()
 
             if link_url not in seen_urls:
                 seen_urls.add(link_url)
                 items.append({
                     'url': link_url,
-                    'text': link_text,
+                    'text': clean_text,
                     'context': cat_title,
                     'is_archive': is_arch
                 })
@@ -94,16 +98,18 @@ def extract_pdf_items_from_html(base_url, html_text, headers):
         fs_pattern = r'<a[^>]+(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*(?:_fileserver|/files/|/documents/|/pobierz|/download)[^\x22\x27]*)[\x22\x27][^>]*>(.*?)</a>'
         for m in re.finditer(fs_pattern, section_html, re.I | re.S):
             cand_url = urljoin(base_url, m.group(1).strip())
-            link_text = re.sub(r'<[^>]+>', '', m.group(2)).strip()
+            raw_text = re.sub(r'<[^>]+>', ' ', m.group(2)).strip()
+            link_text = re.sub(r'\s+', ' ', raw_text)
+            clean_text = re.sub(r'(?:PDF\s*)?\d+(?:[.,]\d+)?\s*(?:[kKmMgGtT]?[bB]|bajt[oó]w)\b', '', link_text, flags=re.I).strip()
             if cand_url not in seen_urls:
                 clean = cand_url.split("?")[0].split("#")[0]
                 if clean.lower().endswith(".pdf"):
                     seen_urls.add(cand_url)
                     items.append({
                         'url': cand_url,
-                        'text': link_text,
+                        'text': clean_text,
                         'context': cat_title,
-                        'is_archive': '/archiwum/' in cand_url.lower()
+                        'is_archive': '/archiwum/' in cand_url.lower() or 'archiwaln' in clean_text.lower()
                     })
                 else:
                     try:
@@ -114,7 +120,7 @@ def extract_pdf_items_from_html(base_url, html_text, headers):
                             seen_urls.add(cand_url)
                             items.append({
                                 'url': cand_url,
-                                'text': link_text,
+                                'text': clean_text,
                                 'context': cat_title,
                                 'is_archive': False
                             })
@@ -143,47 +149,102 @@ def extract_pdf_items_from_html(base_url, html_text, headers):
 
     return items
 
-def matches_filter(item, filter_val=None, exclude_val=None, exclude_archive=False):
-    if exclude_archive and item.get("is_archive"):
-        return False
+def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False):
+    # 1. Filtrowanie archiwów
+    active_items = [it for it in items if not (exclude_archive and it.get("is_archive"))]
 
-    searchable = normalize_text(f"{item.get('context', '')} {item.get('text', '')} {item.get('url', '')}")
-
-    if filter_val:
-        if isinstance(filter_val, str):
-            filter_words = [normalize_text(w) for w in re.split(r'[\s,]+', filter_val) if w.strip()]
-        else:
-            filter_words = [normalize_text(str(w)) for w in filter_val if str(w).strip()]
-        if filter_words and not all(w in searchable for w in filter_words):
-            return False
-
+    # 2. Wykluczenia (exclude)
     if exclude_val:
         if isinstance(exclude_val, str):
             exclude_words = [normalize_text(w) for w in re.split(r'[\s,]+', exclude_val) if w.strip()]
         else:
             exclude_words = [normalize_text(str(w)) for w in exclude_val if str(w).strip()]
-        if any(w in searchable for w in exclude_words):
-            return False
+        active_items = [
+            it for it in active_items
+            if not any(w in normalize_text(f"{it.get('context', '')} {it.get('text', '')}") for w in exclude_words)
+        ]
 
-    return True
+    if not filter_val:
+        return active_items
 
-def get_pdf_urls_for_target(url, headers, filter_val=None, exclude_val=None, exclude_archive=False, fallback_if_no_pdfs=False):
+    if isinstance(filter_val, list):
+        norm_filter = " ".join(normalize_text(str(w)) for w in filter_val if str(w).strip())
+        filter_words = [normalize_text(str(w)) for w in filter_val if str(w).strip()]
+    else:
+        norm_filter = normalize_text(str(filter_val)).strip()
+        filter_words = [w for w in re.split(r'[\s,]+', norm_filter) if w]
+
+    # 3. Dopasowanie całej frazy (priorytetowe)
+    phrase_pattern = r'\b' + r'[\s\-_/]+'.join(re.escape(w) for w in filter_words) + r'\b'
+    phrase_matches = [
+        it for it in active_items
+        if re.search(phrase_pattern, normalize_text(f"{it.get('context', '')} {it.get('text', '')}"))
+    ]
+    if phrase_matches:
+        return phrase_matches
+
+    # 4. Fallback: dopasowanie wszystkich słów (z granicami słów dla liczb / krótkich kodów)
+    word_matches = []
+    for it in active_items:
+        searchable = normalize_text(f"{it.get('context', '')} {it.get('text', '')}")
+        ok = True
+        for w in filter_words:
+            if w.isdigit() or len(w) <= 2:
+                pattern = r'(?<![a-zA-Z0-9])' + re.escape(w) + r'(?![a-zA-Z0-9])'
+                if not re.search(pattern, searchable):
+                    ok = False
+                    break
+            else:
+                if w not in searchable:
+                    ok = False
+                    break
+        if ok:
+            word_matches.append(it)
+    return word_matches
+
+def get_pdf_urls_for_target(url, headers, filter_val=None, exclude_val=None, exclude_archive=False, fallback_if_no_pdfs=False, category=None, query=None):
     # Jeśli URL bezpośrednio wskazuje na plik .pdf
     clean_url = url.split("?")[0].split("#")[0]
     if clean_url.lower().endswith(".pdf"):
         return [url]
 
-    # Pobieramy stronę i sprawdzamy nagłówki
-    resp = requests.get(url, headers=headers, timeout=30)
+    session = requests.Session()
+    resp = session.get(url, headers=headers, timeout=30)
     resp.raise_for_status()
 
     content_type = resp.headers.get("Content-Type", "").lower()
     if "application/pdf" in content_type:
         return [url]
 
+    # Obsługa repozytoriów z formularzem wyszukiwania (np. Ergo Hestia /wyszukiwarka/dokumenty/)
+    if 'id="id_search_form"' in resp.text or 'id_query' in resp.text:
+        csrf_match = re.search(r'name=[\x22\x27]csrfmiddlewaretoken[\x22\x27]\s+value=[\x22\x27]([^\x22\x27]+)[\x22\x27]', resp.text)
+        if csrf_match:
+            csrf_token = csrf_match.group(1)
+            if query is not None:
+                query_to_send = str(query)
+            elif filter_val:
+                # Oczyszczenie ogólnych prefiksów by wyszukiwarka Hestii celnie wyszukała nazwę produktu
+                clean_q = re.sub(r'(?:og[oó]lne\s+warunki\s+(?:ubezpiecze[nń]\s+)?|owu\s+)', '', str(filter_val), flags=re.I).strip()
+                query_to_send = clean_q or str(filter_val)
+            else:
+                query_to_send = ""
+
+            post_data = {
+                "csrfmiddlewaretoken": csrf_token,
+                "query": query_to_send,
+                "category": category or ""
+            }
+            post_headers = dict(headers)
+            post_headers["Referer"] = url
+            resp = session.post(url, data=post_data, headers=post_headers, timeout=30)
+            resp.raise_for_status()
+
+    resp.encoding = resp.apparent_encoding or "utf-8"
+
     # Strona HTML - wyszukujemy dokumenty PDF
     items = extract_pdf_items_from_html(url, resp.text, headers)
-    matched = [it for it in items if matches_filter(it, filter_val, exclude_val, exclude_archive)]
+    matched = filter_items(items, filter_val=filter_val, exclude_val=exclude_val, exclude_archive=exclude_archive)
     pdf_urls = list(dict.fromkeys(it["url"] for it in matched))
 
     if not pdf_urls and fallback_if_no_pdfs:
@@ -327,10 +388,14 @@ def main():
 
         filter_val = item.get("filter") or item.get("target") or item.get("include")
         exclude_val = item.get("exclude")
+        category_val = item.get("category")
+        query_val = item.get("query")
         # Domyślnie wykluczamy archiwa jeśli podano filtr lub wykluczenia, chyba że w configu jawnie ustawiono exclude_archive
-        exclude_archive = item.get("exclude_archive", True if (filter_val or exclude_val) else False)
+        exclude_archive = item.get("exclude_archive", True if (filter_val or exclude_val or category_val or query_val) else False)
 
         filter_info = f" [filtr: '{filter_val}']" if filter_val else ""
+        if category_val:
+            filter_info += f" [kategoria: '{category_val}']"
         print(f"\nSprawdzam: {product_key}{filter_info} ({page_url})...")
 
         headers = {
@@ -344,7 +409,9 @@ def main():
                 filter_val=filter_val,
                 exclude_val=exclude_val,
                 exclude_archive=exclude_archive,
-                fallback_if_no_pdfs=bool(item.get("filename"))
+                fallback_if_no_pdfs=bool(item.get("filename")),
+                category=category_val,
+                query=query_val
             )
             if not pdf_urls:
                 print(f"Nie znaleziono żadnych plików PDF pod adresem: {page_url}")
