@@ -1,30 +1,27 @@
 [
   {
     "company": "Warta",
-    "product": "Autocasco_Standard",
-    "url": "https://www.warta.pl/documents/oferta_dla_ciebie/WARTA_OWU_AutoCasco_Standard_ACS_C6204_int.pdf",
-    "filename": "Warta_AC_Standard.pdf",
+    "product": "OC",
+    "url": "https://www.warta.pl/ubezpieczenie-oc/",
     "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
   },
-   {
+  {
+    "company": "Warta",
+    "product": "Autocasco_Standard",
+    "url": "https://www.warta.pl/documents/oferta_dla_ciebie/WARTA_OWU_AutoCasco_Standard_ACS_C6204_int.pdf",
+    "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
+  },
+  {
     "company": "Warta",
     "product": "Autocasco_komfort",
     "url": "https://www.warta.pl/documents/oferta_dla_ciebie/WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf",
-    "filename": "Warta_AC_Komfort",
     "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
   },
-   {
+  {
     "company": "BBC",
     "product": "Test",
     "url": "https://raw.githubusercontent.com/basina194/Testowe/main/Test1.html",
     "filename": "Testowy",
-    "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
-  },
-   {
-    "company": "Warta",
-    "product": "OC",
-    "url": "https://www.warta.pl/ubezpieczenie-oc/",
-    "filename": "OC_Komunikacyjne",
     "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
   }
 ]

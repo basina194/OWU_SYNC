@@ -1,8 +1,21 @@
 {
   "Warta_Autocasco": "1128495354e3b516c6844f8f8d35e7aea39f822593c352027dbdb497c0f603d7",
-  "Warta_Autocasco_Standard": "1128495354e3b516c6844f8f8d35e7aea39f822593c352027dbdb497c0f603d7",
-  "WARTA_Autocasco_komfort": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955",
-  "BBC_Test": "b1befc594bc269ac69240db4fa6a905a3ac370933ff487eafd04b63d1c4bbe31",
-  "Warta_Autocasco_komfort": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955",
-  "Warta_OC": "7d122247d134bc0320eb34b29a60952f36c51998bfa19ccdca677d469993a98d"
+  "Warta_Autocasco_Standard": {
+    "WARTA_OWU_AutoCasco_Standard_ACS_C6204_int.pdf": "1128495354e3b516c6844f8f8d35e7aea39f822593c352027dbdb497c0f603d7"
+  },
+  "WARTA_Autocasco_komfort": {
+    "Warta_AC_Komfort.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
+  },
+  "BBC_Test": {
+    "Testowy": "b1befc594bc269ac69240db4fa6a905a3ac370933ff487eafd04b63d1c4bbe31"
+  },
+  "Warta_OC": {
+    "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf": "b97524bb2962216fdd666945f25f9bc707a17ff2637823c9150e2a36dac0d6b1",
+    "WARTA_OWU_WARTA_OC_Szybka_wyplata_C6334_int.pdf": "ab0367cf4f9552b9fe1b6e57f9bfcff30658706fc573cfe7f73b9d8a5c2ca186",
+    "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf": "62d522a9702a525142012743899f6f17e043a7cd24842f7c828f0a0c3bf31279",
+    "Wspolne_Oswiadczenie_o_Wypadku_01.pdf": "04d24868a2a92415e75b19c9a0e3b54cc6e35b59d07a5017be31fcf1d28edcaa"
+  },
+  "Warta_Autocasco_komfort": {
+    "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
+  }
 }
