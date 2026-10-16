@@ -65,6 +65,13 @@
     "url": "https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/",
     "drive_folder_id": "1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO"
   },
+  {
+    "company": "Ergo_Hestia",
+    "product": "ERGO1",
+    "url": "https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/",
+    "filter": "Ergo 1",
+    "drive_folder_id": "1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO"
+  },
    {
     "company": "Ergo_Hestia",
     "product": "DOM",
@@ -76,6 +83,27 @@
     "product": "Travel",
     "url": "https://www.ergohestia.pl/ubezpieczenie-podrozy/",
     "drive_folder_id": "1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr"
+  },
+   {
+    "company": "Compensa",
+    "product": "Komunikacja",
+    "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
+     "filter": "owu compensa komunikacja",
+    "drive_folder_id": "1Pz5AhPF1NhSg4cG8l59iGh1mkbIEnDhD"
+  },
+   {
+    "company": "Compensa",
+    "product": "DOM",
+    "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
+     "filter": "owu compensa rodzina",
+    "drive_folder_id": "1KJTggeeBuOWjTk6mcxrk7iI7CPG424wu"
+  },
+  {
+    "company": "Compensa",
+    "product": "Travel",
+    "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
+     "filter": "owu compensa podróz",
+    "drive_folder_id": "1H8EiBNWU7CLTSgAL46nnSDbybymR52GE"
   },
   {
     "company": "BBC",
