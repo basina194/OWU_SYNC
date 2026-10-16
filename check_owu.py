@@ -1,8 +1,10 @@
 import os
 import json
 import hashlib
-import requests
+import mimetypes
+from datetime import datetime
 from io import BytesIO
+import requests
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -37,20 +39,75 @@ def get_drive_service():
 
     return build("drive", "v3", credentials=creds)
 
-def upload_to_drive(service, file_bytes, filename, folder_id):
-    media = MediaIoBaseUpload(BytesIO(file_bytes), mimetype="application/pdf", resumable=True)
-    query = f"name = '{filename}' and '{folder_id}' in parents and trashed = false"
+def get_or_create_archive_folder(service, parent_folder_id, folder_name="Archiwum"):
+    query = (
+        f"name = '{folder_name}' and "
+        f"'{parent_folder_id}' in parents and "
+        f"mimeType = 'application/vnd.google-apps.folder' and "
+        f"trashed = false"
+    )
     results = service.files().list(q=query, fields="files(id)").execute()
+    items = results.get("files", [])
+    if items:
+        return items[0]["id"]
+
+    metadata = {
+        "name": folder_name,
+        "mimeType": "application/vnd.google-apps.folder",
+        "parents": [parent_folder_id]
+    }
+    folder = service.files().create(body=metadata, fields="id").execute()
+    print(f"Utworzono nowy folder archiwum: '{folder_name}'")
+    return folder["id"]
+
+def upload_to_drive(service, file_bytes, filename, folder_id, company="", archive_folder_id=None, archive_folder_name=None):
+    folder_id = folder_id.strip().split("?")[0]
+    mime_type, _ = mimetypes.guess_type(filename)
+    if not mime_type:
+        mime_type = "application/pdf"
+
+    media = MediaIoBaseUpload(BytesIO(file_bytes), mimetype=mime_type, resumable=True)
+
+    # Sprawdź czy plik o tej nazwie już istnieje w folderze docelowym
+    query = f"name = '{filename}' and '{folder_id}' in parents and trashed = false"
+    results = service.files().list(q=query, fields="files(id, name)").execute()
     items = results.get("files", [])
 
     if items:
-        file_id = items[0]["id"]
-        service.files().update(fileId=file_id, media_body=media).execute()
-        print(f"Zaktualizowano plik: {filename}")
-    else:
-        metadata = {"name": filename, "parents": [folder_id]}
-        service.files().create(body=metadata, media_body=media, fields="id").execute()
-        print(f"Pobrano i wgrano nowy plik: {filename}")
+        old_file_id = items[0]["id"]
+
+        # Określ folder archiwum
+        target_archive_id = archive_folder_id
+        if not target_archive_id:
+            target_name = archive_folder_name or (f"Archiwum {company}".strip() if company else "Archiwum")
+            target_archive_id = get_or_create_archive_folder(service, folder_id, target_name)
+
+        # Przygotuj nazwę archiwalną z datą
+        name_part, ext_part = os.path.splitext(filename)
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        archived_filename = f"{name_part}_arch_{date_str}{ext_part}"
+
+        # Zapobieganie konfliktom przy wielokrotnej archiwizacji tego samego dnia
+        check_q = f"name = '{archived_filename}' and '{target_archive_id}' in parents and trashed = false"
+        arch_items = service.files().list(q=check_q, fields="files(id)").execute().get("files", [])
+        if arch_items:
+            time_str = datetime.now().strftime("%H%M%S")
+            archived_filename = f"{name_part}_arch_{date_str}_{time_str}{ext_part}"
+
+        # Przenieś i zmień nazwę starego pliku
+        service.files().update(
+            fileId=old_file_id,
+            addParents=target_archive_id,
+            removeParents=folder_id,
+            body={"name": archived_filename},
+            fields="id, parents, name"
+        ).execute()
+        print(f"Zarchiwizowano poprzednią wersję jako: '{archived_filename}'")
+
+    # Wgraj nowy plik do głównego folderu
+    metadata = {"name": filename, "parents": [folder_id]}
+    service.files().create(body=metadata, media_body=media, fields="id").execute()
+    print(f"Wgrano nowy plik: {filename}")
 
 def main():
     with open(CONFIG_FILE, "r", encoding="utf-8") as f:
@@ -70,6 +127,10 @@ def main():
     for item in config:
         key = f"{item['company']}_{item['product']}"
         url = item["url"]
+        company = item.get("company", "")
+        archive_folder_id = item.get("archive_folder_id")
+        archive_folder_name = item.get("archive_folder_name")
+
         print(f"Sprawdzam: {key}...")
 
         try:
@@ -82,7 +143,15 @@ def main():
             if known_hashes.get(key) != current_hash:
                 print(f"-> Wykryto zmianę dla: {key}")
                 known_hashes[key] = current_hash
-                upload_to_drive(service, resp.content, item["filename"], item["drive_folder_id"])
+                upload_to_drive(
+                    service=service,
+                    file_bytes=resp.content,
+                    filename=item["filename"],
+                    folder_id=item["drive_folder_id"],
+                    company=company,
+                    archive_folder_id=archive_folder_id,
+                    archive_folder_name=archive_folder_name
+                )
                 has_changes = True
             else:
                 print(f"Brak zmian dla: {key}")
