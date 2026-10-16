@@ -17,5 +17,31 @@
   },
   "Warta_Autocasco_komfort": {
     "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
+  },
+  "Warta_AC": {
+    "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955",
+    "WARTA_OWU_AutoCasco_Standard_ACS_C6205_int.pdf": "dba7e3bab9a28355d40c116769dd0624cde4517d63972a70446831264dfb0017",
+    "WARTA_OWU_Autocasco_i_Kradzie\u017c_dla_flot_samochodowych_C3916_int.pdf": "bc185154d28908fb559ae01fd23bb354d4abd94e0cf5e3cbf6a94794f0ba8877"
+  },
+  "Warta_DOM": {
+    "OWU_Warta_Dom_C7177_int.pdf": "82c278808eb350d998b3f09ae90781575d4df4b2e0bbed3efea49b0c00885a55",
+    "OWU_Warta_Dom_Komfort_C7187_int.pdf": "1529dc7b53a1519230fc072f4cf90dc260823d4f6248553001506ca44dcc32ee",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
+    "Normy_zuzycia_technicznego_budynkow.pdf": "428281d66a1f3bef99011df028e685a85005bc767a9467695c15b17461e08e1d",
+    "Normy_trwalosci_elementow_budynku...pdf": "420173683514dd574c06582ef3260b83aa414c84a19fa3c4b7faeac16f148e15"
+  },
+  "Warta_Travel": {
+    "OWU_WARTA_Travel_C0517.pdf": "c2a3f86a0f8306a5e5ce93652ca8f6f4fec08af28fc6c2f9bddd69c20c3061b1",
+    "OWU_WARTA_TRAVEL_C0517_EN_int.pdf": "a0c5befe494dc267cc9aa655dc617bce934c23ee3449aeaae8837e1b7e92133d",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
+    "Warta_Travel_Poradnik_ON_LINE_One_pager_jak_zg\u0142osic_szkode_od_5_czerwca_2025.pdf": "30b19aa33895d186ba2b43dd213a8271d0a34be2b21a54e2f8a5412bb0aa9729"
+  },
+  "Warta_Koszty_rezygnacji": {
+    "OWU_Kosztow_odwolania_podrozy_C8323.pdf": "d1f2424ec8df997227f5976e5c2161680d184a3c644b15de9d8e616e53e78310",
+    "Koszty_Odwolania_Podrozy_onepager-jak_zg\u0142osic_szkode.pdf": "7c980be6457113fdf559f4daf795b9da197b017b6b69b52281b287c096682c18"
+  },
+  "Warta_Turysta": {
+    "OWU_WARTA_Twoje_NNW_C7784.pdf": "abedf0495f74b6143102b0f7fa7e16da44277ef101f4d9e2772d86c22c3f9886",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457"
   }
 }
