@@ -20,66 +20,154 @@ HASHES_FILE = "hashes.json"
 TOKEN_FILE = "token.json"
 CLIENT_SECRET_FILE = "client_secret.json"
 
-class PDFLinkExtractor(HTMLParser):
-    def __init__(self, base_url):
-        super().__init__()
-        self.base_url = base_url
-        self.pdf_links = []
+def normalize_text(text):
+    text = (text or "").lower()
+    mapping = {
+        'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n',
+        'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z'
+    }
+    for k, v in mapping.items():
+        text = text.replace(k, v)
+    return text
 
-    def handle_starttag(self, tag, attrs):
-        attr_dict = {k.lower(): (v or "") for k, v in attrs}
-        for key in ["href", "src", "data-url", "data-href", "data-src"]:
-            val = attr_dict.get(key, "").strip()
-            if val and ".pdf" in val.lower():
-                full_url = urljoin(self.base_url, val)
-                if full_url not in self.pdf_links:
-                    self.pdf_links.append(full_url)
+def extract_pdf_items_from_html(base_url, html_text, headers):
+    items = []
+    seen_urls = set()
 
-def extract_pdf_urls_from_html(base_url, html_text, headers):
-    candidates = set()
-    text = html_text
+    clean_html = re.sub(r'<(script|style)[^>]*>[\s\S]*?</\1>', '', html_text, flags=re.I)
 
     # Obsługa specyficznego formatu serializacji Generali (devalue serialization)
-    if "_~s~" in text or "~s~" in text:
-        clean = re.sub(r'https:[_~s]+www', 'https://www', text)
+    if "_~s~" in html_text or "~s~" in html_text:
+        clean = re.sub(r'https:[_~s]+www', 'https://www', html_text)
         clean = re.sub(r'[_~]+s[_~]+', '/', clean)
         for m in re.finditer(r'(https://(?:www\.)?generali\.pl/media/[^\x22\x27\s<>]+\.pdf)', clean, re.I):
-            candidates.add(m.group(1))
+            u = m.group(1)
+            if u not in seen_urls:
+                seen_urls.add(u)
+                items.append({'url': u, 'text': '', 'context': '', 'is_archive': False})
 
-    # 1. Klasyczne linki z .pdf w parametrach href, src, data-url itp.
-    pdf_pattern = r'(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27]'
-    for match in re.finditer(pdf_pattern, text, re.IGNORECASE):
-        candidates.add(urljoin(base_url, match.group(1).strip()))
+    # Podział na sekcje wg nagłówków h1-h3 (np. kategorie / akordeony jak w Compensie)
+    raw_sections = re.split(r'(<h[1-3][^>]*>.*?</h[1-3]>)', clean_html, flags=re.I)
 
-    # 2. Linki do repozytoriów plików (np. PZU: /_fileserver/item/...)
-    fs_pattern = r'(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*(?:_fileserver|/files/|/documents/|/pobierz|/download)[^\x22\x27]*)[\x22\x27]'
-    for match in re.finditer(fs_pattern, html_text, re.IGNORECASE):
-        candidates.add(urljoin(base_url, match.group(1).strip()))
+    parsed_sections = []
+    if len(raw_sections) > 1:
+        for i in range(1, len(raw_sections), 2):
+            h_text = re.sub(r'<[^>]+>', '', raw_sections[i]).strip()
+            content = raw_sections[i+1] if i+1 < len(raw_sections) else ''
+            parsed_sections.append((h_text, content))
+    else:
+        parsed_sections.append(("", clean_html))
 
-    # 3. Elementy oznaczone atrybutem data-file='pdf' (charakterystyczne dla PZU)
-    data_pdf_pattern = r'<[^>]+data-file=[\x22\x27]pdf[\x22\x27][^>]*>[\s\S]{0,400}?href=[\x22\x27]([^\x22\x27]+)[\x22\x27]'
-    for match in re.finditer(data_pdf_pattern, html_text, re.IGNORECASE):
-        candidates.add(urljoin(base_url, match.group(1).strip()))
+    for cat_title, section_html in parsed_sections:
+        # Wykrycie sekcji archiwum w obrębie danej sekcji / akordeonu
+        arch_match = re.search(
+            r'<(?:h[3-6]|strong|p|b|div)[^>]*>(?:<[^>]+>|\s)*?[Aa]rchiwum:?[\s\S]*?</(?:h[3-6]|strong|p|b|div)>',
+            section_html,
+            re.I
+        )
+        arch_pos = arch_match.start() if arch_match else len(section_html)
 
-    verified_links = []
-    for cand in candidates:
-        clean = cand.split("?")[0].split("#")[0]
-        if clean.lower().endswith(".pdf"):
-            verified_links.append(cand)
+        # 1. Klasyczne linki <a> z .pdf
+        for m in re.finditer(r'<a[^>]+href=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27][^>]*>(.*?)</a>', section_html, re.I | re.S):
+            link_url = urljoin(base_url, m.group(1).strip())
+            link_text = re.sub(r'<[^>]+>', '', m.group(2)).strip()
+            link_pos = m.start()
+
+            is_arch = False
+            if link_pos >= arch_pos:
+                is_arch = True
+            elif '/archiwum/' in link_url.lower() or '/archive/' in link_url.lower():
+                is_arch = True
+            elif re.search(r'(?:obowi[aą]zuj[aącecy]{1,3}\s+do|wa[zż]n[ey]\s+do|\bdo\s+\d{1,2}[\.\-/]\d{1,2}[\.\-/]\d{2,4})', link_text, re.I):
+                is_arch = True
+
+            if link_url not in seen_urls:
+                seen_urls.add(link_url)
+                items.append({
+                    'url': link_url,
+                    'text': link_text,
+                    'context': cat_title,
+                    'is_archive': is_arch
+                })
+
+        # 2. Linki z data-url / data-href lub do repozytoriów plików (np. PZU fileserver)
+        fs_pattern = r'<a[^>]+(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*(?:_fileserver|/files/|/documents/|/pobierz|/download)[^\x22\x27]*)[\x22\x27][^>]*>(.*?)</a>'
+        for m in re.finditer(fs_pattern, section_html, re.I | re.S):
+            cand_url = urljoin(base_url, m.group(1).strip())
+            link_text = re.sub(r'<[^>]+>', '', m.group(2)).strip()
+            if cand_url not in seen_urls:
+                clean = cand_url.split("?")[0].split("#")[0]
+                if clean.lower().endswith(".pdf"):
+                    seen_urls.add(cand_url)
+                    items.append({
+                        'url': cand_url,
+                        'text': link_text,
+                        'context': cat_title,
+                        'is_archive': '/archiwum/' in cand_url.lower()
+                    })
+                else:
+                    try:
+                        head = requests.head(cand_url, headers=headers, timeout=10, allow_redirects=True)
+                        ct = head.headers.get("Content-Type", "").lower()
+                        cd = head.headers.get("Content-Disposition", "").lower()
+                        if "application/pdf" in ct or ".pdf" in cd:
+                            seen_urls.add(cand_url)
+                            items.append({
+                                'url': cand_url,
+                                'text': link_text,
+                                'context': cat_title,
+                                'is_archive': False
+                            })
+                    except Exception:
+                        pass
+
+        # 3. Elementy data-file='pdf' (np. PZU)
+        data_pdf_pattern = r'<[^>]+data-file=[\x22\x27]pdf[\x22\x27][^>]*>[\s\S]{0,400}?href=[\x22\x27]([^\x22\x27]+)[\x22\x27]'
+        for m in re.finditer(data_pdf_pattern, section_html, re.I):
+            cand_url = urljoin(base_url, m.group(1).strip())
+            if cand_url not in seen_urls:
+                try:
+                    head = requests.head(cand_url, headers=headers, timeout=10, allow_redirects=True)
+                    ct = head.headers.get("Content-Type", "").lower()
+                    cd = head.headers.get("Content-Disposition", "").lower()
+                    if "application/pdf" in ct or ".pdf" in cd:
+                        seen_urls.add(cand_url)
+                        items.append({
+                            'url': cand_url,
+                            'text': '',
+                            'context': cat_title,
+                            'is_archive': False
+                        })
+                except Exception:
+                    pass
+
+    return items
+
+def matches_filter(item, filter_val=None, exclude_val=None, exclude_archive=False):
+    if exclude_archive and item.get("is_archive"):
+        return False
+
+    searchable = normalize_text(f"{item.get('context', '')} {item.get('text', '')} {item.get('url', '')}")
+
+    if filter_val:
+        if isinstance(filter_val, str):
+            filter_words = [normalize_text(w) for w in re.split(r'[\s,]+', filter_val) if w.strip()]
         else:
-            # Weryfikacja nagłówkiem czy dany link zwraca plik PDF (np. PZU fileserver)
-            try:
-                head = requests.head(cand, headers=headers, timeout=10, allow_redirects=True)
-                ct = head.headers.get("Content-Type", "").lower()
-                cd = head.headers.get("Content-Disposition", "").lower()
-                if "application/pdf" in ct or ".pdf" in cd:
-                    verified_links.append(cand)
-            except Exception:
-                pass
+            filter_words = [normalize_text(str(w)) for w in filter_val if str(w).strip()]
+        if filter_words and not all(w in searchable for w in filter_words):
+            return False
 
-    return verified_links
+    if exclude_val:
+        if isinstance(exclude_val, str):
+            exclude_words = [normalize_text(w) for w in re.split(r'[\s,]+', exclude_val) if w.strip()]
+        else:
+            exclude_words = [normalize_text(str(w)) for w in exclude_val if str(w).strip()]
+        if any(w in searchable for w in exclude_words):
+            return False
 
-def get_pdf_urls_for_target(url, headers, fallback_if_no_pdfs=False):
+    return True
+
+def get_pdf_urls_for_target(url, headers, filter_val=None, exclude_val=None, exclude_archive=False, fallback_if_no_pdfs=False):
     # Jeśli URL bezpośrednio wskazuje na plik .pdf
     clean_url = url.split("?")[0].split("#")[0]
     if clean_url.lower().endswith(".pdf"):
@@ -93,8 +181,11 @@ def get_pdf_urls_for_target(url, headers, fallback_if_no_pdfs=False):
     if "application/pdf" in content_type:
         return [url]
 
-    # Strona HTML - wyszukujemy linki do dokumentów PDF
-    pdf_urls = extract_pdf_urls_from_html(url, resp.text, headers)
+    # Strona HTML - wyszukujemy dokumenty PDF
+    items = extract_pdf_items_from_html(url, resp.text, headers)
+    matched = [it for it in items if matches_filter(it, filter_val, exclude_val, exclude_archive)]
+    pdf_urls = list(dict.fromkeys(it["url"] for it in matched))
+
     if not pdf_urls and fallback_if_no_pdfs:
         return [url]
 
@@ -234,19 +325,32 @@ def main():
         archive_folder_id = item.get("archive_folder_id")
         archive_folder_name = item.get("archive_folder_name")
 
-        print(f"\nSprawdzam: {product_key} ({page_url})...")
+        filter_val = item.get("filter") or item.get("target") or item.get("include")
+        exclude_val = item.get("exclude")
+        # Domyślnie wykluczamy archiwa jeśli podano filtr lub wykluczenia, chyba że w configu jawnie ustawiono exclude_archive
+        exclude_archive = item.get("exclude_archive", True if (filter_val or exclude_val) else False)
+
+        filter_info = f" [filtr: '{filter_val}']" if filter_val else ""
+        print(f"\nSprawdzam: {product_key}{filter_info} ({page_url})...")
 
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
 
         try:
-            pdf_urls = get_pdf_urls_for_target(page_url, headers, fallback_if_no_pdfs=bool(item.get("filename")))
+            pdf_urls = get_pdf_urls_for_target(
+                page_url,
+                headers,
+                filter_val=filter_val,
+                exclude_val=exclude_val,
+                exclude_archive=exclude_archive,
+                fallback_if_no_pdfs=bool(item.get("filename"))
+            )
             if not pdf_urls:
                 print(f"Nie znaleziono żadnych plików PDF pod adresem: {page_url}")
                 continue
 
-            print(f"Znaleziono {len(pdf_urls)} plik(ów) PDF.")
+            print(f"Znaleziono {len(pdf_urls)} pasujący(ch) plik(ów) PDF.")
 
             # Poprzednio zapisane sumy dla tego produktu
             prev_product_entry = known_hashes.get(product_key, {})
