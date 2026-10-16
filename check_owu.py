@@ -37,10 +37,18 @@ class PDFLinkExtractor(HTMLParser):
 
 def extract_pdf_urls_from_html(base_url, html_text, headers):
     candidates = set()
+    text = html_text
+
+    # Obsługa specyficznego formatu serializacji Generali (devalue serialization)
+    if "_~s~" in text or "~s~" in text:
+        clean = re.sub(r'https:[_~s]+www', 'https://www', text)
+        clean = re.sub(r'[_~]+s[_~]+', '/', clean)
+        for m in re.finditer(r'(https://(?:www\.)?generali\.pl/media/[^\x22\x27\s<>]+\.pdf)', clean, re.I):
+            candidates.add(m.group(1))
 
     # 1. Klasyczne linki z .pdf w parametrach href, src, data-url itp.
     pdf_pattern = r'(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27]'
-    for match in re.finditer(pdf_pattern, html_text, re.IGNORECASE):
+    for match in re.finditer(pdf_pattern, text, re.IGNORECASE):
         candidates.add(urljoin(base_url, match.group(1).strip()))
 
     # 2. Linki do repozytoriów plików (np. PZU: /_fileserver/item/...)
