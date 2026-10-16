@@ -10,30 +10,30 @@
     "Testowy": "b1befc594bc269ac69240db4fa6a905a3ac370933ff487eafd04b63d1c4bbe31"
   },
   "Warta_OC": {
-    "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf": "62d522a9702a525142012743899f6f17e043a7cd24842f7c828f0a0c3bf31279",
-    "WARTA_OWU_WARTA_OC_Szybka_wyplata_C6334_int.pdf": "ab0367cf4f9552b9fe1b6e57f9bfcff30658706fc573cfe7f73b9d8a5c2ca186",
     "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf": "b97524bb2962216fdd666945f25f9bc707a17ff2637823c9150e2a36dac0d6b1",
+    "WARTA_OWU_WARTA_OC_Szybka_wyplata_C6334_int.pdf": "ab0367cf4f9552b9fe1b6e57f9bfcff30658706fc573cfe7f73b9d8a5c2ca186",
+    "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf": "62d522a9702a525142012743899f6f17e043a7cd24842f7c828f0a0c3bf31279",
     "Wspolne_Oswiadczenie_o_Wypadku_01.pdf": "04d24868a2a92415e75b19c9a0e3b54cc6e35b59d07a5017be31fcf1d28edcaa"
   },
   "Warta_Autocasco_komfort": {
     "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
   },
   "Warta_AC": {
+    "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955",
     "WARTA_OWU_AutoCasco_Standard_ACS_C6205_int.pdf": "dba7e3bab9a28355d40c116769dd0624cde4517d63972a70446831264dfb0017",
-    "WARTA_OWU_Autocasco_i_Kradzie\u017c_dla_flot_samochodowych_C3916_int.pdf": "bc185154d28908fb559ae01fd23bb354d4abd94e0cf5e3cbf6a94794f0ba8877",
-    "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
+    "WARTA_OWU_Autocasco_i_Kradzie\u017c_dla_flot_samochodowych_C3916_int.pdf": "bc185154d28908fb559ae01fd23bb354d4abd94e0cf5e3cbf6a94794f0ba8877"
   },
   "Warta_DOM": {
-    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
-    "OWU_Warta_Dom_Komfort_C7187_int.pdf": "1529dc7b53a1519230fc072f4cf90dc260823d4f6248553001506ca44dcc32ee",
-    "Normy_zuzycia_technicznego_budynkow.pdf": "428281d66a1f3bef99011df028e685a85005bc767a9467695c15b17461e08e1d",
     "OWU_Warta_Dom_C7177_int.pdf": "82c278808eb350d998b3f09ae90781575d4df4b2e0bbed3efea49b0c00885a55",
+    "OWU_Warta_Dom_Komfort_C7187_int.pdf": "1529dc7b53a1519230fc072f4cf90dc260823d4f6248553001506ca44dcc32ee",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
+    "Normy_zuzycia_technicznego_budynkow.pdf": "428281d66a1f3bef99011df028e685a85005bc767a9467695c15b17461e08e1d",
     "Normy_trwalosci_elementow_budynku...pdf": "420173683514dd574c06582ef3260b83aa414c84a19fa3c4b7faeac16f148e15"
   },
   "Warta_Travel": {
-    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
-    "OWU_WARTA_TRAVEL_C0517_EN_int.pdf": "a0c5befe494dc267cc9aa655dc617bce934c23ee3449aeaae8837e1b7e92133d",
     "OWU_WARTA_Travel_C0517.pdf": "c2a3f86a0f8306a5e5ce93652ca8f6f4fec08af28fc6c2f9bddd69c20c3061b1",
+    "OWU_WARTA_TRAVEL_C0517_EN_int.pdf": "a0c5befe494dc267cc9aa655dc617bce934c23ee3449aeaae8837e1b7e92133d",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
     "Warta_Travel_Poradnik_ON_LINE_One_pager_jak_zg\u0142osic_szkode_od_5_czerwca_2025.pdf": "30b19aa33895d186ba2b43dd213a8271d0a34be2b21a54e2f8a5412bb0aa9729"
   },
   "Warta_Koszty_rezygnacji": {
@@ -41,47 +41,56 @@
     "Koszty_Odwolania_Podrozy_onepager-jak_zg\u0142osic_szkode.pdf": "7c980be6457113fdf559f4daf795b9da197b017b6b69b52281b287c096682c18"
   },
   "Warta_Turysta": {
-    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
-    "OWU_WARTA_Twoje_NNW_C7784.pdf": "abedf0495f74b6143102b0f7fa7e16da44277ef101f4d9e2772d86c22c3f9886"
+    "OWU_WARTA_Twoje_NNW_C7784.pdf": "abedf0495f74b6143102b0f7fa7e16da44277ef101f4d9e2772d86c22c3f9886",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457"
   },
   "PZU_OC": {
     "88021_Ustawa_z_dnia_22_maja_2003_r_o_ubezpieczeniach_obowiazkowych_UFG_i_PBUK_.pdf": "b50741f7c7664cbcf3af7ae031228e00ddaf1baf6fecdb62cb57e97979cd595d",
-    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_OC_do_ofert_od_21.03.2026_r..pdf": "1c57f8e9d8725cd217c058a61dea1875bc1b8f46b7f87b4482c69e76a35f7cbb",
     "Poradnik_kupno_sprzedaz_v2025.07.08.pdf": "65513881e9b1c13f6fa26078d194a275bb6e7dee985b9cf5e9a06ee79b559aaf",
     "1_wspolne_oswiadczenie_o_zdarzeniu_drogowym_formularz_29_06-12.pdf": "5bb243bd531b823223e888d18034382af962198989493689b0efc15e82ac4caa",
+    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_OC_do_ofert_od_21.03.2026_r..pdf": "1c57f8e9d8725cd217c058a61dea1875bc1b8f46b7f87b4482c69e76a35f7cbb",
     "Lista_warsztatow_partnerskich.pdf": "c1679d20506d37ed2eba1765176c33d2d7b5f1229d73574535d98d6b8d9fac06"
   },
   "PZU_AC": {
-    "Lista_warsztatow_ANS.pdf": "e55d12a0bb8e8b0bae48ac245bc06604331589a8ae7f83a553290939d1a7438a",
-    "Poradnik_kupno_sprzedaz_v2025.07.08.pdf": "65513881e9b1c13f6fa26078d194a275bb6e7dee985b9cf5e9a06ee79b559aaf",
-    "Cennik_uslug_PDR.pdf": "ddf1ff31b6eac814cb6165d7bb442805c2c5d9bb08e535dd94b8edf64b681245",
-    "Ogolne_warunki_ubezpieczen_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d4a92fcbb0c26a8a471fa46a8188be029efd26614cffa3b12039500c4b78be50",
-    "1_wspolne_oswiadczenie_o_zdarzeniu_drogowym_formularz_29_06-12.pdf": "5bb243bd531b823223e888d18034382af962198989493689b0efc15e82ac4caa",
-    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d17d3f5f9071cfdaf1603b550706c54ef3cecef10556b50e672533976efb5681",
     "Lista_warsztatow_partnerskich.pdf": "c1679d20506d37ed2eba1765176c33d2d7b5f1229d73574535d98d6b8d9fac06",
-    "Regulamin_videoogledzin_pojazdu_do_umow_AC_zawartych_za_posrednictwem_Infolinii_PZU.pdf": "d3d3019745980daa2f46abf5bfec8293200439071b6f2343b0e3a352ad9ac27d"
+    "Lista_warsztatow_ANS.pdf": "e55d12a0bb8e8b0bae48ac245bc06604331589a8ae7f83a553290939d1a7438a",
+    "1_wspolne_oswiadczenie_o_zdarzeniu_drogowym_formularz_29_06-12.pdf": "5bb243bd531b823223e888d18034382af962198989493689b0efc15e82ac4caa",
+    "Poradnik_kupno_sprzedaz_v2025.07.08.pdf": "65513881e9b1c13f6fa26078d194a275bb6e7dee985b9cf5e9a06ee79b559aaf",
+    "Ogolne_warunki_ubezpieczen_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d4a92fcbb0c26a8a471fa46a8188be029efd26614cffa3b12039500c4b78be50",
+    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d17d3f5f9071cfdaf1603b550706c54ef3cecef10556b50e672533976efb5681",
+    "Regulamin_videoogledzin_pojazdu_do_umow_AC_zawartych_za_posrednictwem_Infolinii_PZU.pdf": "d3d3019745980daa2f46abf5bfec8293200439071b6f2343b0e3a352ad9ac27d",
+    "Cennik_uslug_PDR.pdf": "ddf1ff31b6eac814cb6165d7bb442805c2c5d9bb08e535dd94b8edf64b681245"
   },
   "PZU_DOM": {
+    "Ryzyko_pozaru_poradnik_dla_wlascicieli_domow.pdf": "4c49381c19c2f30d6b35f015e8a77ffd4cda4799ef3ac04347f5b8d7a20d4d86",
     "PZU_Zapory_przeciwpowodziowe_onepager_v6.pdf": "0193f75a7fe05eddbdae32768d6674faf99e2edd0fa16636c958c87b493f2fa6",
     "Ogolne_warunki_ubezpieczenia_PZU_Dom_obowiazujace_od_1.10.2026_r..pdf": "05b120c6a6d69eddfd247d5901ff64dc4a209934f0ef476a0c8d22bfd9271f9a",
-    "Ryzyko_pozaru_poradnik_dla_wlascicieli_domow.pdf": "4c49381c19c2f30d6b35f015e8a77ffd4cda4799ef3ac04347f5b8d7a20d4d86",
     "Dokument_zawierajacy_informacje_o_produkcie_PZU_Dom_obowiazujacy_od_1.10.2026_r..pdf": "52db15ae5fb51acccc2b0e56cdb4c21c77252cf4c6e369a11b9445b67270687d"
   },
   "PZU_Travel": {
-    "7193-VIII_Zgloszenie_szkody_Wojazer.pdf": "93e04e27d7f13b087d616c58f1eb883ed20271d2b93f1ef4a41811d5f6ff9e30",
-    "General_terms_and_conditions_of_insurance_PZU_Wojazer_from_01.12.2025.pdf": "d1e9385f9b3e86469a3625113328eaf7306b238c6dbc9e91c273490273b5ec22",
-    "Dokument_zawierajacy_informacje_o_ubezpieczeniu_PZU_Wojazer_koszty_rezygnacji_od_01.12.2025.pdf": "fe6722f2929e6ef599f83829cd97e54c310a734fb4622b916585d364eac2ef60",
     "PZU_Wojazer_Dokumenty_do_zgloszenia_szkody.pdf": "bde5213ffe302a751fbcf5c10881f1776285a7bd75f74a409415d705640d6495",
-    "Zgloszenie_szkody_z_ubezpieczenia_PZU_Wojazer.pdf": "93e04e27d7f13b087d616c58f1eb883ed20271d2b93f1ef4a41811d5f6ff9e30",
-    "3_1200_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf": "b67125b166d9c3633b8651511f710d6dde0233536cf3b3a61c99196fdd7b12c5",
-    "Insurance_Product_Information_Document_PZU_Wojazer_from_01.12.2025.pdf": "e6719543b253bc4d77620b9028d98d0d88972d03213dcb9ebcb990964704b36f",
-    "Insurance_Product_Information_Document_PZU_Wojazer_Insurance_against_cancellation_or_curtailment_of_organised_holiday_from_01.12.2025.pdf": "d6d02863ecfcf9b340d1a60843ca4cd519b6d4bf6c4718656954f283d7ef130b",
+    "7193-VIII_Zgloszenie_szkody_Wojazer.pdf": "93e04e27d7f13b087d616c58f1eb883ed20271d2b93f1ef4a41811d5f6ff9e30",
+    "Ogolne_warunki_ubezpieczenia_PZU_Wojazer_od_01.12.2025.pdf": "84d77efa893badbff743a2c511ccbf51d70bfba7525ce4598085bede0626bafb",
     "Dokument_zawierajacy_informacje_o_PZU_Wojazer_od_01.12.2025.pdf": "0ccbf49f19358d9ea76ca14c7621e5aa5f6abe18b4f42151f2bb3067a7914e8a",
-    "Ogolne_warunki_ubezpieczenia_PZU_Wojazer_od_01.12.2025.pdf": "84d77efa893badbff743a2c511ccbf51d70bfba7525ce4598085bede0626bafb"
+    "Dokument_zawierajacy_informacje_o_ubezpieczeniu_PZU_Wojazer_koszty_rezygnacji_od_01.12.2025.pdf": "fe6722f2929e6ef599f83829cd97e54c310a734fb4622b916585d364eac2ef60",
+    "3_1200_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf": "b67125b166d9c3633b8651511f710d6dde0233536cf3b3a61c99196fdd7b12c5",
+    "Zgloszenie_szkody_z_ubezpieczenia_PZU_Wojazer.pdf": "93e04e27d7f13b087d616c58f1eb883ed20271d2b93f1ef4a41811d5f6ff9e30",
+    "General_terms_and_conditions_of_insurance_PZU_Wojazer_from_01.12.2025.pdf": "d1e9385f9b3e86469a3625113328eaf7306b238c6dbc9e91c273490273b5ec22",
+    "Insurance_Product_Information_Document_PZU_Wojazer_from_01.12.2025.pdf": "e6719543b253bc4d77620b9028d98d0d88972d03213dcb9ebcb990964704b36f",
+    "Insurance_Product_Information_Document_PZU_Wojazer_Insurance_against_cancellation_or_curtailment_of_organised_holiday_from_01.12.2025.pdf": "d6d02863ecfcf9b340d1a60843ca4cd519b6d4bf6c4718656954f283d7ef130b"
   },
   "Ergo_Hestia_OC": {
-    "0ab68f9a70b8dab617ba9500319c1c9b_documents.pdf": "966d99cfe8c6693ee7ddbd48a7506d20a0f8fa2db694d52286debab9dda71fc0",
     "86387ebcce94c9b139e3b9f851f9937b_documents.pdf": "618e1f5b2103f15d1f35fce575bd267ec3569bf69d603bd2635487c7be9d8072",
+    "0ab68f9a70b8dab617ba9500319c1c9b_documents.pdf": "966d99cfe8c6693ee7ddbd48a7506d20a0f8fa2db694d52286debab9dda71fc0",
     "735e73550f0deeab239aebe2044aadcf_documents.pdf": "017b6ae626a883c4d051bbf8526911097e4d2aeaf59c152badad63a29732a150"
+  },
+  "Ergo_Hestia_DOM": {
+    "86387ebcce94c9b139e3b9f851f9937b_documents.pdf": "618e1f5b2103f15d1f35fce575bd267ec3569bf69d603bd2635487c7be9d8072",
+    "a881bebfd4434803df522ca1d2ffb26b_documents.pdf": "ff02775a5628bb58ba6fe543eee75c3cabf133171003ffd720fffd88fb60563b",
+    "348dfa88031e3c5f32d006dfa32b3c7f_documents.pdf": "e1fd4958ac95b1929acd082d8e00395bc0965d536478dc3018087837c0b7550a"
+  },
+  "Ergo_Hestia_Travel": {
+    "9a54317b4cb039a621bf29e0f550973a_documents.pdf": "aab541f577bda52c1a19510c75a21782b0ea8585e8f667fee5ab8b946cec2c24",
+    "2e7ada34e78c18c9ed747def207a198b_documents.pdf": "3e1f26d1c9ff5792fed81beead2648a914d8463fbff3b16adbda3e1e50c17cdb"
   }
 }
