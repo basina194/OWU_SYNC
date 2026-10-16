@@ -35,23 +35,41 @@ class PDFLinkExtractor(HTMLParser):
                 if full_url not in self.pdf_links:
                     self.pdf_links.append(full_url)
 
-def extract_pdf_urls_from_html(base_url, html_text):
-    parser = PDFLinkExtractor(base_url)
-    try:
-        parser.feed(html_text)
-    except Exception:
-        pass
+def extract_pdf_urls_from_html(base_url, html_text, headers):
+    candidates = set()
 
-    links = list(parser.pdf_links)
+    # 1. Klasyczne linki z .pdf w parametrach href, src, data-url itp.
+    pdf_pattern = r'(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27]'
+    for match in re.finditer(pdf_pattern, html_text, re.IGNORECASE):
+        candidates.add(urljoin(base_url, match.group(1).strip()))
 
-    # Fallback regex, gdyby kod HTML miał niestandardową strukturę
-    pattern = r'(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27]'
-    for match in re.finditer(pattern, html_text, re.IGNORECASE):
-        candidate = urljoin(base_url, match.group(1).strip())
-        if candidate not in links:
-            links.append(candidate)
+    # 2. Linki do repozytoriów plików (np. PZU: /_fileserver/item/...)
+    fs_pattern = r'(?:href|src|data-url|data-href)=[\x22\x27]([^\x22\x27]*(?:_fileserver|/files/|/documents/|/pobierz|/download)[^\x22\x27]*)[\x22\x27]'
+    for match in re.finditer(fs_pattern, html_text, re.IGNORECASE):
+        candidates.add(urljoin(base_url, match.group(1).strip()))
 
-    return links
+    # 3. Elementy oznaczone atrybutem data-file='pdf' (charakterystyczne dla PZU)
+    data_pdf_pattern = r'<[^>]+data-file=[\x22\x27]pdf[\x22\x27][^>]*>[\s\S]{0,400}?href=[\x22\x27]([^\x22\x27]+)[\x22\x27]'
+    for match in re.finditer(data_pdf_pattern, html_text, re.IGNORECASE):
+        candidates.add(urljoin(base_url, match.group(1).strip()))
+
+    verified_links = []
+    for cand in candidates:
+        clean = cand.split("?")[0].split("#")[0]
+        if clean.lower().endswith(".pdf"):
+            verified_links.append(cand)
+        else:
+            # Weryfikacja nagłówkiem czy dany link zwraca plik PDF (np. PZU fileserver)
+            try:
+                head = requests.head(cand, headers=headers, timeout=10, allow_redirects=True)
+                ct = head.headers.get("Content-Type", "").lower()
+                cd = head.headers.get("Content-Disposition", "").lower()
+                if "application/pdf" in ct or ".pdf" in cd:
+                    verified_links.append(cand)
+            except Exception:
+                pass
+
+    return verified_links
 
 def get_pdf_urls_for_target(url, headers, fallback_if_no_pdfs=False):
     # Jeśli URL bezpośrednio wskazuje na plik .pdf
@@ -68,7 +86,7 @@ def get_pdf_urls_for_target(url, headers, fallback_if_no_pdfs=False):
         return [url]
 
     # Strona HTML - wyszukujemy linki do dokumentów PDF
-    pdf_urls = extract_pdf_urls_from_html(url, resp.text)
+    pdf_urls = extract_pdf_urls_from_html(url, resp.text, headers)
     if not pdf_urls and fallback_if_no_pdfs:
         return [url]
 
@@ -77,10 +95,10 @@ def get_pdf_urls_for_target(url, headers, fallback_if_no_pdfs=False):
 def get_filename(url, headers=None):
     if headers:
         cd = headers.get("Content-Disposition", "")
-        if cd and "filename=" in cd:
+        if cd and "filename" in cd:
             match = re.search(r'filename\*?=(?:UTF-8\'\')?["\']?([^"\';\r\n]+)', cd, re.IGNORECASE)
             if match:
-                fn = unquote(match.group(1).strip())
+                fn = unquote(match.group(1).strip().strip('"').strip("'"))
                 if fn:
                     return fn
 

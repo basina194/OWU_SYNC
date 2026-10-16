@@ -10,38 +10,45 @@
     "Testowy": "b1befc594bc269ac69240db4fa6a905a3ac370933ff487eafd04b63d1c4bbe31"
   },
   "Warta_OC": {
-    "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf": "b97524bb2962216fdd666945f25f9bc707a17ff2637823c9150e2a36dac0d6b1",
     "WARTA_OWU_WARTA_OC_Szybka_wyplata_C6334_int.pdf": "ab0367cf4f9552b9fe1b6e57f9bfcff30658706fc573cfe7f73b9d8a5c2ca186",
+    "Wspolne_Oswiadczenie_o_Wypadku_01.pdf": "04d24868a2a92415e75b19c9a0e3b54cc6e35b59d07a5017be31fcf1d28edcaa",
     "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf": "62d522a9702a525142012743899f6f17e043a7cd24842f7c828f0a0c3bf31279",
-    "Wspolne_Oswiadczenie_o_Wypadku_01.pdf": "04d24868a2a92415e75b19c9a0e3b54cc6e35b59d07a5017be31fcf1d28edcaa"
+    "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf": "b97524bb2962216fdd666945f25f9bc707a17ff2637823c9150e2a36dac0d6b1"
   },
   "Warta_Autocasco_komfort": {
     "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
   },
   "Warta_AC": {
     "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955",
-    "WARTA_OWU_AutoCasco_Standard_ACS_C6205_int.pdf": "dba7e3bab9a28355d40c116769dd0624cde4517d63972a70446831264dfb0017",
-    "WARTA_OWU_Autocasco_i_Kradzie\u017c_dla_flot_samochodowych_C3916_int.pdf": "bc185154d28908fb559ae01fd23bb354d4abd94e0cf5e3cbf6a94794f0ba8877"
+    "WARTA_OWU_Autocasco_i_Kradzie\u017c_dla_flot_samochodowych_C3916_int.pdf": "bc185154d28908fb559ae01fd23bb354d4abd94e0cf5e3cbf6a94794f0ba8877",
+    "WARTA_OWU_AutoCasco_Standard_ACS_C6205_int.pdf": "dba7e3bab9a28355d40c116769dd0624cde4517d63972a70446831264dfb0017"
   },
   "Warta_DOM": {
+    "Normy_trwalosci_elementow_budynku...pdf": "420173683514dd574c06582ef3260b83aa414c84a19fa3c4b7faeac16f148e15",
     "OWU_Warta_Dom_C7177_int.pdf": "82c278808eb350d998b3f09ae90781575d4df4b2e0bbed3efea49b0c00885a55",
-    "OWU_Warta_Dom_Komfort_C7187_int.pdf": "1529dc7b53a1519230fc072f4cf90dc260823d4f6248553001506ca44dcc32ee",
-    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
     "Normy_zuzycia_technicznego_budynkow.pdf": "428281d66a1f3bef99011df028e685a85005bc767a9467695c15b17461e08e1d",
-    "Normy_trwalosci_elementow_budynku...pdf": "420173683514dd574c06582ef3260b83aa414c84a19fa3c4b7faeac16f148e15"
+    "OWU_Warta_Dom_Komfort_C7187_int.pdf": "1529dc7b53a1519230fc072f4cf90dc260823d4f6248553001506ca44dcc32ee",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457"
   },
   "Warta_Travel": {
+    "Warta_Travel_Poradnik_ON_LINE_One_pager_jak_zg\u0142osic_szkode_od_5_czerwca_2025.pdf": "30b19aa33895d186ba2b43dd213a8271d0a34be2b21a54e2f8a5412bb0aa9729",
     "OWU_WARTA_Travel_C0517.pdf": "c2a3f86a0f8306a5e5ce93652ca8f6f4fec08af28fc6c2f9bddd69c20c3061b1",
-    "OWU_WARTA_TRAVEL_C0517_EN_int.pdf": "a0c5befe494dc267cc9aa655dc617bce934c23ee3449aeaae8837e1b7e92133d",
     "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
-    "Warta_Travel_Poradnik_ON_LINE_One_pager_jak_zg\u0142osic_szkode_od_5_czerwca_2025.pdf": "30b19aa33895d186ba2b43dd213a8271d0a34be2b21a54e2f8a5412bb0aa9729"
+    "OWU_WARTA_TRAVEL_C0517_EN_int.pdf": "a0c5befe494dc267cc9aa655dc617bce934c23ee3449aeaae8837e1b7e92133d"
   },
   "Warta_Koszty_rezygnacji": {
-    "OWU_Kosztow_odwolania_podrozy_C8323.pdf": "d1f2424ec8df997227f5976e5c2161680d184a3c644b15de9d8e616e53e78310",
-    "Koszty_Odwolania_Podrozy_onepager-jak_zg\u0142osic_szkode.pdf": "7c980be6457113fdf559f4daf795b9da197b017b6b69b52281b287c096682c18"
+    "Koszty_Odwolania_Podrozy_onepager-jak_zg\u0142osic_szkode.pdf": "7c980be6457113fdf559f4daf795b9da197b017b6b69b52281b287c096682c18",
+    "OWU_Kosztow_odwolania_podrozy_C8323.pdf": "d1f2424ec8df997227f5976e5c2161680d184a3c644b15de9d8e616e53e78310"
   },
   "Warta_Turysta": {
     "OWU_WARTA_Twoje_NNW_C7784.pdf": "abedf0495f74b6143102b0f7fa7e16da44277ef101f4d9e2772d86c22c3f9886",
     "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457"
+  },
+  "PZU_OC": {
+    "Poradnik_kupno_sprzedaz_v2025.07.08.pdf": "65513881e9b1c13f6fa26078d194a275bb6e7dee985b9cf5e9a06ee79b559aaf",
+    "88021_Ustawa_z_dnia_22_maja_2003_r_o_ubezpieczeniach_obowiazkowych_UFG_i_PBUK_.pdf": "b50741f7c7664cbcf3af7ae031228e00ddaf1baf6fecdb62cb57e97979cd595d",
+    "Lista_warsztatow_partnerskich.pdf": "c1679d20506d37ed2eba1765176c33d2d7b5f1229d73574535d98d6b8d9fac06",
+    "1_wspolne_oswiadczenie_o_zdarzeniu_drogowym_formularz_29_06-12.pdf": "5bb243bd531b823223e888d18034382af962198989493689b0efc15e82ac4caa",
+    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_OC_do_ofert_od_21.03.2026_r..pdf": "1c57f8e9d8725cd217c058a61dea1875bc1b8f46b7f87b4482c69e76a35f7cbb"
   }
 }
