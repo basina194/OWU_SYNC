@@ -268,9 +268,15 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
 
     if exclude_val:
         if isinstance(exclude_val, str):
-            exclude_words = [normalize_text(w) for w in re.split(r'[\s,]+', exclude_val) if w.strip()]
+            if ',' in exclude_val:
+                exclude_words = [normalize_text(w.strip()) for w in exclude_val.split(',') if w.strip()]
+            else:
+                exclude_words = [normalize_text(exclude_val.strip())]
+        elif isinstance(exclude_val, list):
+            exclude_words = [normalize_text(str(w).strip()) for w in exclude_val if str(w).strip()]
         else:
-            exclude_words = [normalize_text(str(w)) for w in exclude_val if str(w).strip()]
+            exclude_words = [normalize_text(str(exclude_val).strip())]
+
         active_items = [
             it for it in active_items
             if not any(w in normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}") for w in exclude_words)
@@ -570,6 +576,8 @@ def main():
         exclude_archive = item.get("exclude_archive", True if (filter_val or exclude_val or category_val or query_val) else False)
 
         filter_info = f" [filtr: '{filter_val}']" if filter_val else ""
+        if exclude_val:
+            filter_info += f" [wyklucz: '{exclude_val}']"
         if category_val:
             filter_info += f" [kategoria: '{category_val}']"
         print(f"\nSprawdzam: {product_key}{filter_info} ({page_url})...")
