@@ -4,7 +4,23 @@
     "product": "Komunikacja",
     "url": "https://www.generali.pl/strefa-klienta",
      "filter": "GENERALI, Z MYŚLĄ O AUCIE",
-    "drive_folder_id": "1YktGTe5z0zXJG81eHuc5hu1wyM8eYlA3"
+    "drive_folder_id": "1kHfRfD4xCLqWy536m20G604gKn8SMinQ"
+  },
+    
+   {
+    "company": "Generali",
+    "product": "Dom i mieszkanie",
+    "url": "https://www.generali.pl/strefa-klienta",
+     "filter": "GENERALI, Z MYsLa O DOMU I RODZINIE",
+    "drive_folder_id": "16mS_3eMY-9Fp7Wyc2AoN_DbyFLya2qBB"
+  },
+  
+   {
+    "company": "Generali",
+    "product": "Travel",
+    "url": "https://www.generali.pl/strefa-klienta",
+     "filter": "GENERALI, Z MYŚLĄ O PODRÓŻY",
+    "drive_folder_id": "1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq"
   },
   {
     "company": "Warta",
@@ -46,6 +62,8 @@
     "company": "PZU",
     "product": "OC",
     "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc",
+       "exclude": "wspolne oswiadczenie",
+      "exclude": "lista warsztatów",
     "drive_folder_id": "1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI"
   },
   {
@@ -123,6 +141,15 @@
      "filter": "owu compensa podróz",
     "drive_folder_id": "1H8EiBNWU7CLTSgAL46nnSDbybymR52GE"
   },
+      {
+    "company": "Compensa",
+    "product": "NNW",
+    "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
+     "filter": "owu compensa nnw",
+     "exclude": "szkolne",
+    "drive_folder_id": "17N4rtRsFn1sNohbtVRagpLw59zw6dOM0"
+  },
+  
   
   {
     "company": "BBC",
