@@ -62,23 +62,95 @@ def normalize_text(text):
         text = text.replace(k, v)
     return text
 
+def fix_utf8_encoding(text):
+    if not text:
+        return ""
+    try:
+        return text.encode('latin1').decode('utf-8')
+    except Exception:
+        return text
+
+def unescape_devalue(val):
+    if not val:
+        return ""
+    val = val.replace("https:_~s~_~s~", "https://")
+    val = val.replace("http:_~s~_~s~", "http://")
+    val = val.replace("_~s~", "/")
+    val = val.replace("_~l~", "<")
+    val = val.replace("_~g~", ">")
+    val = val.replace("_~d~", '"')
+    val = val.replace("_~a~", '&')
+    return val
+
+MONTH_NAMES_PATTERN = r'(?:stycznia|lutego|marca|kwietnia|maja|czerwca|lipca|sierpnia|wrze[sś]nia|pa[zź]dziernika|listopada|grudnia)'
+DATE_PATTERN = r'\d{1,2}[.\-/\s_]\d{1,2}[.\-/\s_]\d{2,4}'
+ARCHIVE_REGEX = re.compile(
+    r'(?:obowi[aą]zuj[aącecy]{1,3}[_\s]+do|wa[zż]n[ey][_\s]+do|(?:\b|_)do[\s_]+' + DATE_PATTERN + r'|(?:\b|_)do[\s_]+\d{1,2}[\s_]+' + MONTH_NAMES_PATTERN + r'[\s_]+\d{4}|archiwaln)',
+    re.I
+)
+
 def extract_pdf_items_from_html(base_url, html_text, session=None):
     """
     Ekstraktuje wszystkie dokumenty PDF ze strony HTML wraz z kontekstem i flagą archiwum.
     """
     items = []
     seen_urls = set()
-    clean_html = re.sub(r'<(script|style)[^>]*>[\s\S]*?</\1>', '', html_text, flags=re.I)
 
-    # 1. Obsługa formatu serializacji Generali (devalue serialization)
-    if "_~s~" in html_text or "~s~" in html_text:
+    # 1. Obsługa formatu serializacji Generali (devalue serialization w sekcjach/akordeonach)
+    if "_~s~" in html_text or "~s~" in html_text or "generali.pl" in base_url.lower():
+        comp_matches = list(re.finditer(r'\{"__component":"(page\.[^"]+)"', html_text))
+        for i, m in enumerate(comp_matches):
+            start_idx = m.start()
+            end_idx = comp_matches[i+1].start() if i+1 < len(comp_matches) else start_idx + 150000
+            chunk = html_text[start_idx:end_idx]
+
+            title_m = re.search(r'"Title":"([^"]+)"', chunk)
+            title = fix_utf8_encoding(unescape_devalue(title_m.group(1))).strip() if title_m else ""
+
+            file_matches = re.finditer(
+                r'\{[^{}]*?"name"\s*:\s*"([^"]+)"[^{}]*?"alternativeText"\s*:\s*"([^"]*)"[^{}]*?"url"\s*:\s*"([^"]+)"[^{}]*?\}',
+                chunk
+            )
+            for fm in file_matches:
+                fn = fix_utf8_encoding(unescape_devalue(fm.group(1))).strip()
+                alt = fix_utf8_encoding(unescape_devalue(fm.group(2))).strip()
+                raw_url = unescape_devalue(fm.group(3)).strip()
+
+                if not raw_url.startswith("http"):
+                    raw_url = urljoin(base_url, raw_url)
+
+                if ".pdf" in raw_url.lower() or fn.lower().endswith(".pdf"):
+                    if raw_url in seen_urls:
+                        continue
+                    seen_urls.add(raw_url)
+
+                    full_desc = f"{title} {fn} {alt}".strip()
+                    is_arch = False
+                    if ARCHIVE_REGEX.search(full_desc) or '/archiwum/' in raw_url.lower() or '/archive/' in raw_url.lower():
+                        is_arch = True
+
+                    items.append({
+                        'url': raw_url,
+                        'text': f"{fn} {alt}".strip(),
+                        'context': title,
+                        'is_archive': is_arch
+                    })
+
+        # Dodatkowy fallback na luźne linki Generali
         clean = re.sub(r'https:[_~s]+www', 'https://www', html_text)
         clean = re.sub(r'[_~]+s[_~]+', '/', clean)
         for m in re.finditer(r'(https://(?:www\.)?generali\.pl/media/[^\x22\x27\s<>]+\.pdf)', clean, re.I):
             u = m.group(1)
             if u not in seen_urls:
                 seen_urls.add(u)
-                items.append({'url': u, 'text': '', 'context': '', 'is_archive': False})
+                items.append({
+                    'url': u,
+                    'text': '',
+                    'context': '',
+                    'is_archive': bool(ARCHIVE_REGEX.search(u) or '/archiwum/' in u.lower() or '/archive/' in u.lower())
+                })
+
+    clean_html = re.sub(r'<(script|style)[^>]*>[\s\S]*?</\1>', '', html_text, flags=re.I)
 
     # 2. Podział na sekcje wg nagłówków h1-h3 (kategorie/akordeony, np. Compensa)
     raw_sections = re.split(r'(<h[1-3][^>]*>.*?</h[1-3]>)', clean_html, flags=re.I)
@@ -114,7 +186,7 @@ def extract_pdf_items_from_html(base_url, html_text, session=None):
                 is_arch = True
             elif '/archiwum/' in link_url.lower() or '/archive/' in link_url.lower():
                 is_arch = True
-            elif re.search(r'(?:obowi[aą]zuj[aącecy]{1,3}\s+do|wa[zż]n[ey]\s+do|\bdo\s+\d{1,2}[\.\-/]\d{1,2}[\.\-/]\d{2,4}|archiwaln)', link_text, re.I):
+            elif ARCHIVE_REGEX.search(link_text):
                 is_arch = True
 
             # Czyszczenie dopisków o rozmiarze pliku np. "PDF 409,1 KB" aby cyfry nie zakłócały filtrów
@@ -189,7 +261,7 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
     Filtruje listę dokumentów:
     1. Odrzuca archiwa (jeśli exclude_archive=True).
     2. Odrzuca słowa wykluczające (exclude_val).
-    3. Priorytetowo dopasowuje całą frazę (np. 'ERGO 1').
+    3. Priorytetowo dopasowuje całą frazę (np. 'ERGO 1' lub 'GENERALI, Z MYŚLĄ O AUCIE').
     4. W razie potrzeby dopasowuje wszystkie słowa kluczowe (z granicami słów dla liczb).
     """
     active_items = [it for it in items if not (exclude_archive and it.get("is_archive"))]
@@ -201,7 +273,7 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
             exclude_words = [normalize_text(str(w)) for w in exclude_val if str(w).strip()]
         active_items = [
             it for it in active_items
-            if not any(w in normalize_text(f"{it.get('context', '')} {it.get('text', '')}") for w in exclude_words)
+            if not any(w in normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}") for w in exclude_words)
         ]
 
     if not filter_val:
@@ -214,11 +286,11 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
         norm_filter = normalize_text(str(filter_val)).strip()
         filter_words = [w for w in re.split(r'[\s,]+', norm_filter) if w]
 
-    # 1. Priorytet: dopasowanie całej frazy w tekście lub kontekście
-    phrase_pattern = r'\b' + r'[\s\-_/]+'.join(re.escape(w) for w in filter_words) + r'\b'
+    # 1. Priorytet: dopasowanie całej frazy w tekście, kontekście lub URL (z elastycznymi separatorami)
+    phrase_pattern = r'\b' + r'[\s\-_/,\.„”"\'\(\)]+'.join(re.escape(w) for w in filter_words) + r'\b'
     phrase_matches = [
         it for it in active_items
-        if re.search(phrase_pattern, normalize_text(f"{it.get('context', '')} {it.get('text', '')}"))
+        if re.search(phrase_pattern, normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}"))
     ]
     if phrase_matches:
         return phrase_matches
@@ -226,7 +298,7 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
     # 2. Fallback: dopasowanie wszystkich słów z granicami słów dla liczb/krótkich kodów
     word_matches = []
     for it in active_items:
-        searchable = normalize_text(f"{it.get('context', '')} {it.get('text', '')}")
+        searchable = normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}")
         ok = True
         for w in filter_words:
             if w.isdigit() or len(w) <= 2:
