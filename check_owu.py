@@ -7,6 +7,8 @@ oraz automatyczne wersjonowanie i archiwizację.
 
 import os
 import re
+import sys
+import html
 import time
 import json
 import hashlib
@@ -14,6 +16,13 @@ import mimetypes
 from datetime import datetime
 from io import BytesIO
 from urllib.parse import urljoin, urlparse, unquote
+
+# Wymuszenie natychmiastowego wypisywania logów w GitHub Actions (brak buforowania)
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except Exception:
+        pass
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -52,8 +61,10 @@ def create_http_session():
 # FUNKCJE POMOCNICZE (TEKST I PARSOWANIE)
 # ==============================================================================
 def normalize_text(text):
-    """Konwertuje tekst do małych liter i usuwa polskie znaki diakrytyczne."""
-    text = (text or "").lower()
+    """Konwertuje tekst do małych liter, odkodowuje encje HTML i usuwa polskie znaki."""
+    if not text:
+        return ""
+    text = html.unescape(str(text)).lower()
     mapping = {
         'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n',
         'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z'
@@ -61,6 +72,35 @@ def normalize_text(text):
     for k, v in mapping.items():
         text = text.replace(k, v)
     return text
+
+def normalize_searchable(text):
+    """Normalizuje tekst zamieniając separatory (podkreślniki, myślniki, kropki) na spacje dla elastycznego dopasowywania."""
+    if not text:
+        return ""
+    text = normalize_text(text)
+    return re.sub(r'[\s_\-/,.\(\)\[\]"\'„”\xa0]+', ' ', text).strip()
+
+def is_excluded(text_to_check, exclude_val):
+    """Sprawdza czy dany tekst (lub nazwa pliku) pasuje do którejkolwiek z reguł wykluczających."""
+    if not exclude_val or not text_to_check:
+        return False
+    if isinstance(exclude_val, str):
+        if ',' in exclude_val:
+            exclude_words = [normalize_searchable(w) for w in exclude_val.split(',') if w.strip()]
+        else:
+            exclude_words = [normalize_searchable(exclude_val)]
+    elif isinstance(exclude_val, list):
+        exclude_words = [normalize_searchable(str(w)) for w in exclude_val if str(w).strip()]
+    else:
+        exclude_words = [normalize_searchable(str(exclude_val))]
+
+    searchable = f" {normalize_searchable(text_to_check)} "
+    for w in exclude_words:
+        if not w:
+            continue
+        if f" {w} " in searchable or w in searchable:
+            return True
+    return False
 
 def fix_utf8_encoding(text):
     if not text:
@@ -224,11 +264,14 @@ def extract_pdf_items_from_html(base_url, html_text, session=None):
                         ct = head.headers.get("Content-Type", "").lower()
                         cd = head.headers.get("Content-Disposition", "").lower()
                         if "application/pdf" in ct or ".pdf" in cd:
+                            real_fn = get_filename(cand_url, head.headers)
+                            combined_text = f"{clean_text} {real_fn}".strip()
                             seen_urls.add(cand_url)
                             items.append({
                                 'url': cand_url,
-                                'text': clean_text,
+                                'text': combined_text,
                                 'context': cat_title,
+                                'preferred_filename': real_fn,
                                 'is_archive': False
                             })
                     except Exception:
@@ -244,11 +287,13 @@ def extract_pdf_items_from_html(base_url, html_text, session=None):
                     ct = head.headers.get("Content-Type", "").lower()
                     cd = head.headers.get("Content-Disposition", "").lower()
                     if "application/pdf" in ct or ".pdf" in cd:
+                        real_fn = get_filename(cand_url, head.headers)
                         seen_urls.add(cand_url)
                         items.append({
                             'url': cand_url,
-                            'text': '',
+                            'text': real_fn,
                             'context': cat_title,
+                            'preferred_filename': real_fn,
                             'is_archive': False
                         })
                 except Exception:
@@ -260,43 +305,33 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
     """
     Filtruje listę dokumentów:
     1. Odrzuca archiwa (jeśli exclude_archive=True).
-    2. Odrzuca słowa wykluczające (exclude_val).
+    2. Odrzuca słowa i frazy wykluczające (exclude_val).
     3. Priorytetowo dopasowuje całą frazę (np. 'ERGO 1' lub 'GENERALI, Z MYŚLĄ O AUCIE').
     4. W razie potrzeby dopasowuje wszystkie słowa kluczowe (z granicami słów dla liczb).
     """
     active_items = [it for it in items if not (exclude_archive and it.get("is_archive"))]
 
     if exclude_val:
-        if isinstance(exclude_val, str):
-            if ',' in exclude_val:
-                exclude_words = [normalize_text(w.strip()) for w in exclude_val.split(',') if w.strip()]
-            else:
-                exclude_words = [normalize_text(exclude_val.strip())]
-        elif isinstance(exclude_val, list):
-            exclude_words = [normalize_text(str(w).strip()) for w in exclude_val if str(w).strip()]
-        else:
-            exclude_words = [normalize_text(str(exclude_val).strip())]
-
         active_items = [
             it for it in active_items
-            if not any(w in normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}") for w in exclude_words)
+            if not is_excluded(f"{it.get('context', '')} {it.get('text', '')} {it.get('preferred_filename', '')} {it.get('url', '')}", exclude_val)
         ]
 
     if not filter_val:
         return active_items
 
     if isinstance(filter_val, list):
-        norm_filter = " ".join(normalize_text(str(w)) for w in filter_val if str(w).strip())
-        filter_words = [normalize_text(str(w)) for w in filter_val if str(w).strip()]
+        norm_filter = " ".join(normalize_searchable(str(w)) for w in filter_val if str(w).strip())
+        filter_words = [normalize_searchable(str(w)) for w in filter_val if str(w).strip()]
     else:
-        norm_filter = normalize_text(str(filter_val)).strip()
-        filter_words = [w for w in re.split(r'[\s,]+', norm_filter) if w]
+        norm_filter = normalize_searchable(str(filter_val)).strip()
+        filter_words = [w for w in norm_filter.split(' ') if w]
 
-    # 1. Priorytet: dopasowanie całej frazy w tekście, kontekście lub URL (z elastycznymi separatorami)
+    # 1. Priorytet: dopasowanie całej frazy w tekście, kontekście, nazwie pliku lub URL (z elastycznymi separatorami)
     phrase_pattern = r'\b' + r'[\s\-_/,\.„”"\'\(\)]+'.join(re.escape(w) for w in filter_words) + r'\b'
     phrase_matches = [
         it for it in active_items
-        if re.search(phrase_pattern, normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}"))
+        if re.search(phrase_pattern, normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('preferred_filename', '')} {it.get('url', '')}"))
     ]
     if phrase_matches:
         return phrase_matches
@@ -304,7 +339,7 @@ def filter_items(items, filter_val=None, exclude_val=None, exclude_archive=False
     # 2. Fallback: dopasowanie wszystkich słów z granicami słów dla liczb/krótkich kodów
     word_matches = []
     for it in active_items:
-        searchable = normalize_text(f"{it.get('context', '')} {it.get('text', '')} {it.get('url', '')}")
+        searchable = normalize_searchable(f"{it.get('context', '')} {it.get('text', '')} {it.get('preferred_filename', '')} {it.get('url', '')}")
         ok = True
         for w in filter_words:
             if w.isdigit() or len(w) <= 2:
@@ -620,6 +655,11 @@ def main():
                         filename = item["filename"]
                     else:
                         filename = get_filename(pdf_url, resp.headers)
+
+                    # Bezpiecznik: jeśli nazwa pliku zawiera frazę wykluczoną (np. lista warsztatów)
+                    if is_excluded(filename, exclude_val):
+                        print(f"-> Pomijam plik (wykluczenie z konfiguracji): {filename}")
+                        continue
 
                     current_filenames.add(filename)
                     current_hash = hashlib.sha256(resp.content).hexdigest()

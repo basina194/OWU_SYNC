@@ -27,7 +27,8 @@ jobs:
       - name: Uruchom weryfikację
         env:
           GDRIVE_TOKEN_JSON: ${{ secrets.GDRIVE_TOKEN_JSON }}
-        run: python check_owu.py
+          PYTHONUNBUFFERED: "1"
+        run: python -u check_owu.py
 
       - name: Zapisz stan hashy w repozytorium
         run: |
