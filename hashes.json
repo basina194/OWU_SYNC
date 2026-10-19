@@ -12,8 +12,7 @@
   "Warta_OC": {
     "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf": "b97524bb2962216fdd666945f25f9bc707a17ff2637823c9150e2a36dac0d6b1",
     "WARTA_OWU_WARTA_OC_Szybka_wyplata_C6334_int.pdf": "ab0367cf4f9552b9fe1b6e57f9bfcff30658706fc573cfe7f73b9d8a5c2ca186",
-    "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf": "62d522a9702a525142012743899f6f17e043a7cd24842f7c828f0a0c3bf31279",
-    "Wspolne_Oswiadczenie_o_Wypadku_01.pdf": "04d24868a2a92415e75b19c9a0e3b54cc6e35b59d07a5017be31fcf1d28edcaa"
+    "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf": "62d522a9702a525142012743899f6f17e043a7cd24842f7c828f0a0c3bf31279"
   },
   "Warta_Autocasco_komfort": {
     "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
@@ -56,9 +55,7 @@
     "1_wspolne_oswiadczenie_o_zdarzeniu_drogowym_formularz_29_06-12.pdf": "5bb243bd531b823223e888d18034382af962198989493689b0efc15e82ac4caa",
     "Poradnik_kupno_sprzedaz_v2025.07.08.pdf": "65513881e9b1c13f6fa26078d194a275bb6e7dee985b9cf5e9a06ee79b559aaf",
     "Ogolne_warunki_ubezpieczen_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d4a92fcbb0c26a8a471fa46a8188be029efd26614cffa3b12039500c4b78be50",
-    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d17d3f5f9071cfdaf1603b550706c54ef3cecef10556b50e672533976efb5681",
-    "Regulamin_videoogledzin_pojazdu_do_umow_AC_zawartych_za_posrednictwem_Infolinii_PZU.pdf": "d3d3019745980daa2f46abf5bfec8293200439071b6f2343b0e3a352ad9ac27d",
-    "Cennik_uslug_PDR.pdf": "ddf1ff31b6eac814cb6165d7bb442805c2c5d9bb08e535dd94b8edf64b681245"
+    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_do_ofert_od_21.03.2026_r..pdf": "d17d3f5f9071cfdaf1603b550706c54ef3cecef10556b50e672533976efb5681"
   },
   "PZU_DOM": {
     "Ryzyko_pozaru_poradnik_dla_wlascicieli_domow.pdf": "4c49381c19c2f30d6b35f015e8a77ffd4cda4799ef3ac04347f5b8d7a20d4d86",
@@ -108,7 +105,6 @@
     "4497d3088b464d00d9e61a5f16b9799e_documents.pdf": "196f867c17806058b4aa094f0cb0ac91ec5341b8f222ec1119904f75d3ff6609"
   },
   "Generali_Komunikacja": {
-    "Prosto_o_Generali_z_mysla_o_aucie_przewodnik_2_e7e41c731c.pdf": "4afd807b82e5b81099554baa9020aff8091a560d9c62ceb5be0aa679fea0dc85",
     "251222_OWU_Generali_z_mysla_o_aucie_3a5b9ad606.pdf": "249fef4737c676b3d714f2e188d164784ef82a9eee1793a4dfeacf216f83d3b4"
   },
   "Generali_Dom i mieszkanie": {
@@ -134,8 +130,6 @@
   "Compensa_NNW": {
     "owu_compensa_nnw_aneks_13022026.pdf": "91a8414a6151cac28a78c2660a9173a4c4740eede800dd2457cdb9d8683ad444",
     "Beesafe_OWU_NNW-z-Aneksem-nr-1.pdf": "ce54861ca00b2c01a78cbd55d656be792c812026c1d3f65bbfbb5fc40151fe38",
-    "OWU_Strazak-2024.pdf": "63f3c84252079e91f10111805665d7c25a09fe6e979f6efab82258c85ae73d17",
-    "OWU_NNW_dla_klientow_Erste_Bank_Polska_25_04_2026.pdf": "b86d1ab50e63e2bb025609d5a0bd3114e5d1cbefce5e622a2e2241aeb78250bf",
-    "IPID_do_OWU_NNW_dla_klientow_ERSTE_Bank_Polska_25_04_2026.pdf": "c32939be9eb7c9a9a519d048cd3824b6fe31cc6b5727f19512931e6497cd774d"
+    "OWU_Strazak-2024.pdf": "63f3c84252079e91f10111805665d7c25a09fe6e979f6efab82258c85ae73d17"
   }
 }
