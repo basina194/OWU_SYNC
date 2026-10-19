@@ -1,25 +1,24 @@
 [
-    {
+  {
     "company": "Generali",
     "product": "Komunikacja",
     "url": "https://www.generali.pl/strefa-klienta",
-     "filter": "GENERALI, Z MYŚLĄ O AUCIE",
+    "filter": "GENERALI, Z MYŚLĄ O AUCIE",
+    "exclude": ["przewodnik"],
     "drive_folder_id": "1kHfRfD4xCLqWy536m20G604gKn8SMinQ"
   },
-    
-   {
+  {
     "company": "Generali",
     "product": "Dom i mieszkanie",
     "url": "https://www.generali.pl/strefa-klienta",
-     "filter": "GENERALI, Z MYsLa O DOMU I RODZINIE",
+    "filter": "GENERALI, Z MYŚLĄ O DOMU I RODZINIE",
     "drive_folder_id": "16mS_3eMY-9Fp7Wyc2AoN_DbyFLya2qBB"
   },
-  
-   {
+  {
     "company": "Generali",
     "product": "Travel",
     "url": "https://www.generali.pl/strefa-klienta",
-     "filter": "GENERALI, Z MYŚLĄ O PODRÓŻY",
+    "filter": "GENERALI, Z MYŚLĄ O PODRÓŻY",
     "drive_folder_id": "1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq"
   },
   {
@@ -46,7 +45,7 @@
     "url": "https://www.warta.pl/ubezpieczenie-turystyczne-zagraniczne-warta-travel/",
     "drive_folder_id": "1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE"
   },
-    {
+  {
     "company": "Warta",
     "product": "Koszty_rezygnacji",
     "url": "https://www.warta.pl/ubezpieczenie-kosztow-odwolania-podrozy/",
@@ -62,23 +61,23 @@
     "company": "PZU",
     "product": "OC",
     "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc",
-       "exclude": "wspolne oswiadczenie",
-      "exclude": "lista warsztatów",
+    "exclude": ["wspolne oswiadczenie", "lista warsztatow"],
     "drive_folder_id": "1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI"
   },
   {
     "company": "PZU",
     "product": "AC",
     "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-ac",
+    "exclude": ["wspolne oswiadczenie", "lista warsztatow", "cennik uslug PDR", "regulamin"],
     "drive_folder_id": "1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI"
   },
-   {
+  {
     "company": "PZU",
     "product": "DOM",
     "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/dom-i-mieszkanie/ubezpieczenie-domu#custom_forms_lead_form_1_29082019",
     "drive_folder_id": "1vcCO7SMDP-zMzV5msRC21KxbeFmKTzNd"
   },
-   {
+  {
     "company": "PZU",
     "product": "Travel",
     "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/podroze/ubezpieczenie-wyjazdu-turystycznego",
@@ -95,7 +94,7 @@
     "product": "ERGO1",
     "url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/",
     "filter": "Ergo 1",
-    "exclude": "Przekład",
+    "exclude": ["Przekład"],
     "category": "Samochód",
     "drive_folder_id": "1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO"
   },
@@ -104,54 +103,51 @@
     "product": "ERGO 1",
     "url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/",
     "filter": "Ergo 1",
-    "exclude": "Przekład",
+    "exclude": ["Przekład"],
     "category": "Dom i mieszkanie",
     "drive_folder_id": "1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca"
   },
-   {
+  {
     "company": "Ergo_Hestia",
     "product": "DOM",
     "url": "https://www.ergohestia.pl/ubezpieczenie-domu-i-mieszkania/dom/",
     "drive_folder_id": "1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca"
   },
-   {
+  {
     "company": "Ergo_Hestia",
     "product": "Travel",
     "url": "https://www.ergohestia.pl/ubezpieczenie-podrozy/",
     "drive_folder_id": "1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr"
   },
-   {
+  {
     "company": "Compensa",
     "product": "Komunikacja",
     "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
-     "filter": "owu compensa komunikacja",
+    "filter": "owu compensa komunikacja",
     "drive_folder_id": "1Pz5AhPF1NhSg4cG8l59iGh1mkbIEnDhD"
   },
-   {
+  {
     "company": "Compensa",
     "product": "DOM",
     "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
-     "filter": "owu compensa rodzina",
+    "filter": "owu compensa rodzina",
     "drive_folder_id": "1KJTggeeBuOWjTk6mcxrk7iI7CPG424wu"
   },
   {
     "company": "Compensa",
     "product": "Travel",
     "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
-     "filter": "owu compensa podróz",
+    "filter": "owu compensa podroz",
     "drive_folder_id": "1H8EiBNWU7CLTSgAL46nnSDbybymR52GE"
   },
-      {
+  {
     "company": "Compensa",
     "product": "NNW",
     "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
-     "filter": "owu compensa nnw",
-     "exclude": "szkolne",
-          "exclude": "erste",
+    "filter": "owu compensa nnw",
+    "exclude": ["szkolne", "erste"],
     "drive_folder_id": "17N4rtRsFn1sNohbtVRagpLw59zw6dOM0"
   },
-  
-  
   {
     "company": "BBC",
     "product": "Test",
