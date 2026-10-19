@@ -1,4 +1,11 @@
 [
+    {
+    "company": "Generali",
+    "product": "Komunikacja",
+    "url": "https://www.generali.pl/strefa-klienta",
+     "filter": "GENERALI, Z MYŚLĄ O AUCIE",
+    "drive_folder_id": "1YktGTe5z0zXJG81eHuc5hu1wyM8eYlA3"
+  },
   {
     "company": "Warta",
     "product": "OC",
@@ -116,6 +123,7 @@
      "filter": "owu compensa podróz",
     "drive_folder_id": "1H8EiBNWU7CLTSgAL46nnSDbybymR52GE"
   },
+  
   {
     "company": "BBC",
     "product": "Test",
