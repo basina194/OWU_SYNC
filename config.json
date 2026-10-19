@@ -1,5 +1,31 @@
 [
   {
+    "company": "Uniqa",
+    "product": "Komunikacja",
+    "url": "https://www.uniqa.pl/ubezpieczenie-oc/",
+    "drive_folder_id": "1ucpWMAXp1SMgfCcQgU2A2sMAhLI66Td8"
+  },
+  {
+    "company": "Uniqa",
+    "product": "Majątek",
+    "url": "https://www.uniqa.pl/ubezpieczenie-mieszkania-lub-domu/",
+    "drive_folder_id": "1CHQjx2S_jUcIWTiTS2Xmo25eJKQjSRHF"
+  },
+    {
+    "company": "Uniqa",
+    "product": "Travel",
+    "url": "https://www.uniqa.pl/ubezpieczenie-turystyczne-swiat-europa/",
+        "exclude": ["formularz zgloszenia"],
+    "drive_folder_id": "1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR"
+  },
+   {
+    "company": "Uniqa",
+    "product": "Koszty rezygnacji",
+    "url": "https://www.uniqa.pl/ubezpieczenie-rezygnacji-z-podrozy/",
+        "exclude": ["formularz zgloszenia"],
+    "drive_folder_id": "1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR"
+  },
+  {
     "company": "Generali",
     "product": "Komunikacja",
     "url": "https://www.generali.pl/strefa-klienta",
