@@ -20,12 +20,14 @@
     "product": "Travel",
     "url": "https://www.generali.pl/strefa-klienta",
      "filter": "GENERALI, Z MYŚLĄ O PODRÓŻY",
+       "exclude": "sieci dilerskiej",
     "drive_folder_id": "1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq"
   },
   {
     "company": "Warta",
     "product": "OC",
     "url": "https://www.warta.pl/ubezpieczenie-oc/",
+      "exclude": "wspólne oswiadczenie",
     "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
   },
   {
