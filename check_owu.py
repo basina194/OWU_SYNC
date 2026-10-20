@@ -436,9 +436,23 @@ def get_drive_service():
         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
     if not creds or not creds.valid:
+        refreshed = False
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
+            try:
+                creds.refresh(Request())
+                refreshed = True
+            except Exception as e:
+                if env_token:
+                    raise RuntimeError(
+                        "Token Google Drive (GDRIVE_TOKEN_JSON) w GitHub Secrets wygasł lub został unieważniony przez Google (invalid_grant).\n"
+                        "Powód: aplikacja OAuth w Google Cloud ma status 'Testing' (wtedy token wygasa po 7 dniach).\n"
+                        "Rozwiązanie: w Google Cloud Console przestaw 'Publishing status' na 'In production', "
+                        "wygeneruj nowy token.json lokalnie i wklej go do GitHub Secrets jako GDRIVE_TOKEN_JSON."
+                    ) from e
+                print(f"Token wygasł i nie dało się go automatycznie odświeżyć ({e}).")
+                print("Uruchamiam logowanie w przeglądarce, aby wygenerować nowy token...")
+
+        if not refreshed:
             if not os.path.exists(CLIENT_SECRET_FILE):
                 raise FileNotFoundError(f"Brak pliku {CLIENT_SECRET_FILE}. Umieść go w głównym katalogu.")
             flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
