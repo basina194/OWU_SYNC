@@ -148,6 +148,23 @@
     "drive_folder_id": "1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr"
   },
   {
+    "company": "MTU",
+    "product": "MTU KOMUNIKACJA",
+    "url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/",
+    "filter": "MTU",
+    "exclude": ["mtu24.pl"],
+    "category": "samochód",
+    "drive_folder_id": "1y-6n45V3q3IG7RfAG4sA-EJaNz9OZ3oe"
+  },
+  {
+    "company": "MTU24",
+    "product": "MTU24.pl KOMUNIKACJA",
+    "url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/",
+    "filter": "MTU24.pl",
+    "category": "samochód",
+    "drive_folder_id": "1ETkH79z_649AVppC-LK0GGY3my4kUE4A"
+  },
+  {
     "company": "Compensa",
     "product": "Komunikacja",
     "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
