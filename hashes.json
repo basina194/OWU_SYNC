@@ -162,5 +162,48 @@
     "PID_Rezygnacja_z_podrozy.pdf": "815d92a4619d0ac2a7318ec78abd9b92160eff1b0f84a05e19e326aad305f064",
     "Karta_Produktu_Rezygnacja_z_podrozy.pdf": "18ebdbf62056719b90cb4d7cd498522f87f2728dda61d6545d4078e548795068",
     "714_Odstapienie_od_umowy.pdf": "91207215f94ae39cc989df104bad3d3cc1abfa04ab0c1c38b6c3b7824c55eb54"
+  },
+  "PZU_ROLNE": {
+    "1_1500_Ustawa_o_ubezpieczeniach_obowiazkowych_UFG_i_PBUK.pdf": "58362d1fdb4a7e6b19dfc787e78a8f3b506ca9e84cbc1743781e19ad715b7d44",
+    "Ogolne_Warunki_Ubezpieczenia_PZU_Gospodarstwo_Rolne_mienie_ruchome_obowiazujace_od_18.05.2024.pdf": "ca34c445543e2eb6d8174e15513be0294954a8438816dca010976cfb02d4092a",
+    "Ogolne_Warunki_Ubezpieczenia_PZU_Gospodarstwo_Rolne_Plus_obowiazujace_od_18.05.2024.pdf": "71a736228bf648932a7f85821f527bd4be122fdf69613822a78a4dfb47bef61d",
+    "Ogolne_warunki_ubezpieczenia_PZU_Gospodarstwo_Rolne_nastepstwa_nieszczesliwych_wypadkow.pdf": "1bb6f4c214714a8eb2d309ce092042ec3402422fe7c091002312553d265918ff",
+    "4_1500_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf": "b67125b166d9c3633b8651511f710d6dde0233536cf3b3a61c99196fdd7b12c5",
+    "Dokument_o_produkcie_ubezpieczeniowym_Ogolne_Warunki_Ubezpieczenia_PZU_Gospodarstwo_Rolne_mienie_ruchome_obowiazujace_od_18.05.2024.pdf": "de4c8560109629cfefeb4c039a6507979407a74fc68866ee1500a1d520b6f1ca",
+    "Dokument_o_produkcie_ubezpieczeniowym_PZU_Gospodarstwo_Rolne_Plus_obowiazujace_od_18.05.2024.pdf": "e983028ea055a560fd7c56e80cf6795d84faeeffab38a8c5fa87d928cff7ca25",
+    "Dokument_zawierajacy_informacje_o_PZU_Gospodarstwo_Rolne_nastepstwa_nieszczesliwych_wypadkow.pdf": "85244128332c6eb465e48536273ca22734b140c8443c87ae13fac402b8d749ac",
+    "Dokument_zawierajacy_informacje_o_PZU_Gospodarstwo_Rolne_obowiazkowe_ubezpieczenie_budynkow_wchodzacych_w_sklad_gospodarstwa_rolnego_od_ognia_i_innych_zdarzen_losowych.pdf": "e8d2e670ddd77e6061acbb18e502cb6027a04cc1b99b54f60a8ebadf83d7bd9e",
+    "Dokument_zawierajacy_informacje_o_PZU_Gospodarstwo_Rolne_obowiazkowe_ubezpieczenie_odpowiedzialnosci_cywilnej_rolnikow_z_tytulu_posiadania_gospodarstwa_rolnego.pdf": "ba370db6efdd10055838530bbd14600792d3502469ed3d547a074ce38f6267f8",
+    "pelnomocnictwo_dla_osoby_trzeciej_wzor.pdf": "4c43f8b8f936ec2fcf7b40c1eef331b39183325cefbbff5b523d6327406ea237",
+    "OWU_OC_w_zyciu_prywatnym_od_20_lipca_2019.pdf": "a385d1e08745b28c6d02367eed5426c6495e4515664a613ca208d4468bda81b1",
+    "UD_do_OWU_OC_w_zyciu_prywatnym_od_20_lipca_2019.pdf": "ff682ad82c2198471ec3a8cbe02fe188f5e471da122b41cd6849e1ff4247eeab"
+  },
+  "PZU_PZU Doradca": {
+    "Ryzyko_pozaru_poradnik_dla_przedsiebiorcow.pdf": "2270e3eca3189bd6fb39ec76870a078d9939ab29d55ce61c509162e2913db58e",
+    "PZU_Zapory_przeciwpowodziowe_onepager_v6.pdf": "0193f75a7fe05eddbdae32768d6674faf99e2edd0fa16636c958c87b493f2fa6",
+    "Ogolne_warunki_kompleksowego_ubezpieczenia_PZU_Doradca_obowiazujace_od_23.05.2026_r..pdf": "f2fc926ced3a7396a69a57fe50756a4a45c56a826e6db32a3779d926bd6f2c0c",
+    "Dokument_zawierajacy_informacje_o_ubezpieczeniu_PZU_Doradca_obowiazujacy_od_23.05.2026_r..pdf": "5e5c7e58af2d93a184b1c826ec51547b47bbfb4210ff63f20b2457116fd9e697",
+    "1_1204_PZU_Doradca_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf": "b67125b166d9c3633b8651511f710d6dde0233536cf3b3a61c99196fdd7b12c5"
+  },
+  "MTU_MTU KOMUNIKACJA": {
+    "14845aba476a76348e8aff88f4addd1a_documents.pdf": "5572a84f61adb68e243d859db56dfe5d80108e19738903173eeed98fd40b8368",
+    "b01f9073742ea947823d22be3804aa9a_documents.pdf": "f6fcd75017855d7d2d5a9a5a71685b45bc190492e143b0204061520f376fc339",
+    "ae677cf1196af04c508ced6f402ad26a_documents-a93e0f48-fb33-48a4-9695-a878bf18f473.pdf": "7c7b0d308ee3ac32901127a09b99acb298a5fde3e5e5c09e396f25d916ed0db1"
+  },
+  "MTU24_MTU24.pl KOMUNIKACJA": {
+    "b21052aa10c0a6e63a1b3b03fe438251_documents-7cf2b03a-86b9-46c3-b6af-51628205f91d.pdf": "7af6c9b0cecbd1a2d6aa6d5d2929fa5a691fdf6527faa73cce692fd0a572d183",
+    "8f1c5f3a5ce913de4ec963d959c15ac9_documents_eCOFomX.pdf": "c044114ebfe381211fa53677b9f30ec9602a1d01ef6668287b1b83b47db5ab3c",
+    "90bfb1c9acc28a7c535f5b341c499558_documents.pdf": "ef9ac2003c70bb3c2b2764bb17c1c786bc9a4aeb538b422b765bbd606ab988eb",
+    "09b023b45dca28d9c1825e4edc1a5cd8_documents.pdf": "1e79173620b0f564b76df5442aa6f455f99df784df6854efaa48f15edfde04b9",
+    "a2bc9ab020ac0530cdf5f3719b11ebf7_documents.pdf": "47cbf32240a827cf90d6f28c7fa1d6e75032f60abf6f9ccbb4c93173a0c0b89f",
+    "f56eafb268f578282aec2bba258a41df_documents.pdf": "fef896639b15695e6cde88b7d9b7c5d1bce40b437d7dda4e8b415eb3cff54035",
+    "0c6528ad914535ff857835facffa65a4_documents.pdf": "276044dca4b6ddee8c697a9dc13c4d81d45be9b52753c124255362d58896db9c",
+    "292fd6371c1a0c88f183cb9ef9e823bf_documents.pdf": "d845e57dfa9296128f416b9daa3feaa6da03c84c14634b5b7cae5763e0b3ae26"
+  },
+  "Wiener_Pakiet Auto": {
+    "owu_pakiet_auto_wiener_aneks_12022026.pdf": "407253419e7d7b7dcab9b03f801b9ed95235c2e4c503167eb08b7735d6d1a155"
+  },
+  "Wiener_4 katy": {
+    "owu_pakiet_4_katy_wiener_aneks_12022026.pdf": "f8c9217b373e002478ae59fb53c2a81f00a7a5efc3c9d6fc99c29d639c1bd1be"
   }
 }
