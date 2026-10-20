@@ -193,6 +193,20 @@
     "exclude": ["szkolne", "erste"],
     "drive_folder_id": "17N4rtRsFn1sNohbtVRagpLw59zw6dOM0"
   },
+    {
+    "company": "Wiener",
+    "product": "Pakiet Auto",
+    "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
+    "filter": "Pakiet Auto",
+    "drive_folder_id": "1twyybt-uQLT6VlLaaKRQazvMQirFmFif"
+  },
+  {
+    "company": "Wiener",
+    "product": "4 katy",
+    "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
+    "filter": "Pakiet 4 Kąty",
+    "drive_folder_id": "1H5hcPmvbMWrSRJmBzzw-AluQqVb0bb8g"
+  },
   {
     "company": "BBC",
     "product": "Test",
