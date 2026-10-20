@@ -746,5 +746,12 @@ def main():
             json.dump(known_hashes, f, indent=2)
         print("\nZaktualizowano bazę sum kontrolnych hashes.json.")
 
+    try:
+        import build_dashboard
+        build_dashboard.generate()
+    except Exception as dash_err:
+        print(f"Uwaga: Nie udało się zaktualizować panelu dashboard: {dash_err}")
+
 if __name__ == '__main__':
     main()
+

@@ -30,9 +30,10 @@ jobs:
           PYTHONUNBUFFERED: "1"
         run: python -u check_owu.py
 
-      - name: Zapisz stan hashy w repozytorium
+      - name: Zapisz stan hashy i panelu w repozytorium
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "OWU Sync Bot"
-          git add hashes.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Aktualizacja hashy OWU [skip ci]" && git push)
+          git add hashes.json index.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Aktualizacja hashy OWU i panelu dashboard [skip ci]" && git push)
+
