@@ -1,0 +1,7 @@
+# Vibe Coding Protocol
+
+1. Autonomous Verification: Always verify your changes using the terminal (tests, syntax checks, or dry runs) before declaring completion.
+2. Minimal Diffs: Do not rewrite entire files. Modify only the lines strictly necessary for the requested feature or fix.
+3. Inspect First: Before writing code, inspect existing patterns, project dependencies, and environment files. Do not guess imports or APIs.
+4. Fail-Safe Operations: Never expose secrets, hardcode credentials, or bypass error handling.
+5. Concise Output: Explain what was changed in 2-3 bullet points maximum. Focus on results and execution logs, avoid verbose narrative.
