@@ -196,6 +196,8 @@ def extract_pdf_items_from_html(base_url, html_text, session=None):
     raw_sections = re.split(r'(<h[1-3][^>]*>.*?</h[1-3]>)', clean_html, flags=re.I)
     parsed_sections = []
     if len(raw_sections) > 1:
+        if raw_sections[0].strip():
+            parsed_sections.append(("", raw_sections[0]))
         for i in range(1, len(raw_sections), 2):
             h_text = re.sub(r'<[^>]+>', '', raw_sections[i]).strip()
             content = raw_sections[i + 1] if i + 1 < len(raw_sections) else ''
@@ -217,7 +219,14 @@ def extract_pdf_items_from_html(base_url, html_text, session=None):
         # A. Klasyczne linki <a> z .pdf
         for m in re.finditer(r'<a[^>]+href=[\x22\x27]([^\x22\x27]*?\.pdf(?:\?[^\x22\x27]*)?)[\x22\x27][^>]*>(.*?)</a>', section_html, re.I | re.S):
             link_url = urljoin(base_url, m.group(1).strip())
-            raw_text = re.sub(r'<[^>]+>', ' ', m.group(2)).strip()
+            title_attr_m = re.search(r'title=[\x22\x27]([^\x22\x27]+)[\x22\x27]', m.group(0), re.I)
+            aria_attr_m = re.search(r'aria-label=[\x22\x27]([^\x22\x27]+)[\x22\x27]', m.group(0), re.I)
+            extra_desc = ""
+            if title_attr_m:
+                extra_desc += f" {title_attr_m.group(1)}"
+            if aria_attr_m:
+                extra_desc += f" {aria_attr_m.group(1)}"
+            raw_text = re.sub(r'<[^>]+>', ' ', m.group(2)).strip() + extra_desc
             link_text = re.sub(r'\s+', ' ', raw_text)
             link_pos = m.start()
 

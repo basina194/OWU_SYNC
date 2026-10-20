@@ -204,5 +204,8 @@
   "HDI_OC": {
     "HDI_IPID_OC_posiadaczy_pojazdow_mechanicznych.pdf": "1c903b1e2ca252f281f42ac327ba2c4e9faba284992db65baa1d4c148c4b9521",
     "WARTA_OWU_HDI_ZK_C5834_int.pdf": "b70a1b3f4467b66404822e858eb94af07bad8478fcd80d6fdb33ae1a8c667f8c"
+  },
+  "HDI_AC": {
+    "WARTA_OWU_HDI_AutoCasco_Plus_C5645_int.pdf": "4cc694cb1a6fe19c49663ef1fae7f49393e09ac48de6a5371612a9a1a204087b"
   }
 }
