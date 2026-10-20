@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OWU Sync Hub - Panel Monitorowania i Synchronizacji</title>
+  <title>OWU Sync Hub - Panel Towarzystw</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,17 +15,6 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
-            }
           }
         }
       }
@@ -36,14 +25,14 @@
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
     .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.03);
+      background: transparent;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(156, 163, 175, 0.4);
+      background: rgba(156, 163, 175, 0.3);
       border-radius: 4px;
     }
   </style>
@@ -65,20 +54,18 @@
                 <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">OWU Sync Hub</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/70 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  Online
+                  Aktywny
                 </span>
               </div>
-              <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Automatyczny system weryfikacji i synchronizacji dokumentów OWU</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Panel synchronizacji dokumentów z podziałem na towarzystwa ubezpieczeniowe</p>
             </div>
           </div>
 
           <div class="flex items-center gap-2 sm:gap-3">
             <button id="themeToggle" class="p-2 rounded-xl text-slate-500 hover:text-slate-700 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800 transition" title="Zmień motyw">
-              <!-- Słońce (dla dark) -->
               <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
-              <!-- Księżyc (dla light) -->
               <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
@@ -95,169 +82,97 @@
     <!-- Główna Zawartość -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
       
-      <!-- Statystyki / Karty KPI -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <!-- Statystyki KPI -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Towarzystwa</span>
-            <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-            </div>
-          </div>
-          <p id="statCompanies" class="text-2xl sm:text-3xl font-extrabold mt-2 text-slate-900 dark:text-white">-</p>
-          <span class="text-xs text-slate-500 dark:text-slate-400">Wszystkie monitorowane firmy</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Towarzystwa</span>
+          <p id="statCompanies" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Główne grupy</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Produkty</span>
-            <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-            </div>
-          </div>
-          <p id="statProducts" class="text-2xl sm:text-3xl font-extrabold mt-2 text-slate-900 dark:text-white">-</p>
-          <span class="text-xs text-slate-500 dark:text-slate-400">Śledzone kategorie polis</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Produkty</span>
+          <p id="statProducts" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Monitorowane linie</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Dokumenty OWU</span>
-            <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            </div>
-          </div>
-          <p id="statDocs" class="text-2xl sm:text-3xl font-extrabold mt-2 text-slate-900 dark:text-white">-</p>
-          <span class="text-xs text-slate-500 dark:text-slate-400">Pliki zsynchronizowane na Dysku</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Dokumenty OWU</span>
+          <p id="statDocs" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Zsynchronizowane pliki</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Ostatni cykl</span>
-            <div class="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-          </div>
-          <p id="statSync" class="text-base sm:text-lg font-bold mt-3 text-slate-900 dark:text-white truncate">-</p>
-          <span class="text-xs text-slate-500 dark:text-slate-400">Codziennie o 06:00 UTC</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Ostatni cykl</span>
+          <p id="statSync" class="text-base sm:text-lg font-bold mt-2 text-slate-900 dark:text-white truncate">-</p>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Automatyczny monitoring</span>
         </div>
       </div>
 
-      <!-- Filtry, Wyszukiwarka i Kontrolki -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm mb-6 space-y-4">
-        <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
-          
-          <!-- Pole Wyszukiwania -->
-          <div class="relative flex-1">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-            </div>
-            <input type="text" id="searchInput" placeholder="Szukaj firmy, produktu, lub nazwy pliku PDF..." class="w-full pl-10 pr-10 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
-            <button id="clearSearch" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 hidden">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
+      <!-- Filtry i Wyszukiwarka -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm mb-6 space-y-3">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
           </div>
-
-          <!-- Przełącznik Widoku (Karty / Tabela) -->
-          <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl self-end md:self-auto">
-            <button id="viewGrid" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm transition">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-              <span>Karty</span>
-            </button>
-            <button id="viewTable" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
-              <span>Tabela</span>
-            </button>
-          </div>
+          <input type="text" id="searchInput" placeholder="Filtruj towarzystwo lub produkt (np. PZU, Warta, AC, Turysta)..." class="w-full pl-10 pr-10 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+          <button id="clearSearch" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 hidden">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
         </div>
 
-        <!-- Przyciski Szybkiego Wyboru Towarzystwa (Filtry Pills) -->
+        <!-- Przyciski Szybkiego Wyboru Towarzystwa -->
         <div id="companyPills" class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar text-xs">
           <!-- Wstrzykiwane przez JS -->
         </div>
       </div>
 
-      <!-- Licznik wyników -->
-      <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4 px-1">
-        <div>Wyświetlanie: <span id="resultsCount" class="font-bold text-slate-800 dark:text-slate-200">0</span> z <span id="totalCount" class="font-bold text-slate-800 dark:text-slate-200">0</span> produktów</div>
-        <div id="filterIndicator" class="hidden text-blue-600 dark:text-blue-400 font-medium">Aktywny filtr towarzystwa</div>
-      </div>
-
-      <!-- Widok Siatki (Karty) -->
-      <div id="gridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Kontener Pogrupowanych Towarzystw (Karty Ubezpieczycieli) -->
+      <div id="companiesContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <!-- Generowane dynamicznie -->
-      </div>
-
-      <!-- Widok Tabeli -->
-      <div id="tableContainer" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm">
-            <thead class="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
-              <tr>
-                <th class="py-3 px-4">Towarzystwo</th>
-                <th class="py-3 px-4">Produkt</th>
-                <th class="py-3 px-4">Pliki OWU</th>
-                <th class="py-3 px-4 text-right">Odnośniki</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody" class="divide-y divide-slate-100 dark:divide-slate-800">
-              <!-- Wiersze generowane dynamicznie -->
-            </tbody>
-          </table>
-        </div>
       </div>
 
       <!-- Komunikat braku wyników -->
       <div id="noResults" class="hidden text-center py-16">
-        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
-        <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200">Nie znaleziono pasujących pozycji</h3>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Spróbuj zmienić słowa kluczowe lub zresetuj filtr towarzystwa.</p>
+        <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Nie znaleziono pasujących pozycji</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Zmień frazę wyszukiwania lub zresetuj filtr.</p>
       </div>
 
     </main>
 
     <!-- Stopka -->
-    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
-        <div class="flex items-center gap-2">
-          <span>OWU Sync System</span>
-          <span>•</span>
-          <span>GitHub Actions + Google Drive</span>
-        </div>
-        <div>
-          Hosting: <span class="font-medium text-slate-700 dark:text-slate-300">GitHub Pages</span>
-        </div>
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <div>OWU Sync System • GitHub Actions + Google Drive</div>
+        <div>GitHub Pages: <span class="font-medium text-slate-700 dark:text-slate-300">https://basina194.github.io/OWU_SYNC/</span></div>
       </div>
     </footer>
   </div>
 
-  <!-- Dane zsynchronizowane ze skryptem Python -->
   <script>
-    window.OWU_DATA = {"generated_at": "2026-10-20 14:43:42", "total_companies": 11, "total_products": 35, "total_documents": 129, "companies": ["BBC", "Compensa", "Ergo_Hestia", "Generali", "HDI", "MTU", "MTU24", "PZU", "Uniqa", "Warta", "Wiener"], "items": [{"company": "BBC", "company_display": "BBC", "product": "Test", "product_key": "BBC_Test", "page_url": "https://raw.githubusercontent.com/basina194/Testowe/main/Test1.html", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "documents": [{"name": "Testowy", "hash": "b1befc594bc2"}], "doc_count": 1, "filters": []}, {"company": "Compensa", "company_display": "Compensa", "product": "DOM", "product_key": "Compensa_DOM", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1KJTggeeBuOWjTk6mcxrk7iI7CPG424wu", "documents": [{"name": "OWU-Compensa-Rodzina-IV-od-21.05.2026-r.-nowy-IPID.pdf", "hash": "cd2ff5797844"}], "doc_count": 1, "filters": ["Filtr: owu compensa rodzina"]}, {"company": "Compensa", "company_display": "Compensa", "product": "Komunikacja", "product_key": "Compensa_Komunikacja", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1Pz5AhPF1NhSg4cG8l59iGh1mkbIEnDhD", "documents": [{"name": "owu_compensa_komunikacja_13022026.pdf", "hash": "bb5449fb6960"}], "doc_count": 1, "filters": ["Filtr: owu compensa komunikacja"]}, {"company": "Compensa", "company_display": "Compensa", "product": "NNW", "product_key": "Compensa_NNW", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/17N4rtRsFn1sNohbtVRagpLw59zw6dOM0", "documents": [{"name": "owu_compensa_nnw_aneks_13022026.pdf", "hash": "91a8414a6151"}, {"name": "Beesafe_OWU_NNW-z-Aneksem-nr-1.pdf", "hash": "ce54861ca00b"}, {"name": "OWU_Strazak-2024.pdf", "hash": "63f3c8425207"}], "doc_count": 3, "filters": ["Filtr: owu compensa nnw", "Wyklucz: szkolne, erste"]}, {"company": "Compensa", "company_display": "Compensa", "product": "Travel", "product_key": "Compensa_Travel", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1H8EiBNWU7CLTSgAL46nnSDbybymR52GE", "documents": [{"name": "owu_compensa_podroz_19031_otst_v2.pdf", "hash": "54fe4ce4ddd7"}], "doc_count": 1, "filters": ["Filtr: owu compensa podroz"]}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "product": "DOM", "product_key": "Ergo_Hestia_DOM", "page_url": "https://www.ergohestia.pl/ubezpieczenie-domu-i-mieszkania/dom/", "drive_url": "https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca", "documents": [{"name": "86387ebcce94c9b139e3b9f851f9937b_documents.pdf", "hash": "618e1f5b2103"}, {"name": "a881bebfd4434803df522ca1d2ffb26b_documents.pdf", "hash": "ff02775a5628"}, {"name": "348dfa88031e3c5f32d006dfa32b3c7f_documents.pdf", "hash": "e1fd4958ac95"}], "doc_count": 3, "filters": []}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "product": "ERGO 1", "product_key": "Ergo_Hestia_ERGO 1", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca", "documents": [{"name": "4497d3088b464d00d9e61a5f16b9799e_documents.pdf", "hash": "196f867c1780"}], "doc_count": 1, "filters": ["Filtr: Ergo 1", "Wyklucz: Przekład", "Kategoria: Dom i mieszkanie"]}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "product": "ERGO1", "product_key": "Ergo_Hestia_ERGO1", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO", "documents": [{"name": "4497d3088b464d00d9e61a5f16b9799e_documents.pdf", "hash": "196f867c1780"}], "doc_count": 1, "filters": ["Filtr: Ergo 1", "Wyklucz: Przekład", "Kategoria: Samochód"]}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "product": "OC", "product_key": "Ergo_Hestia_OC", "page_url": "https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/", "drive_url": "https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO", "documents": [{"name": "86387ebcce94c9b139e3b9f851f9937b_documents.pdf", "hash": "618e1f5b2103"}, {"name": "0ab68f9a70b8dab617ba9500319c1c9b_documents.pdf", "hash": "966d99cfe8c6"}, {"name": "735e73550f0deeab239aebe2044aadcf_documents.pdf", "hash": "017b6ae626a8"}], "doc_count": 3, "filters": []}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "product": "Travel", "product_key": "Ergo_Hestia_Travel", "page_url": "https://www.ergohestia.pl/ubezpieczenie-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr", "documents": [{"name": "9a54317b4cb039a621bf29e0f550973a_documents.pdf", "hash": "aab541f577bd"}, {"name": "2e7ada34e78c18c9ed747def207a198b_documents.pdf", "hash": "3e1f26d1c9ff"}], "doc_count": 2, "filters": []}, {"company": "Generali", "company_display": "Generali", "product": "Dom i mieszkanie", "product_key": "Generali_Dom i mieszkanie", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/16mS_3eMY-9Fp7Wyc2AoN_DbyFLya2qBB", "documents": [{"name": "251222_OWU_Z_mysla_o_domu_i_rodzinie_80cb5c0502.pdf", "hash": "30c882dbd170"}, {"name": "251222_Karta_produktu_Generali_Home_Z_mysla_o_domu_i_rodzinie_c80539feda.pdf", "hash": "1affe78d9a0d"}, {"name": "Generali_z_mysla_o_domu_i_rodzinie_przewodnik_b4cfe514fb.pdf", "hash": "e9bb252a0c18"}, {"name": "prosto_o_generali_z_mysla_o_domu_i_rodzinie_przewodnik_d81c1d6220.pdf", "hash": "88905252be8c"}, {"name": "240405_OWU_Z_mysla_o_domu_i_rodzinie_21a9e52cc4.pdf", "hash": "b4ea9cc719ad"}, {"name": "240405_Karta_produktu_Generali_Home_Z_mysla_o_domu_i_rodzinie_a4a474ff66.pdf", "hash": "94faff8a41ca"}, {"name": "240405_Karta_uzupelniajaca_informacje_o_produkcie_Generali_z_mysla_o_domu_i_rodzinie_aab6af8486.pdf", "hash": "5797b17aff04"}, {"name": "240930_OWU_Z_mysla_o_domu_i_rodzinie_13673dbb4b.pdf", "hash": "b9d9f78e2062"}, {"name": "240930_Karta_produktu_Generali_Home_Z_mysla_o_domu_i_rodzinie_2c268cb25d.pdf", "hash": "51e1fbf6df02"}, {"name": "Prosto_o_Generali_z_mysla_o_domu_i_rodzinie_przewodnik_104ae57b86.pdf", "hash": "54179982fa50"}], "doc_count": 10, "filters": ["Filtr: GENERALI, Z MYŚLĄ O DOMU I RODZINIE"]}, {"company": "Generali", "company_display": "Generali", "product": "Komunikacja", "product_key": "Generali_Komunikacja", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/1kHfRfD4xCLqWy536m20G604gKn8SMinQ", "documents": [{"name": "251222_OWU_Generali_z_mysla_o_aucie_3a5b9ad606.pdf", "hash": "249fef4737c6"}], "doc_count": 1, "filters": ["Filtr: GENERALI, Z MYŚLĄ O AUCIE", "Wyklucz: przewodnik"]}, {"company": "Generali", "company_display": "Generali", "product": "Travel", "product_key": "Generali_Travel", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq", "documents": [{"name": "OWU_Zalacznik_1_Generali_z_mysla_o_podrozy_Tabela_uszczerbkow_12_2018_5dbfb6e492_69b4ede9e1.pdf", "hash": "30f9ea636489"}], "doc_count": 1, "filters": ["Filtr: GENERALI, Z MYŚLĄ O PODRÓŻY", "Wyklucz: sieci dilerskiej"]}, {"company": "HDI", "company_display": "HDI", "product": "AC", "product_key": "HDI_AC", "page_url": "https://hdi.pl/autocasco/", "drive_url": "https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na", "documents": [{"name": "WARTA_OWU_HDI_AutoCasco_Plus_C5645_int.pdf", "hash": "4cc694cb1a6f"}], "doc_count": 1, "filters": []}, {"company": "HDI", "company_display": "HDI", "product": "OC", "product_key": "HDI_OC", "page_url": "https://hdi.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na", "documents": [{"name": "HDI_IPID_OC_posiadaczy_pojazdow_mechanicznych.pdf", "hash": "1c903b1e2ca2"}, {"name": "WARTA_OWU_HDI_ZK_C5834_int.pdf", "hash": "b70a1b3f4467"}], "doc_count": 2, "filters": ["Wyklucz: wspólne oswiadczenie"]}, {"company": "MTU", "company_display": "MTU", "product": "MTU KOMUNIKACJA", "product_key": "MTU_MTU KOMUNIKACJA", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1y-6n45V3q3IG7RfAG4sA-EJaNz9OZ3oe", "documents": [{"name": "14845aba476a76348e8aff88f4addd1a_documents.pdf", "hash": "5572a84f61ad"}, {"name": "b01f9073742ea947823d22be3804aa9a_documents.pdf", "hash": "f6fcd7501785"}, {"name": "ae677cf1196af04c508ced6f402ad26a_documents-a93e0f48-fb33-48a4-9695-a878bf18f473.pdf", "hash": "7c7b0d308ee3"}], "doc_count": 3, "filters": ["Filtr: MTU", "Wyklucz: mtu24.pl", "Kategoria: samochód"]}, {"company": "MTU24", "company_display": "MTU24", "product": "MTU24.pl KOMUNIKACJA", "product_key": "MTU24_MTU24.pl KOMUNIKACJA", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1ETkH79z_649AVppC-LK0GGY3my4kUE4A", "documents": [{"name": "b21052aa10c0a6e63a1b3b03fe438251_documents-7cf2b03a-86b9-46c3-b6af-51628205f91d.pdf", "hash": "7af6c9b0cecb"}, {"name": "8f1c5f3a5ce913de4ec963d959c15ac9_documents_eCOFomX.pdf", "hash": "c044114ebfe3"}, {"name": "90bfb1c9acc28a7c535f5b341c499558_documents.pdf", "hash": "ef9ac2003c70"}, {"name": "09b023b45dca28d9c1825e4edc1a5cd8_documents.pdf", "hash": "1e79173620b0"}, {"name": "a2bc9ab020ac0530cdf5f3719b11ebf7_documents.pdf", "hash": "47cbf32240a8"}, {"name": "f56eafb268f578282aec2bba258a41df_documents.pdf", "hash": "fef896639b15"}, {"name": "0c6528ad914535ff857835facffa65a4_documents.pdf", "hash": "276044dca4b6"}, {"name": "292fd6371c1a0c88f183cb9ef9e823bf_documents.pdf", "hash": "d845e57dfa92"}], "doc_count": 8, "filters": ["Filtr: MTU24.pl", "Kategoria: samochód"]}, {"company": "PZU", "company_display": "PZU", "product": "AC", "product_key": "PZU_AC", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-ac", "drive_url": "https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI", "documents": [{"name": "Poradnik_kupno_sprzedaz_v2025.07.08.pdf", "hash": "65513881e9b1"}, {"name": "Ogolne_warunki_ubezpieczen_PZU_Auto_do_ofert_od_21.03.2026_r..pdf", "hash": "d4a92fcbb0c2"}, {"name": "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_do_ofert_od_21.03.2026_r..pdf", "hash": "d17d3f5f9071"}], "doc_count": 3, "filters": ["Wyklucz: wspolne oswiadczenie, lista warsztatow, cennik uslug PDR, regulamin"]}, {"company": "PZU", "company_display": "PZU", "product": "DOM", "product_key": "PZU_DOM", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/dom-i-mieszkanie/ubezpieczenie-domu#custom_forms_lead_form_1_29082019", "drive_url": "https://drive.google.com/drive/folders/1vcCO7SMDP-zMzV5msRC21KxbeFmKTzNd", "documents": [{"name": "Ryzyko_pozaru_poradnik_dla_wlascicieli_domow.pdf", "hash": "4c49381c19c2"}, {"name": "PZU_Zapory_przeciwpowodziowe_onepager_v6.pdf", "hash": "0193f75a7fe0"}, {"name": "Ogolne_warunki_ubezpieczenia_PZU_Dom_obowiazujace_od_1.10.2026_r..pdf", "hash": "05b120c6a6d6"}, {"name": "Dokument_zawierajacy_informacje_o_produkcie_PZU_Dom_obowiazujacy_od_1.10.2026_r..pdf", "hash": "52db15ae5fb5"}], "doc_count": 4, "filters": []}, {"company": "PZU", "company_display": "PZU", "product": "OC", "product_key": "PZU_OC", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc", "drive_url": "https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI", "documents": [{"name": "88021_Ustawa_z_dnia_22_maja_2003_r_o_ubezpieczeniach_obowiazkowych_UFG_i_PBUK_.pdf", "hash": "b50741f7c766"}, {"name": "Poradnik_kupno_sprzedaz_v2025.07.08.pdf", "hash": "65513881e9b1"}, {"name": "Dokument_zawierajacy_informacje_o_produkcie_PZU_Auto_OC_do_ofert_od_21.03.2026_r..pdf", "hash": "1c57f8e9d872"}], "doc_count": 3, "filters": ["Wyklucz: wspolne oswiadczenie, lista warsztatow"]}, {"company": "PZU", "company_display": "PZU", "product": "PZU Doradca", "product_key": "PZU_PZU Doradca", "page_url": " https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/majatek/pzu-doradca", "drive_url": "https://drive.google.com/drive/folders/1Oz-BAps3Yxbg7SKBtffzXzYi66PsgzMh", "documents": [{"name": "Ryzyko_pozaru_poradnik_dla_przedsiebiorcow.pdf", "hash": "2270e3eca318"}, {"name": "PZU_Zapory_przeciwpowodziowe_onepager_v6.pdf", "hash": "0193f75a7fe0"}, {"name": "Ogolne_warunki_kompleksowego_ubezpieczenia_PZU_Doradca_obowiazujace_od_23.05.2026_r..pdf", "hash": "f2fc926ced3a"}, {"name": "Dokument_zawierajacy_informacje_o_ubezpieczeniu_PZU_Doradca_obowiazujacy_od_23.05.2026_r..pdf", "hash": "5e5c7e58af2d"}, {"name": "1_1204_PZU_Doradca_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf", "hash": "b67125b166d9"}], "doc_count": 5, "filters": []}, {"company": "PZU", "company_display": "PZU", "product": "ROLNE", "product_key": "PZU_ROLNE", "page_url": "https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/agrobiznes/pzu-gospodarstwo-rolne", "drive_url": "https://drive.google.com/drive/folders/1zGx5u31ps9lhT6uVMpRZ-epgf_xMdnar", "documents": [{"name": "1_1500_Ustawa_o_ubezpieczeniach_obowiazkowych_UFG_i_PBUK.pdf", "hash": "58362d1fdb4a"}, {"name": "Ogolne_Warunki_Ubezpieczenia_PZU_Gospodarstwo_Rolne_mienie_ruchome_obowiazujace_od_18.05.2024.pdf", "hash": "ca34c445543e"}, {"name": "Ogolne_Warunki_Ubezpieczenia_PZU_Gospodarstwo_Rolne_Plus_obowiazujace_od_18.05.2024.pdf", "hash": "71a736228bf6"}, {"name": "Ogolne_warunki_ubezpieczenia_PZU_Gospodarstwo_Rolne_nastepstwa_nieszczesliwych_wypadkow.pdf", "hash": "1bb6f4c21471"}, {"name": "4_1500_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf", "hash": "b67125b166d9"}, {"name": "Dokument_o_produkcie_ubezpieczeniowym_Ogolne_Warunki_Ubezpieczenia_PZU_Gospodarstwo_Rolne_mienie_ruchome_obowiazujace_od_18.05.2024.pdf", "hash": "de4c85601096"}, {"name": "Dokument_o_produkcie_ubezpieczeniowym_PZU_Gospodarstwo_Rolne_Plus_obowiazujace_od_18.05.2024.pdf", "hash": "e983028ea055"}, {"name": "Dokument_zawierajacy_informacje_o_PZU_Gospodarstwo_Rolne_nastepstwa_nieszczesliwych_wypadkow.pdf", "hash": "85244128332c"}, {"name": "Dokument_zawierajacy_informacje_o_PZU_Gospodarstwo_Rolne_obowiazkowe_ubezpieczenie_budynkow_wchodzacych_w_sklad_gospodarstwa_rolnego_od_ognia_i_innych_zdarzen_losowych.pdf", "hash": "e8d2e670ddd7"}, {"name": "Dokument_zawierajacy_informacje_o_PZU_Gospodarstwo_Rolne_obowiazkowe_ubezpieczenie_odpowiedzialnosci_cywilnej_rolnikow_z_tytulu_posiadania_gospodarstwa_rolnego.pdf", "hash": "ba370db6efdd"}, {"name": "pelnomocnictwo_dla_osoby_trzeciej_wzor.pdf", "hash": "4c43f8b8f936"}, {"name": "OWU_OC_w_zyciu_prywatnym_od_20_lipca_2019.pdf", "hash": "a385d1e08745"}, {"name": "UD_do_OWU_OC_w_zyciu_prywatnym_od_20_lipca_2019.pdf", "hash": "ff682ad82c21"}], "doc_count": 13, "filters": []}, {"company": "PZU", "company_display": "PZU", "product": "Travel", "product_key": "PZU_Travel", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/podroze/ubezpieczenie-wyjazdu-turystycznego", "drive_url": "https://drive.google.com/drive/folders/1ScTrJMgHukWUYUt6ZsCqNPYoKz0CadHp", "documents": [{"name": "PZU_Wojazer_Dokumenty_do_zgloszenia_szkody.pdf", "hash": "bde5213ffe30"}, {"name": "7193-VIII_Zgloszenie_szkody_Wojazer.pdf", "hash": "93e04e27d7f1"}, {"name": "Ogolne_warunki_ubezpieczenia_PZU_Wojazer_od_01.12.2025.pdf", "hash": "84d77efa893b"}, {"name": "Dokument_zawierajacy_informacje_o_PZU_Wojazer_od_01.12.2025.pdf", "hash": "0ccbf49f1935"}, {"name": "Dokument_zawierajacy_informacje_o_ubezpieczeniu_PZU_Wojazer_koszty_rezygnacji_od_01.12.2025.pdf", "hash": "fe6722f2929e"}, {"name": "3_1200_Tabela_norm_oceny_procentowej_trwalego_uszczerbku_na_zdrowiu.pdf", "hash": "b67125b166d9"}, {"name": "Zgloszenie_szkody_z_ubezpieczenia_PZU_Wojazer.pdf", "hash": "93e04e27d7f1"}, {"name": "General_terms_and_conditions_of_insurance_PZU_Wojazer_from_01.12.2025.pdf", "hash": "d1e9385f9b3e"}, {"name": "Insurance_Product_Information_Document_PZU_Wojazer_from_01.12.2025.pdf", "hash": "e6719543b253"}, {"name": "Insurance_Product_Information_Document_PZU_Wojazer_Insurance_against_cancellation_or_curtailment_of_organised_holiday_from_01.12.2025.pdf", "hash": "d6d02863ecfc"}], "doc_count": 10, "filters": []}, {"company": "Uniqa", "company_display": "Uniqa", "product": "Komunikacja", "product_key": "Uniqa_Komunikacja", "page_url": "https://www.uniqa.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/1ucpWMAXp1SMgfCcQgU2A2sMAhLI66Td8", "documents": [{"name": "1977_OWU_Komunikacyjne_UNIQA_Ubezpieczenia.pdf", "hash": "1ebbc060f433"}, {"name": "1977_1_PID_Komunikacyjny_UNIQA_Ubezpieczenia_OC.pdf", "hash": "7f6e7c04ebaa"}, {"name": "1977_2_PID_Komunikacyjny_UNIQA_Ubezpieczenia_AC.pdf", "hash": "35c11087cb32"}, {"name": "1977_3_PID_Komunikacyjny_UNIQA_Ubezpieczenia_MINI_AC.pdf", "hash": "09ead80a40f8"}, {"name": "1977_4_PID_Komunikacyjny_UNIQA_Ubezpieczenia_Szyby.pdf", "hash": "20aebdd0974d"}, {"name": "1977_5_PID_Komunikacyjny_UNIQA_Ubezpieczenia_Bagaz_i_foteliki.pdf", "hash": "4cc3dfbde31b"}, {"name": "1977_6_PID_Komunikacyjny_UNIQA_Ubezpieczenia_NNW.pdf", "hash": "8ee5ed983b03"}, {"name": "1977_7_PID_Komunikacyjny_UNIQA_Ubezpieczenia_NNWP.pdf", "hash": "c14f25f8e0a1"}, {"name": "1977_8_PID_Komunikacyjny_UNIQA_Ubezpieczenia_ZK.pdf", "hash": "b16abf672e47"}, {"name": "1977_9_PID_Komunikacyjny_UNIQA_Ubezpieczenia_Assistance.pdf", "hash": "4613ab39670c"}], "doc_count": 10, "filters": []}, {"company": "Uniqa", "company_display": "Uniqa", "product": "Koszty rezygnacji", "product_key": "Uniqa_Koszty rezygnacji", "page_url": "https://www.uniqa.pl/ubezpieczenie-rezygnacji-z-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR", "documents": [{"name": "Ulotka_informacyjna_ubezpieczenie_rezygnacji_z_podrozy_krajowych_i_zagranicznych.pdf", "hash": "f88390c16013"}, {"name": "OWU_Rezygnacji_z_podrozy.pdf", "hash": "c57844e0fcdf"}, {"name": "PID_Rezygnacja_z_podrozy.pdf", "hash": "815d92a4619d"}, {"name": "Karta_Produktu_Rezygnacja_z_podrozy.pdf", "hash": "18ebdbf62056"}, {"name": "714_Odstapienie_od_umowy.pdf", "hash": "91207215f94a"}], "doc_count": 5, "filters": ["Wyklucz: formularz zgloszenia"]}, {"company": "Uniqa", "company_display": "Uniqa", "product": "Majątek", "product_key": "Uniqa_Majątek", "page_url": "https://www.uniqa.pl/ubezpieczenie-mieszkania-lub-domu/", "drive_url": "https://drive.google.com/drive/folders/1CHQjx2S_jUcIWTiTS2Xmo25eJKQjSRHF", "documents": [{"name": "1715_OWU_Ubezpieczenie_mieszkaniowe_Twoje_miejsce.pdf", "hash": "1e7ca29b4b35"}, {"name": "1715_PID_Ubezpieczenie_mieszkaniowe_Twoje_miejsce.pdf", "hash": "21d49d95e271"}], "doc_count": 2, "filters": []}, {"company": "Uniqa", "company_display": "Uniqa", "product": "Travel", "product_key": "Uniqa_Travel", "page_url": "https://www.uniqa.pl/ubezpieczenie-turystyczne-swiat-europa/", "drive_url": "https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR", "documents": [{"name": "Wykaz_aktywnosci_sportowych_z_podzialem_na_kategorie.pdf", "hash": "89d75af2aaec"}, {"name": "2510_OWU_Ubezpieczenie_podrozy_Supertravel.pdf", "hash": "8fac210950d3"}, {"name": "Europejska_Karta_Ubezpieczenia_Zdrowotnego_UNIQA.pdf", "hash": "6bbad5b7e0d0"}, {"name": "2510_OWU_Ubezpieczenie_podrozy_Supertravel_EN.pdf", "hash": "6398cb8dcc1b"}, {"name": "2510_PID_Ubezpieczenie_podrozy_Supertravel.pdf", "hash": "3718fd7754bd"}, {"name": "Karta_produktu_Supertravel_Podstawowy.pdf", "hash": "f17d9a933305"}, {"name": "Karta_produktu_Supertravel_Rozszerzony.pdf", "hash": "7ad69196ccc4"}, {"name": "Karta_produktu_Supertravel_Optymalny.pdf", "hash": "49b3a3ae07c5"}, {"name": "Karta_produktu_Supertravel_Maksymalny.pdf", "hash": "905617cbfb80"}, {"name": "714_Odstapienie_od_umowy.pdf", "hash": "91207215f94a"}], "doc_count": 10, "filters": ["Wyklucz: formularz zgloszenia"]}, {"company": "Warta", "company_display": "Warta", "product": "AC", "product_key": "Warta_AC", "page_url": "https://www.warta.pl/ubezpieczenie-ac/", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "documents": [{"name": "WARTA_OWU_AutoCasco_Komfort_ACK_C6215_int.pdf", "hash": "a7a0642ad529"}, {"name": "WARTA_OWU_AutoCasco_Standard_ACS_C6205_int.pdf", "hash": "dba7e3bab9a2"}, {"name": "WARTA_OWU_Autocasco_i_Kradzież_dla_flot_samochodowych_C3916_int.pdf", "hash": "bc185154d289"}], "doc_count": 3, "filters": []}, {"company": "Warta", "company_display": "Warta", "product": "DOM", "product_key": "Warta_DOM", "page_url": "https://www.warta.pl/ubezpieczenie-mieszkania/", "drive_url": "https://drive.google.com/drive/folders/1dcP21RHZ1NtHg1u9qifD07hDXDocu2wo", "documents": [{"name": "OWU_Warta_Dom_C7177_int.pdf", "hash": "82c278808eb3"}, {"name": "OWU_Warta_Dom_Komfort_C7187_int.pdf", "hash": "1529dc7b53a1"}, {"name": "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf", "hash": "7b525bc4cd00"}, {"name": "Normy_zuzycia_technicznego_budynkow.pdf", "hash": "428281d66a1f"}, {"name": "Normy_trwalosci_elementow_budynku...pdf", "hash": "420173683514"}], "doc_count": 5, "filters": []}, {"company": "Warta", "company_display": "Warta", "product": "Koszty_rezygnacji", "product_key": "Warta_Koszty_rezygnacji", "page_url": "https://www.warta.pl/ubezpieczenie-kosztow-odwolania-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "documents": [{"name": "OWU_Kosztow_odwolania_podrozy_C8323.pdf", "hash": "d1f2424ec8df"}, {"name": "Koszty_Odwolania_Podrozy_onepager-jak_zgłosic_szkode.pdf", "hash": "7c980be64571"}], "doc_count": 2, "filters": []}, {"company": "Warta", "company_display": "Warta", "product": "OC", "product_key": "Warta_OC", "page_url": "https://www.warta.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "documents": [{"name": "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf", "hash": "b97524bb2962"}, {"name": "WARTA_OWU_WARTA_OC_Szybka_wyplata_C6334_int.pdf", "hash": "ab0367cf4f95"}, {"name": "WARTA_OWU_Zielona_Karta_ZK_C2508_int.pdf", "hash": "62d522a9702a"}], "doc_count": 3, "filters": ["Wyklucz: wspólne oswiadczenie"]}, {"company": "Warta", "company_display": "Warta", "product": "Travel", "product_key": "Warta_Travel", "page_url": "https://www.warta.pl/ubezpieczenie-turystyczne-zagraniczne-warta-travel/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "documents": [{"name": "OWU_WARTA_Travel_C0517.pdf", "hash": "c2a3f86a0f83"}, {"name": "OWU_WARTA_TRAVEL_C0517_EN_int.pdf", "hash": "a0c5befe494d"}, {"name": "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf", "hash": "7b525bc4cd00"}, {"name": "Warta_Travel_Poradnik_ON_LINE_One_pager_jak_zgłosic_szkode_od_5_czerwca_2025.pdf", "hash": "30b19aa33895"}], "doc_count": 4, "filters": []}, {"company": "Warta", "company_display": "Warta", "product": "Turysta", "product_key": "Warta_Turysta", "page_url": "https://www.warta.pl/ubezpieczenie-turystyczne-polska/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "documents": [{"name": "OWU_WARTA_Twoje_NNW_C7784.pdf", "hash": "abedf0495f74"}, {"name": "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf", "hash": "7b525bc4cd00"}], "doc_count": 2, "filters": []}, {"company": "Wiener", "company_display": "Wiener", "product": "4 katy", "product_key": "Wiener_4 katy", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1H5hcPmvbMWrSRJmBzzw-AluQqVb0bb8g", "documents": [{"name": "owu_pakiet_4_katy_wiener_aneks_12022026.pdf", "hash": "f8c9217b373e"}], "doc_count": 1, "filters": ["Filtr: Pakiet 4 Kąty"]}, {"company": "Wiener", "company_display": "Wiener", "product": "Pakiet Auto", "product_key": "Wiener_Pakiet Auto", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1twyybt-uQLT6VlLaaKRQazvMQirFmFif", "documents": [{"name": "owu_pakiet_auto_wiener_aneks_12022026.pdf", "hash": "407253419e7d"}], "doc_count": 1, "filters": ["Filtr: Pakiet Auto"]}]};
+    window.OWU_DATA = {"generated_at": "2026-10-20 14:55:17", "total_companies": 11, "total_products": 35, "total_documents": 129, "companies": [{"company": "BBC", "company_display": "BBC", "total_docs": 1, "products": [{"product": "Test", "product_key": "BBC_Test", "page_url": "https://raw.githubusercontent.com/basina194/Testowe/main/Test1.html", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "doc_count": 1}]}, {"company": "Compensa", "company_display": "Compensa", "total_docs": 6, "products": [{"product": "DOM", "product_key": "Compensa_DOM", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1KJTggeeBuOWjTk6mcxrk7iI7CPG424wu", "doc_count": 1}, {"product": "Komunikacja", "product_key": "Compensa_Komunikacja", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1Pz5AhPF1NhSg4cG8l59iGh1mkbIEnDhD", "doc_count": 1}, {"product": "NNW", "product_key": "Compensa_NNW", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/17N4rtRsFn1sNohbtVRagpLw59zw6dOM0", "doc_count": 3}, {"product": "Travel", "product_key": "Compensa_Travel", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1H8EiBNWU7CLTSgAL46nnSDbybymR52GE", "doc_count": 1}]}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "total_docs": 10, "products": [{"product": "DOM", "product_key": "Ergo_Hestia_DOM", "page_url": "https://www.ergohestia.pl/ubezpieczenie-domu-i-mieszkania/dom/", "drive_url": "https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca", "doc_count": 3}, {"product": "ERGO 1", "product_key": "Ergo_Hestia_ERGO 1", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca", "doc_count": 1}, {"product": "ERGO1", "product_key": "Ergo_Hestia_ERGO1", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO", "doc_count": 1}, {"product": "OC", "product_key": "Ergo_Hestia_OC", "page_url": "https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/", "drive_url": "https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO", "doc_count": 3}, {"product": "Travel", "product_key": "Ergo_Hestia_Travel", "page_url": "https://www.ergohestia.pl/ubezpieczenie-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr", "doc_count": 2}]}, {"company": "Generali", "company_display": "Generali", "total_docs": 12, "products": [{"product": "Dom i mieszkanie", "product_key": "Generali_Dom i mieszkanie", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/16mS_3eMY-9Fp7Wyc2AoN_DbyFLya2qBB", "doc_count": 10}, {"product": "Komunikacja", "product_key": "Generali_Komunikacja", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/1kHfRfD4xCLqWy536m20G604gKn8SMinQ", "doc_count": 1}, {"product": "Travel", "product_key": "Generali_Travel", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq", "doc_count": 1}]}, {"company": "HDI", "company_display": "HDI", "total_docs": 3, "products": [{"product": "AC", "product_key": "HDI_AC", "page_url": "https://hdi.pl/autocasco/", "drive_url": "https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na", "doc_count": 1}, {"product": "OC", "product_key": "HDI_OC", "page_url": "https://hdi.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na", "doc_count": 2}]}, {"company": "MTU", "company_display": "MTU", "total_docs": 3, "products": [{"product": "MTU KOMUNIKACJA", "product_key": "MTU_MTU KOMUNIKACJA", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1y-6n45V3q3IG7RfAG4sA-EJaNz9OZ3oe", "doc_count": 3}]}, {"company": "MTU24", "company_display": "MTU24", "total_docs": 8, "products": [{"product": "MTU24.pl KOMUNIKACJA", "product_key": "MTU24_MTU24.pl KOMUNIKACJA", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1ETkH79z_649AVppC-LK0GGY3my4kUE4A", "doc_count": 8}]}, {"company": "PZU", "company_display": "PZU", "total_docs": 38, "products": [{"product": "AC", "product_key": "PZU_AC", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-ac", "drive_url": "https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI", "doc_count": 3}, {"product": "DOM", "product_key": "PZU_DOM", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/dom-i-mieszkanie/ubezpieczenie-domu#custom_forms_lead_form_1_29082019", "drive_url": "https://drive.google.com/drive/folders/1vcCO7SMDP-zMzV5msRC21KxbeFmKTzNd", "doc_count": 4}, {"product": "OC", "product_key": "PZU_OC", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc", "drive_url": "https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI", "doc_count": 3}, {"product": "PZU Doradca", "product_key": "PZU_PZU Doradca", "page_url": " https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/majatek/pzu-doradca", "drive_url": "https://drive.google.com/drive/folders/1Oz-BAps3Yxbg7SKBtffzXzYi66PsgzMh", "doc_count": 5}, {"product": "ROLNE", "product_key": "PZU_ROLNE", "page_url": "https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/agrobiznes/pzu-gospodarstwo-rolne", "drive_url": "https://drive.google.com/drive/folders/1zGx5u31ps9lhT6uVMpRZ-epgf_xMdnar", "doc_count": 13}, {"product": "Travel", "product_key": "PZU_Travel", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/podroze/ubezpieczenie-wyjazdu-turystycznego", "drive_url": "https://drive.google.com/drive/folders/1ScTrJMgHukWUYUt6ZsCqNPYoKz0CadHp", "doc_count": 10}]}, {"company": "Uniqa", "company_display": "Uniqa", "total_docs": 27, "products": [{"product": "Komunikacja", "product_key": "Uniqa_Komunikacja", "page_url": "https://www.uniqa.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/1ucpWMAXp1SMgfCcQgU2A2sMAhLI66Td8", "doc_count": 10}, {"product": "Koszty rezygnacji", "product_key": "Uniqa_Koszty rezygnacji", "page_url": "https://www.uniqa.pl/ubezpieczenie-rezygnacji-z-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR", "doc_count": 5}, {"product": "Majątek", "product_key": "Uniqa_Majątek", "page_url": "https://www.uniqa.pl/ubezpieczenie-mieszkania-lub-domu/", "drive_url": "https://drive.google.com/drive/folders/1CHQjx2S_jUcIWTiTS2Xmo25eJKQjSRHF", "doc_count": 2}, {"product": "Travel", "product_key": "Uniqa_Travel", "page_url": "https://www.uniqa.pl/ubezpieczenie-turystyczne-swiat-europa/", "drive_url": "https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR", "doc_count": 10}]}, {"company": "Warta", "company_display": "Warta", "total_docs": 19, "products": [{"product": "AC", "product_key": "Warta_AC", "page_url": "https://www.warta.pl/ubezpieczenie-ac/", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "doc_count": 3}, {"product": "DOM", "product_key": "Warta_DOM", "page_url": "https://www.warta.pl/ubezpieczenie-mieszkania/", "drive_url": "https://drive.google.com/drive/folders/1dcP21RHZ1NtHg1u9qifD07hDXDocu2wo", "doc_count": 5}, {"product": "Koszty_rezygnacji", "product_key": "Warta_Koszty_rezygnacji", "page_url": "https://www.warta.pl/ubezpieczenie-kosztow-odwolania-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "doc_count": 2}, {"product": "OC", "product_key": "Warta_OC", "page_url": "https://www.warta.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "doc_count": 3}, {"product": "Travel", "product_key": "Warta_Travel", "page_url": "https://www.warta.pl/ubezpieczenie-turystyczne-zagraniczne-warta-travel/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "doc_count": 4}, {"product": "Turysta", "product_key": "Warta_Turysta", "page_url": "https://www.warta.pl/ubezpieczenie-turystyczne-polska/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "doc_count": 2}]}, {"company": "Wiener", "company_display": "Wiener", "total_docs": 2, "products": [{"product": "4 katy", "product_key": "Wiener_4 katy", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1H5hcPmvbMWrSRJmBzzw-AluQqVb0bb8g", "doc_count": 1}, {"product": "Pakiet Auto", "product_key": "Wiener_Pakiet Auto", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1twyybt-uQLT6VlLaaKRQazvMQirFmFif", "doc_count": 1}]}]};
   </script>
 
-  <!-- Logika aplikacji Frontend -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const data = window.OWU_DATA;
       if (!data) return;
 
-      // Stan widoku
       let currentCompany = 'all';
       let searchQuery = '';
-      let isTableView = false;
 
-      // Inicjalizacja metryk
+      // Statystyki
       document.getElementById('statCompanies').textContent = data.total_companies;
       document.getElementById('statProducts').textContent = data.total_products;
       document.getElementById('statDocs').textContent = data.total_documents;
       document.getElementById('statSync').textContent = data.generated_at;
-      document.getElementById('totalCount').textContent = data.total_products;
 
-      // Przełącznik ciemnego motywu
+      // Motyw ciemny / jasny
       const themeToggle = document.getElementById('themeToggle');
       const sunIcon = document.getElementById('sunIcon');
       const moonIcon = document.getElementById('moonIcon');
@@ -278,20 +193,37 @@
 
       const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       updateTheme(savedTheme === 'dark');
-
       themeToggle.addEventListener('click', () => {
         updateTheme(!document.documentElement.classList.contains('dark'));
       });
 
-      // Generowanie przycisków Towarzystw
+      // Stylizacja nagłówków firm
+      const companyColors = {
+        "PZU": "from-blue-600 to-blue-700 text-white",
+        "Warta": "from-sky-600 to-cyan-700 text-white",
+        "HDI": "from-indigo-600 to-blue-800 text-white",
+        "Generali": "from-rose-600 to-red-700 text-white",
+        "Ergo_Hestia": "from-amber-600 to-orange-700 text-white",
+        "Compensa": "from-emerald-600 to-teal-700 text-white",
+        "Uniqa": "from-cyan-600 to-blue-700 text-white",
+        "Wiener": "from-orange-600 to-amber-700 text-white",
+        "MTU": "from-teal-600 to-emerald-700 text-white",
+        "MTU24": "from-purple-600 to-indigo-700 text-white",
+      };
+
+      function getHeaderGradient(comp) {
+        return companyColors[comp] || "from-slate-700 to-slate-800 text-white";
+      }
+
+      // Pigułki Towarzystw
       const pillsContainer = document.getElementById('companyPills');
-      const allCompanies = ['all', ...data.companies];
+      const allCompanies = ['all', ...data.companies.map(c => c.company)];
 
       function renderPills() {
         pillsContainer.innerHTML = allCompanies.map(c => {
           const isSelected = c === currentCompany;
           const label = c === 'all' ? 'Wszystkie' : c.replace('_', ' ');
-          const count = c === 'all' ? data.total_products : data.items.filter(i => i.company === c).length;
+          const count = c === 'all' ? data.total_companies : (data.companies.find(comp => comp.company === c)?.products.length || 0);
           const activeClasses = isSelected 
             ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' 
             : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300';
@@ -314,28 +246,6 @@
 
       renderPills();
 
-      // Przełączanie widoków
-      const viewGridBtn = document.getElementById('viewGrid');
-      const viewTableBtn = document.getElementById('viewTable');
-      const gridContainer = document.getElementById('gridContainer');
-      const tableContainer = document.getElementById('tableContainer');
-
-      viewGridBtn.addEventListener('click', () => {
-        isTableView = false;
-        viewGridBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm transition';
-        viewTableBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
-        gridContainer.classList.remove('hidden');
-        tableContainer.classList.add('hidden');
-      });
-
-      viewTableBtn.addEventListener('click', () => {
-        isTableView = true;
-        viewTableBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm transition';
-        viewGridBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
-        tableContainer.classList.remove('hidden');
-        gridContainer.classList.add('hidden');
-      });
-
       // Wyszukiwarka
       const searchInput = document.getElementById('searchInput');
       const clearSearch = document.getElementById('clearSearch');
@@ -353,139 +263,75 @@
         renderContent();
       });
 
-      // Mapowanie stylów badge dla towarzystw
-      const companyColors = {
-        "PZU": "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800",
-        "Warta": "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-800",
-        "HDI": "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800",
-        "Generali": "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800",
-        "Ergo_Hestia": "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800",
-        "Compensa": "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800",
-        "Uniqa": "bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950/40 dark:text-cyan-300 dark:border-cyan-800",
-        "Wiener": "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/40 dark:text-orange-300 dark:border-orange-800",
-        "MTU": "bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800",
-        "MTU24": "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-800",
-      };
+      // Renderowanie pogrupowanych towarzystw
+      const container = document.getElementById('companiesContainer');
+      const noResults = document.getElementById('noResults');
 
-      function getCompanyBadgeClass(comp) {
-        return companyColors[comp] || "bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700";
-      }
-
-      // Główny render zawartości
       function renderContent() {
-        const filtered = data.items.filter(item => {
-          const matchesCompany = currentCompany === 'all' || item.company === currentCompany;
-          if (!matchesCompany) return false;
+        const matchingCompanies = [];
 
-          if (!searchQuery) return true;
-          const searchIn = [
-            item.company,
-            item.company_display,
-            item.product,
-            ...item.documents.map(d => d.name)
-          ].join(' ').toLowerCase();
+        data.companies.forEach(comp => {
+          if (currentCompany !== 'all' && comp.company !== currentCompany) return;
 
-          return searchIn.includes(searchQuery);
+          let matchedProducts = comp.products;
+          if (searchQuery) {
+            matchedProducts = comp.products.filter(p => {
+              return comp.company.toLowerCase().includes(searchQuery) ||
+                     comp.company_display.toLowerCase().includes(searchQuery) ||
+                     p.product.toLowerCase().includes(searchQuery);
+            });
+            if (matchedProducts.length === 0) return;
+          }
+
+          matchingCompanies.push({
+            ...comp,
+            matchingProducts
+          });
         });
 
-        document.getElementById('resultsCount').textContent = filtered.length;
-        document.getElementById('noResults').classList.toggle('hidden', filtered.length > 0);
+        noResults.classList.toggle('hidden', matchingCompanies.length > 0);
 
-        // Render kart
-        gridContainer.innerHTML = filtered.map(item => {
-          const badgeClass = getCompanyBadgeClass(item.company);
-          const docsHtml = item.documents.length > 0 
-            ? item.documents.map(doc => `
-              <li class="flex items-start gap-2 py-1.5 px-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800/80 text-xs text-slate-700 dark:text-slate-300">
-                <svg class="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                </svg>
-                <div class="flex-1 min-w-0">
-                  <p class="font-medium truncate" title="${doc.name}">${doc.name}</p>
-                  <p class="text-[10px] text-slate-400 font-mono mt-0.5">SHA: ${doc.hash}...</p>
-                </div>
-              </li>
-            `).join('')
-            : `<li class="text-xs text-slate-400 italic py-2">Brak zarejestrowanych plików PDF</li>`;
+        container.innerHTML = matchingCompanies.map(comp => {
+          const headerGradient = getHeaderGradient(comp.company);
+          const totalDocsInView = comp.matchingProducts.reduce((sum, p) => sum + p.doc_count, 0);
 
-          const filtersHtml = item.filters.length > 0
-            ? `<div class="mt-2.5 flex flex-wrap gap-1">
-                ${item.filters.map(f => `<span class="inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">${f}</span>`).join('')}
-               </div>`
-            : '';
-
-          return `
-            <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-semibold border ${badgeClass}">
-                    ${item.company_display}
-                  </span>
-                  <span class="inline-flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                    ${item.doc_count} PDF
-                  </span>
-                </div>
-                
-                <h3 class="font-bold text-base text-slate-900 dark:text-white tracking-tight mb-1">${item.product}</h3>
-                ${filtersHtml}
-
-                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-                  <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Pobrane dokumenty:</p>
-                  <ul class="space-y-1.5 max-h-48 overflow-y-auto custom-scrollbar pr-1">
-                    ${docsHtml}
-                  </ul>
-                </div>
+          const productsRows = comp.matchingProducts.map(p => `
+            <div class="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition group">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full ${p.doc_count > 0 ? 'bg-emerald-500' : 'bg-amber-400'} flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">${p.product}</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(${p.doc_count} OWU)</span>
               </div>
-
-              <div class="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
-                <a href="${item.drive_url}" target="_blank" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition shadow-sm shadow-blue-500/20">
-                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-                  </svg>
-                  <span>Dysk Google</span>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="${p.drive_url}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
                 </a>
-                <a href="${item.page_url}" target="_blank" class="inline-flex items-center justify-center p-2 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl transition" title="Strona ubezpieczyciela">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <a href="${p.page_url}" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
               </div>
             </div>
-          `;
-        }).join('');
-
-        // Render tabeli
-        const tableBody = document.getElementById('tableBody');
-        tableBody.innerHTML = filtered.map(item => {
-          const badgeClass = getCompanyBadgeClass(item.company);
-          const docsText = item.documents.length > 0 
-            ? item.documents.map(d => `<div class="truncate max-w-xs text-xs text-slate-700 dark:text-slate-300 py-0.5">• ${d.name}</div>`).join('')
-            : `<span class="text-xs text-slate-400 italic">Brak</span>`;
+          `).join('');
 
           return `
-            <tr class="hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition">
-              <td class="py-3 px-4 whitespace-nowrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold border ${badgeClass}">
-                  ${item.company_display}
-                </span>
-              </td>
-              <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white whitespace-nowrap">
-                ${item.product}
-              </td>
-              <td class="py-3 px-4">
-                ${docsText}
-              </td>
-              <td class="py-3 px-4 text-right whitespace-nowrap">
-                <div class="flex items-center justify-end gap-2">
-                  <a href="${item.drive_url}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition">
-                    <span>Dysk</span>
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                  </a>
-                  <a href="${item.page_url}" target="_blank" class="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition" title="Strona WWW">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                  </a>
+            <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+              <div>
+                <!-- Nagłówek Towarzystwa -->
+                <div class="bg-gradient-to-r ${headerGradient} px-4 py-3 flex items-center justify-between">
+                  <h3 class="font-bold text-base tracking-tight">${comp.company_display}</h3>
+                  <div class="flex items-center gap-2 text-xs font-semibold">
+                    <span class="bg-black/20 px-2 py-0.5 rounded-lg">${comp.matchingProducts.length} prod.</span>
+                    <span class="bg-white/20 px-2 py-0.5 rounded-lg">${totalDocsInView} plików OWU</span>
+                  </div>
                 </div>
-              </td>
-            </tr>
+
+                <!-- Lista Produktów Ubezpieczyciela -->
+                <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+                  ${productsRows}
+                </div>
+              </div>
+            </div>
           `;
         }).join('');
       }
