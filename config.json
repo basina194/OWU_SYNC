@@ -86,6 +86,20 @@
     "drive_folder_id": "1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE"
   },
   {
+    "company": "HDI",
+    "product": "OC",
+    "url": "https://hdi.pl/ubezpieczenie-oc/",
+    "exclude": ["wspólne oswiadczenie"],
+    "drive_folder_id": "1akZ3_v8az73PQdMv-wqhfCvUZW1854na"
+  },
+  {
+    "company": "HDI",
+    "product": "AC",
+    "url": "https://hdi.pl/autocasco/",
+    "drive_folder_id": "1akZ3_v8az73PQdMv-wqhfCvUZW1854na"
+  },
+ 
+  {
     "company": "PZU",
     "product": "OC",
     "url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc",
