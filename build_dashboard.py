@@ -6,6 +6,20 @@ CONFIG_FILE = "config.json"
 HASHES_FILE = "hashes.json"
 OUTPUT_HTML = "index.html"
 
+COMPANY_GRADIENTS = {
+    "PZU": "from-blue-600 to-blue-700 text-white",
+    "Warta": "from-sky-600 to-cyan-700 text-white",
+    "HDI": "from-indigo-600 to-blue-800 text-white",
+    "Generali": "from-rose-600 to-red-700 text-white",
+    "Ergo_Hestia": "from-amber-600 to-orange-700 text-white",
+    "Compensa": "from-emerald-600 to-teal-700 text-white",
+    "Uniqa": "from-cyan-600 to-blue-700 text-white",
+    "Wiener": "from-orange-600 to-amber-700 text-white",
+    "MTU": "from-teal-600 to-emerald-700 text-white",
+    "MTU24": "from-purple-600 to-indigo-700 text-white",
+    "BBC": "from-slate-600 to-slate-700 text-white",
+}
+
 def format_company_name(name):
     return name.replace("_", " ")
 
@@ -60,22 +74,81 @@ def generate():
             "doc_count": doc_count
         })
 
-    # Sortowanie ubezpieczycieli alfabetycznie i ich produktów
-    company_list = []
-    for comp in sorted(companies_dict.keys(), key=lambda c: c.lower()):
+    # Sortowanie ubezpieczycieli alfabetycznie
+    sorted_companies = sorted(companies_dict.keys(), key=lambda c: c.lower())
+    for comp in sorted_companies:
+        companies_dict[comp]["products"].sort(key=lambda p: p["product"].lower())
+
+    gen_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Pre-renderowanie kart firm bezpośrednio w HTML
+    cards_html_list = []
+    pills_html_list = [
+        f'<button data-company="all" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-blue-600 text-white shadow-sm shadow-blue-500/20">'
+        f'<span>Wszystkie</span>'
+        f'<span class="text-[10px] px-1.5 py-0.2 rounded-full bg-white/20 text-white">{len(sorted_companies)}</span>'
+        f'</button>'
+    ]
+
+    for comp in sorted_companies:
         c_data = companies_dict[comp]
-        c_data["products"].sort(key=lambda p: p["product"].lower())
-        company_list.append(c_data)
+        gradient = COMPANY_GRADIENTS.get(comp, "from-slate-700 to-slate-800 text-white")
+        prod_count = len(c_data["products"])
+        comp_docs = c_data["total_docs"]
 
-    dashboard_data = {
-        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "total_companies": len(company_list),
-        "total_products": total_products,
-        "total_documents": total_docs,
-        "companies": company_list
-    }
+        # Pigułka filtru
+        pills_html_list.append(
+            f'<button data-company="{comp}" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">'
+            f'<span>{c_data["company_display"]}</span>'
+            f'<span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">{prod_count}</span>'
+            f'</button>'
+        )
 
-    data_json_str = json.dumps(dashboard_data, ensure_ascii=False)
+        # Wiersze produktów
+        rows = []
+        for p in c_data["products"]:
+            dot_color = "bg-emerald-500" if p["doc_count"] > 0 else "bg-amber-400"
+            rows.append(f"""
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="{p['product'].lower()}">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full {dot_color} flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">{p['product']}</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">({p['doc_count']} OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="{p['drive_url']}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="{p['page_url']}" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            """)
+
+        rows_html = "\n".join(rows)
+
+        card_html = f"""
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="{comp}" data-company-name="{c_data['company_display'].lower()}">
+          <div>
+            <div class="bg-gradient-to-r {gradient} px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">{c_data['company_display']}</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">{prod_count} prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">{comp_docs} plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              {rows_html}
+            </div>
+          </div>
+        </div>
+        """
+        cards_html_list.append(card_html)
+
+    all_cards_html = "\n".join(cards_html_list)
+    all_pills_html = "\n".join(pills_html_list)
 
     html_content = f"""<!DOCTYPE html>
 <html lang="pl" class="h-full">
@@ -165,25 +238,25 @@ def generate():
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Towarzystwa</span>
-          <p id="statCompanies" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <p class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">{len(sorted_companies)}</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Główne grupy</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Produkty</span>
-          <p id="statProducts" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <p class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">{total_products}</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Monitorowane linie</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Dokumenty OWU</span>
-          <p id="statDocs" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <p class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">{total_docs}</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Zsynchronizowane pliki</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Ostatni cykl</span>
-          <p id="statSync" class="text-base sm:text-lg font-bold mt-2 text-slate-900 dark:text-white truncate">-</p>
+          <p class="text-base sm:text-lg font-bold mt-2 text-slate-900 dark:text-white truncate">{gen_time}</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Automatyczny monitoring</span>
         </div>
       </div>
@@ -204,13 +277,13 @@ def generate():
 
         <!-- Przyciski Szybkiego Wyboru Towarzystwa -->
         <div id="companyPills" class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar text-xs">
-          <!-- Wstrzykiwane przez JS -->
+          {all_pills_html}
         </div>
       </div>
 
       <!-- Kontener Pogrupowanych Towarzystw (Karty Ubezpieczycieli) -->
       <div id="companiesContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <!-- Generowane dynamicznie -->
+        {all_cards_html}
       </div>
 
       <!-- Komunikat braku wyników -->
@@ -234,189 +307,148 @@ def generate():
   </div>
 
   <script>
-    window.OWU_DATA = {data_json_str};
-  </script>
+    (function() {{
+      try {{
+        let currentCompany = 'all';
+        let searchQuery = '';
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {{
-      const data = window.OWU_DATA;
-      if (!data) return;
+        // Obsługa motywu
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
 
-      let currentCompany = 'all';
-      let searchQuery = '';
-
-      // Statystyki
-      document.getElementById('statCompanies').textContent = data.total_companies;
-      document.getElementById('statProducts').textContent = data.total_products;
-      document.getElementById('statDocs').textContent = data.total_documents;
-      document.getElementById('statSync').textContent = data.generated_at;
-
-      // Motyw ciemny / jasny
-      const themeToggle = document.getElementById('themeToggle');
-      const sunIcon = document.getElementById('sunIcon');
-      const moonIcon = document.getElementById('moonIcon');
-
-      function updateTheme(isDark) {{
-        if (isDark) {{
-          document.documentElement.classList.add('dark');
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-          localStorage.setItem('theme', 'dark');
-        }} else {{
-          document.documentElement.classList.remove('dark');
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-          localStorage.setItem('theme', 'light');
-        }}
-      }}
-
-      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      updateTheme(savedTheme === 'dark');
-      themeToggle.addEventListener('click', () => {{
-        updateTheme(!document.documentElement.classList.contains('dark'));
-      }});
-
-      // Stylizacja nagłówków firm
-      const companyColors = {{
-        "PZU": "from-blue-600 to-blue-700 text-white",
-        "Warta": "from-sky-600 to-cyan-700 text-white",
-        "HDI": "from-indigo-600 to-blue-800 text-white",
-        "Generali": "from-rose-600 to-red-700 text-white",
-        "Ergo_Hestia": "from-amber-600 to-orange-700 text-white",
-        "Compensa": "from-emerald-600 to-teal-700 text-white",
-        "Uniqa": "from-cyan-600 to-blue-700 text-white",
-        "Wiener": "from-orange-600 to-amber-700 text-white",
-        "MTU": "from-teal-600 to-emerald-700 text-white",
-        "MTU24": "from-purple-600 to-indigo-700 text-white",
-      }};
-
-      function getHeaderGradient(comp) {{
-        return companyColors[comp] || "from-slate-700 to-slate-800 text-white";
-      }}
-
-      // Pigułki Towarzystw
-      const pillsContainer = document.getElementById('companyPills');
-      const allCompanies = ['all', ...data.companies.map(c => c.company)];
-
-      function renderPills() {{
-        pillsContainer.innerHTML = allCompanies.map(c => {{
-          const isSelected = c === currentCompany;
-          const label = c === 'all' ? 'Wszystkie' : c.replace('_', ' ');
-          const count = c === 'all' ? data.total_companies : (data.companies.find(comp => comp.company === c)?.products.length || 0);
-          const activeClasses = isSelected 
-            ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' 
-            : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300';
-          return `
-            <button data-company="${{c}}" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 ${{activeClasses}}">
-              <span>${{label}}</span>
-              <span class="text-[10px] px-1.5 py-0.2 rounded-full ${{isSelected ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}}">${{count}}</span>
-            </button>
-          `;
-        }}).join('');
-
-        pillsContainer.querySelectorAll('.company-pill').forEach(btn => {{
-          btn.addEventListener('click', () => {{
-            currentCompany = btn.dataset.company;
-            renderPills();
-            renderContent();
-          }});
-        }});
-      }}
-
-      renderPills();
-
-      // Wyszukiwarka
-      const searchInput = document.getElementById('searchInput');
-      const clearSearch = document.getElementById('clearSearch');
-
-      searchInput.addEventListener('input', (e) => {{
-        searchQuery = e.target.value.toLowerCase().trim();
-        clearSearch.classList.toggle('hidden', searchQuery.length === 0);
-        renderContent();
-      }});
-
-      clearSearch.addEventListener('click', () => {{
-        searchInput.value = '';
-        searchQuery = '';
-        clearSearch.classList.add('hidden');
-        renderContent();
-      }});
-
-      // Renderowanie pogrupowanych towarzystw
-      const container = document.getElementById('companiesContainer');
-      const noResults = document.getElementById('noResults');
-
-      function renderContent() {{
-        const matchingCompanies = [];
-
-        data.companies.forEach(comp => {{
-          if (currentCompany !== 'all' && comp.company !== currentCompany) return;
-
-          let matchedProducts = comp.products;
-          if (searchQuery) {{
-            matchedProducts = comp.products.filter(p => {{
-              return comp.company.toLowerCase().includes(searchQuery) ||
-                     comp.company_display.toLowerCase().includes(searchQuery) ||
-                     p.product.toLowerCase().includes(searchQuery);
-            }});
-            if (matchedProducts.length === 0) return;
+        function updateTheme(isDark) {{
+          if (isDark) {{
+            document.documentElement.classList.add('dark');
+            if (sunIcon) sunIcon.classList.remove('hidden');
+            if (moonIcon) moonIcon.classList.add('hidden');
+            try {{ localStorage.setItem('theme', 'dark'); }} catch(e) {{}}
+          }} else {{
+            document.documentElement.classList.remove('dark');
+            if (sunIcon) sunIcon.classList.add('hidden');
+            if (moonIcon) moonIcon.classList.remove('hidden');
+            try {{ localStorage.setItem('theme', 'light'); }} catch(e) {{}}
           }}
+        }}
 
-          matchingCompanies.push({{
-            ...comp,
-            matchingProducts
+        let isDark = false;
+        try {{
+          const savedTheme = localStorage.getItem('theme');
+          isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        }} catch(e) {{}}
+        updateTheme(isDark);
+
+        if (themeToggle) {{
+          themeToggle.addEventListener('click', function() {{
+            updateTheme(!document.documentElement.classList.contains('dark'));
+          }});
+        }}
+
+        // Filtrowanie kart w czystym DOM (bez ryzyka błędów parsowania)
+        const cards = Array.from(document.querySelectorAll('.company-card'));
+        const pills = Array.from(document.querySelectorAll('.company-pill'));
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const noResults = document.getElementById('noResults');
+
+        function applyFilters() {{
+          let visibleCardsCount = 0;
+
+          cards.forEach(function(card) {{
+            const compId = card.getAttribute('data-company-id');
+            const compName = card.getAttribute('data-company-name') || '';
+
+            // Filtr towarzystwa
+            const matchesCompany = (currentCompany === 'all' || compId === currentCompany);
+            if (!matchesCompany) {{
+              card.style.display = 'none';
+              return;
+            }}
+
+            // Filtr wyszukiwarki po produktach wewnątrz firmy
+            const rows = Array.from(card.querySelectorAll('.product-row'));
+            let matchingRowsCount = 0;
+
+            rows.forEach(function(row) {{
+              const prodName = row.getAttribute('data-product-name') || '';
+              const matchesSearch = !searchQuery || 
+                                    compName.indexOf(searchQuery) !== -1 || 
+                                    compId.toLowerCase().indexOf(searchQuery) !== -1 || 
+                                    prodName.indexOf(searchQuery) !== -1;
+              
+              if (matchesSearch) {{
+                row.style.display = 'flex';
+                matchingRowsCount++;
+              }} else {{
+                row.style.display = 'none';
+              }}
+            }});
+
+            if (matchingRowsCount > 0) {{
+              card.style.display = 'flex';
+              visibleCardsCount++;
+            }} else {{
+              card.style.display = 'none';
+            }}
+          }});
+
+          if (noResults) {{
+            if (visibleCardsCount === 0) {{
+              noResults.classList.remove('hidden');
+            }} else {{
+              noResults.classList.add('hidden');
+            }}
+          }}
+        }}
+
+        // Obsługa pigułek towarzystw
+        pills.forEach(function(btn) {{
+          btn.addEventListener('click', function() {{
+            currentCompany = btn.getAttribute('data-company');
+            
+            pills.forEach(function(p) {{
+              const isSelected = p.getAttribute('data-company') === currentCompany;
+              if (isSelected) {{
+                p.className = 'company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-blue-600 text-white shadow-sm shadow-blue-500/20';
+                const counter = p.querySelector('span:last-child');
+                if (counter) counter.className = 'text-[10px] px-1.5 py-0.2 rounded-full bg-white/20 text-white';
+              }} else {{
+                p.className = 'company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300';
+                const counter = p.querySelector('span:last-child');
+                if (counter) counter.className = 'text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400';
+              }}
+            }});
+
+            applyFilters();
           }});
         }});
 
-        noResults.classList.toggle('hidden', matchingCompanies.length > 0);
+        // Obsługa pola wyszukiwania
+        if (searchInput) {{
+          searchInput.addEventListener('input', function(e) {{
+            searchQuery = e.target.value.toLowerCase().trim();
+            if (clearSearch) {{
+              if (searchQuery.length > 0) clearSearch.classList.remove('hidden');
+              else clearSearch.classList.add('hidden');
+            }}
+            applyFilters();
+          }});
+        }}
 
-        container.innerHTML = matchingCompanies.map(comp => {{
-          const headerGradient = getHeaderGradient(comp.company);
-          const totalDocsInView = comp.matchingProducts.reduce((sum, p) => sum + p.doc_count, 0);
+        if (clearSearch) {{
+          clearSearch.addEventListener('click', function() {{
+            if (searchInput) searchInput.value = '';
+            searchQuery = '';
+            clearSearch.classList.add('hidden');
+            applyFilters();
+          }});
+        }}
 
-          const productsRows = comp.matchingProducts.map(p => `
-            <div class="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition group">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <span class="w-2 h-2 rounded-full ${{p.doc_count > 0 ? 'bg-emerald-500' : 'bg-amber-400'}} flex-shrink-0"></span>
-                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">${{p.product}}</span>
-                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(${{p.doc_count}} OWU)</span>
-              </div>
-              <div class="flex items-center gap-1.5 flex-shrink-0">
-                <a href="${{p.drive_url}}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
-                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                  <span>Dysk</span>
-                </a>
-                <a href="${{p.page_url}}" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                </a>
-              </div>
-            </div>
-          `).join('');
-
-          return `
-            <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
-              <div>
-                <!-- Nagłówek Towarzystwa -->
-                <div class="bg-gradient-to-r ${{headerGradient}} px-4 py-3 flex items-center justify-between">
-                  <h3 class="font-bold text-base tracking-tight">${{comp.company_display}}</h3>
-                  <div class="flex items-center gap-2 text-xs font-semibold">
-                    <span class="bg-black/20 px-2 py-0.5 rounded-lg">${{comp.matchingProducts.length}} prod.</span>
-                    <span class="bg-white/20 px-2 py-0.5 rounded-lg">${{totalDocsInView}} plików OWU</span>
-                  </div>
-                </div>
-
-                <!-- Lista Produktów Ubezpieczyciela -->
-                <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
-                  ${{productsRows}}
-                </div>
-              </div>
-            </div>
-          `;
-        }}).join('');
+        applyFilters();
+      }} catch(err) {{
+        console.error('Błąd inicjalizacji panelu:', err);
       }}
-
-      renderContent();
-    }});
+    }})();
   </script>
 </body>
 </html>
@@ -425,7 +457,7 @@ def generate():
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    print(f"Pomyślnie wygenerowano plik {OUTPUT_HTML} (Towarzystwa: {len(company_list)}, Produkty: {total_products}, Dokumenty: {total_docs})")
+    print(f"Pomyślnie wygenerowano plik {OUTPUT_HTML} (Towarzystwa: {len(sorted_companies)}, Produkty: {total_products}, Dokumenty: {total_docs})")
 
 if __name__ == "__main__":
     generate()

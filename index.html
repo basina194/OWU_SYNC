@@ -86,25 +86,25 @@
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Towarzystwa</span>
-          <p id="statCompanies" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <p class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">11</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Główne grupy</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Produkty</span>
-          <p id="statProducts" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <p class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">35</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Monitorowane linie</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Dokumenty OWU</span>
-          <p id="statDocs" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">-</p>
+          <p class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">129</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Zsynchronizowane pliki</span>
         </div>
 
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Ostatni cykl</span>
-          <p id="statSync" class="text-base sm:text-lg font-bold mt-2 text-slate-900 dark:text-white truncate">-</p>
+          <p class="text-base sm:text-lg font-bold mt-2 text-slate-900 dark:text-white truncate">2026-10-20 14:59:14</p>
           <span class="text-xs text-slate-500 dark:text-slate-400">Automatyczny monitoring</span>
         </div>
       </div>
@@ -125,13 +125,818 @@
 
         <!-- Przyciski Szybkiego Wyboru Towarzystwa -->
         <div id="companyPills" class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar text-xs">
-          <!-- Wstrzykiwane przez JS -->
+          <button data-company="all" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-blue-600 text-white shadow-sm shadow-blue-500/20"><span>Wszystkie</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-white/20 text-white">11</span></button>
+<button data-company="BBC" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>BBC</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">1</span></button>
+<button data-company="Compensa" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>Compensa</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">4</span></button>
+<button data-company="Ergo_Hestia" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>Ergo Hestia</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">5</span></button>
+<button data-company="Generali" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>Generali</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">3</span></button>
+<button data-company="HDI" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>HDI</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">2</span></button>
+<button data-company="MTU" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>MTU</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">1</span></button>
+<button data-company="MTU24" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>MTU24</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">1</span></button>
+<button data-company="PZU" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>PZU</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">6</span></button>
+<button data-company="Uniqa" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>Uniqa</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">4</span></button>
+<button data-company="Warta" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>Warta</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">6</span></button>
+<button data-company="Wiener" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"><span>Wiener</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">2</span></button>
         </div>
       </div>
 
       <!-- Kontener Pogrupowanych Towarzystw (Karty Ubezpieczycieli) -->
       <div id="companiesContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <!-- Generowane dynamicznie -->
+        
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="BBC" data-company-name="bbc">
+          <div>
+            <div class="bg-gradient-to-r from-slate-600 to-slate-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">BBC</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">1 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">1 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="test">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Test</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://raw.githubusercontent.com/basina194/Testowe/main/Test1.html" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="Compensa" data-company-name="compensa">
+          <div>
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">Compensa</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">4 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">6 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="dom">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">DOM</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1KJTggeeBuOWjTk6mcxrk7iI7CPG424wu" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.compensa.pl/ogolne-warunki-ubezpieczenia/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="komunikacja">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Komunikacja</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1Pz5AhPF1NhSg4cG8l59iGh1mkbIEnDhD" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.compensa.pl/ogolne-warunki-ubezpieczenia/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="nnw">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">NNW</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/17N4rtRsFn1sNohbtVRagpLw59zw6dOM0" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.compensa.pl/ogolne-warunki-ubezpieczenia/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="travel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Travel</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1H8EiBNWU7CLTSgAL46nnSDbybymR52GE" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.compensa.pl/ogolne-warunki-ubezpieczenia/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="Ergo_Hestia" data-company-name="ergo hestia">
+          <div>
+            <div class="bg-gradient-to-r from-amber-600 to-orange-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">Ergo Hestia</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">5 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">10 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="dom">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">DOM</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/ubezpieczenie-domu-i-mieszkania/dom/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="ergo 1">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">ERGO 1</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/wyszukiwarka/dokumenty/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="ergo1">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">ERGO1</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/wyszukiwarka/dokumenty/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="oc">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">OC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="travel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Travel</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(2 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/ubezpieczenie-podrozy/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="Generali" data-company-name="generali">
+          <div>
+            <div class="bg-gradient-to-r from-rose-600 to-red-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">Generali</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">3 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">12 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="dom i mieszkanie">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Dom i mieszkanie</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(10 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/16mS_3eMY-9Fp7Wyc2AoN_DbyFLya2qBB" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.generali.pl/strefa-klienta" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="komunikacja">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Komunikacja</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1kHfRfD4xCLqWy536m20G604gKn8SMinQ" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.generali.pl/strefa-klienta" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="travel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Travel</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.generali.pl/strefa-klienta" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="HDI" data-company-name="hdi">
+          <div>
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-800 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">HDI</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">2 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">3 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="ac">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">AC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://hdi.pl/autocasco/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="oc">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">OC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(2 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://hdi.pl/ubezpieczenie-oc/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="MTU" data-company-name="mtu">
+          <div>
+            <div class="bg-gradient-to-r from-teal-600 to-emerald-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">MTU</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">1 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">3 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="mtu komunikacja">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">MTU KOMUNIKACJA</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1y-6n45V3q3IG7RfAG4sA-EJaNz9OZ3oe" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/wyszukiwarka/dokumenty/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="MTU24" data-company-name="mtu24">
+          <div>
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">MTU24</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">1 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">8 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="mtu24.pl komunikacja">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">MTU24.pl KOMUNIKACJA</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(8 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1ETkH79z_649AVppC-LK0GGY3my4kUE4A" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.ergohestia.pl/wyszukiwarka/dokumenty/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="PZU" data-company-name="pzu">
+          <div>
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">PZU</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">6 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">38 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="ac">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">AC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-ac" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="dom">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">DOM</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(4 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1vcCO7SMDP-zMzV5msRC21KxbeFmKTzNd" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/dom-i-mieszkanie/ubezpieczenie-domu#custom_forms_lead_form_1_29082019" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="oc">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">OC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="pzu doradca">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">PZU Doradca</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(5 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1Oz-BAps3Yxbg7SKBtffzXzYi66PsgzMh" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href=" https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/majatek/pzu-doradca" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="rolne">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">ROLNE</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(13 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1zGx5u31ps9lhT6uVMpRZ-epgf_xMdnar" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/agrobiznes/pzu-gospodarstwo-rolne" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="travel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Travel</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(10 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1ScTrJMgHukWUYUt6ZsCqNPYoKz0CadHp" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/podroze/ubezpieczenie-wyjazdu-turystycznego" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="Uniqa" data-company-name="uniqa">
+          <div>
+            <div class="bg-gradient-to-r from-cyan-600 to-blue-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">Uniqa</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">4 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">27 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="komunikacja">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Komunikacja</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(10 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1ucpWMAXp1SMgfCcQgU2A2sMAhLI66Td8" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.uniqa.pl/ubezpieczenie-oc/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="koszty rezygnacji">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Koszty rezygnacji</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(5 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.uniqa.pl/ubezpieczenie-rezygnacji-z-podrozy/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="majątek">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Majątek</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(2 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1CHQjx2S_jUcIWTiTS2Xmo25eJKQjSRHF" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.uniqa.pl/ubezpieczenie-mieszkania-lub-domu/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="travel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Travel</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(10 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.uniqa.pl/ubezpieczenie-turystyczne-swiat-europa/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="Warta" data-company-name="warta">
+          <div>
+            <div class="bg-gradient-to-r from-sky-600 to-cyan-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">Warta</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">6 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">19 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="ac">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">AC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.warta.pl/ubezpieczenie-ac/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="dom">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">DOM</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(5 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1dcP21RHZ1NtHg1u9qifD07hDXDocu2wo" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.warta.pl/ubezpieczenie-mieszkania/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="koszty_rezygnacji">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Koszty_rezygnacji</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(2 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.warta.pl/ubezpieczenie-kosztow-odwolania-podrozy/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="oc">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">OC</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(3 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.warta.pl/ubezpieczenie-oc/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="travel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Travel</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(4 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.warta.pl/ubezpieczenie-turystyczne-zagraniczne-warta-travel/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="turysta">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Turysta</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(2 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.warta.pl/ubezpieczenie-turystyczne-polska/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="company-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-company-id="Wiener" data-company-name="wiener">
+          <div>
+            <div class="bg-gradient-to-r from-orange-600 to-amber-700 text-white px-4 py-3 flex items-center justify-between">
+              <h3 class="font-bold text-base tracking-tight">Wiener</h3>
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span class="bg-black/20 px-2 py-0.5 rounded-lg">2 prod.</span>
+                <span class="bg-white/20 px-2 py-0.5 rounded-lg">2 plików OWU</span>
+              </div>
+            </div>
+            <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
+              
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="4 katy">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">4 katy</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1H5hcPmvbMWrSRJmBzzw-AluQqVb0bb8g" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.compensa.pl/ogolne-warunki-ubezpieczenia/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+
+            <div class="product-row flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition" data-product-name="pakiet auto">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">Pakiet Auto</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(1 OWU)</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <a href="https://drive.google.com/drive/folders/1twyybt-uQLT6VlLaaKRQazvMQirFmFif" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                  <span>Dysk</span>
+                </a>
+                <a href="https://www.compensa.pl/ogolne-warunki-ubezpieczenia/" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
       </div>
 
       <!-- Komunikat braku wyników -->
@@ -155,189 +960,148 @@
   </div>
 
   <script>
-    window.OWU_DATA = {"generated_at": "2026-10-20 14:55:17", "total_companies": 11, "total_products": 35, "total_documents": 129, "companies": [{"company": "BBC", "company_display": "BBC", "total_docs": 1, "products": [{"product": "Test", "product_key": "BBC_Test", "page_url": "https://raw.githubusercontent.com/basina194/Testowe/main/Test1.html", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "doc_count": 1}]}, {"company": "Compensa", "company_display": "Compensa", "total_docs": 6, "products": [{"product": "DOM", "product_key": "Compensa_DOM", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1KJTggeeBuOWjTk6mcxrk7iI7CPG424wu", "doc_count": 1}, {"product": "Komunikacja", "product_key": "Compensa_Komunikacja", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1Pz5AhPF1NhSg4cG8l59iGh1mkbIEnDhD", "doc_count": 1}, {"product": "NNW", "product_key": "Compensa_NNW", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/17N4rtRsFn1sNohbtVRagpLw59zw6dOM0", "doc_count": 3}, {"product": "Travel", "product_key": "Compensa_Travel", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1H8EiBNWU7CLTSgAL46nnSDbybymR52GE", "doc_count": 1}]}, {"company": "Ergo_Hestia", "company_display": "Ergo Hestia", "total_docs": 10, "products": [{"product": "DOM", "product_key": "Ergo_Hestia_DOM", "page_url": "https://www.ergohestia.pl/ubezpieczenie-domu-i-mieszkania/dom/", "drive_url": "https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca", "doc_count": 3}, {"product": "ERGO 1", "product_key": "Ergo_Hestia_ERGO 1", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1fpGu4B7b_ovy7THdFm4-1pv4qPvTuRca", "doc_count": 1}, {"product": "ERGO1", "product_key": "Ergo_Hestia_ERGO1", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO", "doc_count": 1}, {"product": "OC", "product_key": "Ergo_Hestia_OC", "page_url": "https://www.ergohestia.pl/ubezpieczenie-pojazdu/oc/", "drive_url": "https://drive.google.com/drive/folders/1qZAqRnHRjsj3jlDElE2pyw4KLLEKhAwO", "doc_count": 3}, {"product": "Travel", "product_key": "Ergo_Hestia_Travel", "page_url": "https://www.ergohestia.pl/ubezpieczenie-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1bR2tpd9EJqp0SSFfUqZ9ubt0xfBLYtYr", "doc_count": 2}]}, {"company": "Generali", "company_display": "Generali", "total_docs": 12, "products": [{"product": "Dom i mieszkanie", "product_key": "Generali_Dom i mieszkanie", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/16mS_3eMY-9Fp7Wyc2AoN_DbyFLya2qBB", "doc_count": 10}, {"product": "Komunikacja", "product_key": "Generali_Komunikacja", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/1kHfRfD4xCLqWy536m20G604gKn8SMinQ", "doc_count": 1}, {"product": "Travel", "product_key": "Generali_Travel", "page_url": "https://www.generali.pl/strefa-klienta", "drive_url": "https://drive.google.com/drive/folders/1mXjhKFZ4Qegsnq_OvLfpEjxg084kujIq", "doc_count": 1}]}, {"company": "HDI", "company_display": "HDI", "total_docs": 3, "products": [{"product": "AC", "product_key": "HDI_AC", "page_url": "https://hdi.pl/autocasco/", "drive_url": "https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na", "doc_count": 1}, {"product": "OC", "product_key": "HDI_OC", "page_url": "https://hdi.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/1akZ3_v8az73PQdMv-wqhfCvUZW1854na", "doc_count": 2}]}, {"company": "MTU", "company_display": "MTU", "total_docs": 3, "products": [{"product": "MTU KOMUNIKACJA", "product_key": "MTU_MTU KOMUNIKACJA", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1y-6n45V3q3IG7RfAG4sA-EJaNz9OZ3oe", "doc_count": 3}]}, {"company": "MTU24", "company_display": "MTU24", "total_docs": 8, "products": [{"product": "MTU24.pl KOMUNIKACJA", "product_key": "MTU24_MTU24.pl KOMUNIKACJA", "page_url": "https://www.ergohestia.pl/wyszukiwarka/dokumenty/", "drive_url": "https://drive.google.com/drive/folders/1ETkH79z_649AVppC-LK0GGY3my4kUE4A", "doc_count": 8}]}, {"company": "PZU", "company_display": "PZU", "total_docs": 38, "products": [{"product": "AC", "product_key": "PZU_AC", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-ac", "drive_url": "https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI", "doc_count": 3}, {"product": "DOM", "product_key": "PZU_DOM", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/dom-i-mieszkanie/ubezpieczenie-domu#custom_forms_lead_form_1_29082019", "drive_url": "https://drive.google.com/drive/folders/1vcCO7SMDP-zMzV5msRC21KxbeFmKTzNd", "doc_count": 4}, {"product": "OC", "product_key": "PZU_OC", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/pojazdy/pzu-auto-oc", "drive_url": "https://drive.google.com/drive/folders/1Y61qkIUU5OnERWSLgG1sR_sju12-jWdI", "doc_count": 3}, {"product": "PZU Doradca", "product_key": "PZU_PZU Doradca", "page_url": " https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/majatek/pzu-doradca", "drive_url": "https://drive.google.com/drive/folders/1Oz-BAps3Yxbg7SKBtffzXzYi66PsgzMh", "doc_count": 5}, {"product": "ROLNE", "product_key": "PZU_ROLNE", "page_url": "https://www.pzu.pl/dla-firm-i-pracownikow/majatek-firmy-i-oc/agrobiznes/pzu-gospodarstwo-rolne", "drive_url": "https://drive.google.com/drive/folders/1zGx5u31ps9lhT6uVMpRZ-epgf_xMdnar", "doc_count": 13}, {"product": "Travel", "product_key": "PZU_Travel", "page_url": "https://www.pzu.pl/dla-ciebie-i-rodziny/majatek-podroze-oc/podroze/ubezpieczenie-wyjazdu-turystycznego", "drive_url": "https://drive.google.com/drive/folders/1ScTrJMgHukWUYUt6ZsCqNPYoKz0CadHp", "doc_count": 10}]}, {"company": "Uniqa", "company_display": "Uniqa", "total_docs": 27, "products": [{"product": "Komunikacja", "product_key": "Uniqa_Komunikacja", "page_url": "https://www.uniqa.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/1ucpWMAXp1SMgfCcQgU2A2sMAhLI66Td8", "doc_count": 10}, {"product": "Koszty rezygnacji", "product_key": "Uniqa_Koszty rezygnacji", "page_url": "https://www.uniqa.pl/ubezpieczenie-rezygnacji-z-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR", "doc_count": 5}, {"product": "Majątek", "product_key": "Uniqa_Majątek", "page_url": "https://www.uniqa.pl/ubezpieczenie-mieszkania-lub-domu/", "drive_url": "https://drive.google.com/drive/folders/1CHQjx2S_jUcIWTiTS2Xmo25eJKQjSRHF", "doc_count": 2}, {"product": "Travel", "product_key": "Uniqa_Travel", "page_url": "https://www.uniqa.pl/ubezpieczenie-turystyczne-swiat-europa/", "drive_url": "https://drive.google.com/drive/folders/1MRaPwQisJvnHpPZoccxV8vy19fYv9NsR", "doc_count": 10}]}, {"company": "Warta", "company_display": "Warta", "total_docs": 19, "products": [{"product": "AC", "product_key": "Warta_AC", "page_url": "https://www.warta.pl/ubezpieczenie-ac/", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "doc_count": 3}, {"product": "DOM", "product_key": "Warta_DOM", "page_url": "https://www.warta.pl/ubezpieczenie-mieszkania/", "drive_url": "https://drive.google.com/drive/folders/1dcP21RHZ1NtHg1u9qifD07hDXDocu2wo", "doc_count": 5}, {"product": "Koszty_rezygnacji", "product_key": "Warta_Koszty_rezygnacji", "page_url": "https://www.warta.pl/ubezpieczenie-kosztow-odwolania-podrozy/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "doc_count": 2}, {"product": "OC", "product_key": "Warta_OC", "page_url": "https://www.warta.pl/ubezpieczenie-oc/", "drive_url": "https://drive.google.com/drive/folders/11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k", "doc_count": 3}, {"product": "Travel", "product_key": "Warta_Travel", "page_url": "https://www.warta.pl/ubezpieczenie-turystyczne-zagraniczne-warta-travel/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "doc_count": 4}, {"product": "Turysta", "product_key": "Warta_Turysta", "page_url": "https://www.warta.pl/ubezpieczenie-turystyczne-polska/", "drive_url": "https://drive.google.com/drive/folders/1eMVsJ-r_lihey-1JvM-ptxmEywVlwgwE", "doc_count": 2}]}, {"company": "Wiener", "company_display": "Wiener", "total_docs": 2, "products": [{"product": "4 katy", "product_key": "Wiener_4 katy", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1H5hcPmvbMWrSRJmBzzw-AluQqVb0bb8g", "doc_count": 1}, {"product": "Pakiet Auto", "product_key": "Wiener_Pakiet Auto", "page_url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/", "drive_url": "https://drive.google.com/drive/folders/1twyybt-uQLT6VlLaaKRQazvMQirFmFif", "doc_count": 1}]}]};
-  </script>
+    (function() {
+      try {
+        let currentCompany = 'all';
+        let searchQuery = '';
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const data = window.OWU_DATA;
-      if (!data) return;
+        // Obsługa motywu
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
 
-      let currentCompany = 'all';
-      let searchQuery = '';
-
-      // Statystyki
-      document.getElementById('statCompanies').textContent = data.total_companies;
-      document.getElementById('statProducts').textContent = data.total_products;
-      document.getElementById('statDocs').textContent = data.total_documents;
-      document.getElementById('statSync').textContent = data.generated_at;
-
-      // Motyw ciemny / jasny
-      const themeToggle = document.getElementById('themeToggle');
-      const sunIcon = document.getElementById('sunIcon');
-      const moonIcon = document.getElementById('moonIcon');
-
-      function updateTheme(isDark) {
-        if (isDark) {
-          document.documentElement.classList.add('dark');
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-          localStorage.setItem('theme', 'light');
-        }
-      }
-
-      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      updateTheme(savedTheme === 'dark');
-      themeToggle.addEventListener('click', () => {
-        updateTheme(!document.documentElement.classList.contains('dark'));
-      });
-
-      // Stylizacja nagłówków firm
-      const companyColors = {
-        "PZU": "from-blue-600 to-blue-700 text-white",
-        "Warta": "from-sky-600 to-cyan-700 text-white",
-        "HDI": "from-indigo-600 to-blue-800 text-white",
-        "Generali": "from-rose-600 to-red-700 text-white",
-        "Ergo_Hestia": "from-amber-600 to-orange-700 text-white",
-        "Compensa": "from-emerald-600 to-teal-700 text-white",
-        "Uniqa": "from-cyan-600 to-blue-700 text-white",
-        "Wiener": "from-orange-600 to-amber-700 text-white",
-        "MTU": "from-teal-600 to-emerald-700 text-white",
-        "MTU24": "from-purple-600 to-indigo-700 text-white",
-      };
-
-      function getHeaderGradient(comp) {
-        return companyColors[comp] || "from-slate-700 to-slate-800 text-white";
-      }
-
-      // Pigułki Towarzystw
-      const pillsContainer = document.getElementById('companyPills');
-      const allCompanies = ['all', ...data.companies.map(c => c.company)];
-
-      function renderPills() {
-        pillsContainer.innerHTML = allCompanies.map(c => {
-          const isSelected = c === currentCompany;
-          const label = c === 'all' ? 'Wszystkie' : c.replace('_', ' ');
-          const count = c === 'all' ? data.total_companies : (data.companies.find(comp => comp.company === c)?.products.length || 0);
-          const activeClasses = isSelected 
-            ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' 
-            : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300';
-          return `
-            <button data-company="${c}" class="company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 ${activeClasses}">
-              <span>${label}</span>
-              <span class="text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}">${count}</span>
-            </button>
-          `;
-        }).join('');
-
-        pillsContainer.querySelectorAll('.company-pill').forEach(btn => {
-          btn.addEventListener('click', () => {
-            currentCompany = btn.dataset.company;
-            renderPills();
-            renderContent();
-          });
-        });
-      }
-
-      renderPills();
-
-      // Wyszukiwarka
-      const searchInput = document.getElementById('searchInput');
-      const clearSearch = document.getElementById('clearSearch');
-
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        clearSearch.classList.toggle('hidden', searchQuery.length === 0);
-        renderContent();
-      });
-
-      clearSearch.addEventListener('click', () => {
-        searchInput.value = '';
-        searchQuery = '';
-        clearSearch.classList.add('hidden');
-        renderContent();
-      });
-
-      // Renderowanie pogrupowanych towarzystw
-      const container = document.getElementById('companiesContainer');
-      const noResults = document.getElementById('noResults');
-
-      function renderContent() {
-        const matchingCompanies = [];
-
-        data.companies.forEach(comp => {
-          if (currentCompany !== 'all' && comp.company !== currentCompany) return;
-
-          let matchedProducts = comp.products;
-          if (searchQuery) {
-            matchedProducts = comp.products.filter(p => {
-              return comp.company.toLowerCase().includes(searchQuery) ||
-                     comp.company_display.toLowerCase().includes(searchQuery) ||
-                     p.product.toLowerCase().includes(searchQuery);
-            });
-            if (matchedProducts.length === 0) return;
+        function updateTheme(isDark) {
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+            if (sunIcon) sunIcon.classList.remove('hidden');
+            if (moonIcon) moonIcon.classList.add('hidden');
+            try { localStorage.setItem('theme', 'dark'); } catch(e) {}
+          } else {
+            document.documentElement.classList.remove('dark');
+            if (sunIcon) sunIcon.classList.add('hidden');
+            if (moonIcon) moonIcon.classList.remove('hidden');
+            try { localStorage.setItem('theme', 'light'); } catch(e) {}
           }
+        }
 
-          matchingCompanies.push({
-            ...comp,
-            matchingProducts
+        let isDark = false;
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        } catch(e) {}
+        updateTheme(isDark);
+
+        if (themeToggle) {
+          themeToggle.addEventListener('click', function() {
+            updateTheme(!document.documentElement.classList.contains('dark'));
+          });
+        }
+
+        // Filtrowanie kart w czystym DOM (bez ryzyka błędów parsowania)
+        const cards = Array.from(document.querySelectorAll('.company-card'));
+        const pills = Array.from(document.querySelectorAll('.company-pill'));
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const noResults = document.getElementById('noResults');
+
+        function applyFilters() {
+          let visibleCardsCount = 0;
+
+          cards.forEach(function(card) {
+            const compId = card.getAttribute('data-company-id');
+            const compName = card.getAttribute('data-company-name') || '';
+
+            // Filtr towarzystwa
+            const matchesCompany = (currentCompany === 'all' || compId === currentCompany);
+            if (!matchesCompany) {
+              card.style.display = 'none';
+              return;
+            }
+
+            // Filtr wyszukiwarki po produktach wewnątrz firmy
+            const rows = Array.from(card.querySelectorAll('.product-row'));
+            let matchingRowsCount = 0;
+
+            rows.forEach(function(row) {
+              const prodName = row.getAttribute('data-product-name') || '';
+              const matchesSearch = !searchQuery || 
+                                    compName.indexOf(searchQuery) !== -1 || 
+                                    compId.toLowerCase().indexOf(searchQuery) !== -1 || 
+                                    prodName.indexOf(searchQuery) !== -1;
+              
+              if (matchesSearch) {
+                row.style.display = 'flex';
+                matchingRowsCount++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            if (matchingRowsCount > 0) {
+              card.style.display = 'flex';
+              visibleCardsCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          if (noResults) {
+            if (visibleCardsCount === 0) {
+              noResults.classList.remove('hidden');
+            } else {
+              noResults.classList.add('hidden');
+            }
+          }
+        }
+
+        // Obsługa pigułek towarzystw
+        pills.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            currentCompany = btn.getAttribute('data-company');
+            
+            pills.forEach(function(p) {
+              const isSelected = p.getAttribute('data-company') === currentCompany;
+              if (isSelected) {
+                p.className = 'company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-blue-600 text-white shadow-sm shadow-blue-500/20';
+                const counter = p.querySelector('span:last-child');
+                if (counter) counter.className = 'text-[10px] px-1.5 py-0.2 rounded-full bg-white/20 text-white';
+              } else {
+                p.className = 'company-pill whitespace-nowrap px-3 py-1.5 rounded-xl font-medium transition flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300';
+                const counter = p.querySelector('span:last-child');
+                if (counter) counter.className = 'text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400';
+              }
+            });
+
+            applyFilters();
           });
         });
 
-        noResults.classList.toggle('hidden', matchingCompanies.length > 0);
+        // Obsługa pola wyszukiwania
+        if (searchInput) {
+          searchInput.addEventListener('input', function(e) {
+            searchQuery = e.target.value.toLowerCase().trim();
+            if (clearSearch) {
+              if (searchQuery.length > 0) clearSearch.classList.remove('hidden');
+              else clearSearch.classList.add('hidden');
+            }
+            applyFilters();
+          });
+        }
 
-        container.innerHTML = matchingCompanies.map(comp => {
-          const headerGradient = getHeaderGradient(comp.company);
-          const totalDocsInView = comp.matchingProducts.reduce((sum, p) => sum + p.doc_count, 0);
+        if (clearSearch) {
+          clearSearch.addEventListener('click', function() {
+            if (searchInput) searchInput.value = '';
+            searchQuery = '';
+            clearSearch.classList.add('hidden');
+            applyFilters();
+          });
+        }
 
-          const productsRows = comp.matchingProducts.map(p => `
-            <div class="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition group">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <span class="w-2 h-2 rounded-full ${p.doc_count > 0 ? 'bg-emerald-500' : 'bg-amber-400'} flex-shrink-0"></span>
-                <span class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">${p.product}</span>
-                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">(${p.doc_count} OWU)</span>
-              </div>
-              <div class="flex items-center gap-1.5 flex-shrink-0">
-                <a href="${p.drive_url}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-lg transition" title="Otwórz folder na Dysku Google">
-                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                  <span>Dysk</span>
-                </a>
-                <a href="${p.page_url}" target="_blank" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition" title="Strona ubezpieczyciela">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                </a>
-              </div>
-            </div>
-          `).join('');
-
-          return `
-            <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
-              <div>
-                <!-- Nagłówek Towarzystwa -->
-                <div class="bg-gradient-to-r ${headerGradient} px-4 py-3 flex items-center justify-between">
-                  <h3 class="font-bold text-base tracking-tight">${comp.company_display}</h3>
-                  <div class="flex items-center gap-2 text-xs font-semibold">
-                    <span class="bg-black/20 px-2 py-0.5 rounded-lg">${comp.matchingProducts.length} prod.</span>
-                    <span class="bg-white/20 px-2 py-0.5 rounded-lg">${totalDocsInView} plików OWU</span>
-                  </div>
-                </div>
-
-                <!-- Lista Produktów Ubezpieczyciela -->
-                <div class="p-3 divide-y divide-slate-100 dark:divide-slate-800/80 space-y-1">
-                  ${productsRows}
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
+        applyFilters();
+      } catch(err) {
+        console.error('Błąd inicjalizacji panelu:', err);
       }
-
-      renderContent();
-    });
+    })();
   </script>
 </body>
 </html>
