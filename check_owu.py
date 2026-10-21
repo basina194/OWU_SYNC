@@ -613,7 +613,10 @@ def send_email_notification(changes):
     smtp_port = int(os.environ.get("SMTP_PORT", 587))
 
     if not smtp_user or not smtp_pass or not recipient:
-        print("Powiadomienia e-mail: Brak skonfigurowanych zmiennych EMAIL_SENDER / EMAIL_PASSWORD (pomijam wysyłkę).")
+        err_msg = "Powiadomienia e-mail: Brak skonfigurowanych zmiennych EMAIL_SENDER / EMAIL_PASSWORD w GitHub Secrets."
+        print(err_msg)
+        if "--test-email" in sys.argv or os.environ.get("TEST_EMAIL") == "1":
+            raise ValueError(err_msg)
         return
 
     subject = f"[OWU SYNC] Wykryto zmiany w dokumentach ({len(changes)})"
@@ -681,6 +684,8 @@ def send_email_notification(changes):
         print(f"Pomyślnie wysłano powiadomienie e-mail o zmianach na adres: {recipient}")
     except Exception as err:
         print(f"Błąd podczas wysyłania powiadomienia e-mail: {err}")
+        if "--test-email" in sys.argv or os.environ.get("TEST_EMAIL") == "1":
+            raise err
 
 
 # ==============================================================================
