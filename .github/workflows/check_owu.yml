@@ -5,6 +5,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: owu-sync
+  cancel-in-progress: false
+
 jobs:
   check-owu:
     runs-on: ubuntu-latest
@@ -14,6 +18,9 @@ jobs:
     steps:
       - name: Pobierz kod
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Konfiguracja Pythona
         uses: actions/setup-python@v5
@@ -35,5 +42,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "OWU Sync Bot"
           git add hashes.json index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Aktualizacja hashy OWU i panelu dashboard [skip ci]" && git push)
-
+          if ! git diff --staged --quiet; then
+            git commit -m "Aktualizacja hashy OWU i panelu dashboard [skip ci]"
+            for i in {1..3}; do
+              git pull --rebase -X theirs origin main && git push origin main && break || sleep 5
+            done
+          fi
