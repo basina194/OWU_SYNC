@@ -687,6 +687,19 @@ def send_email_notification(changes):
 # GŁÓWNA PĘTLA PROGRAMU
 # ==============================================================================
 def main():
+    if "--test-email" in sys.argv or os.environ.get("TEST_EMAIL") == "1":
+        print("Tryb testowy: Wysyłanie próbnego powiadomienia e-mail...")
+        test_changes = [
+            {
+                "action": "Nowy dokument (Test)",
+                "company": "PZU",
+                "product": "Auto OC (Test)",
+                "filename": "Test_OWU_Sync.pdf",
+                "folder_id": ""
+            }
+        ]
+        send_email_notification(test_changes)
+        return
     with open(CONFIG_FILE, "r", encoding="utf-8") as f:
         config = json.load(f)
 
