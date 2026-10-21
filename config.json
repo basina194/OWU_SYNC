@@ -1,4 +1,10 @@
 [
+   {
+    "company": "BBC",
+    "product": "Test",
+    "url": "https://raw.githubusercontent.com/basina194/Testowe/main/",
+    "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
+  },
   {
     "company": "Uniqa",
     "product": "Komunikacja",
@@ -232,12 +238,6 @@
     "url": "https://www.compensa.pl/ogolne-warunki-ubezpieczenia/",
     "filter": "Pakiet 4 Kąty",
     "drive_folder_id": "1H5hcPmvbMWrSRJmBzzw-AluQqVb0bb8g"
-  },
-  {
-    "company": "BBC",
-    "product": "Test",
-    "url": "https://raw.githubusercontent.com/basina194/Testowe/main/Test1.html",
-    "filename": "Testowy",
-    "drive_folder_id": "11-OwOkDg8yWfOV9r1TN6HciTmVZWOM9k"
   }
+ 
 ]
