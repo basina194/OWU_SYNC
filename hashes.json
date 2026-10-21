@@ -7,7 +7,7 @@
     "Warta_AC_Komfort.pdf": "a7a0642ad5295a1a346f9663c1e2e9ba4ba1ed136248eb0b0e15ef80ee15a955"
   },
   "BBC_Test": {
-    "Testowy": "b1befc594bc269ac69240db4fa6a905a3ac370933ff487eafd04b63d1c4bbe31"
+    "WARTA_OWU_HDI_Moje_Auto_C8380_int.pdf": "a4443cb6f8ee4aba21b8f3671135d6d5665606e0bab87c8629a1094802f21372"
   },
   "Warta_OC": {
     "WARTA_OC_posiadaczy_pojazdow_mechanicznych_IPID_od_31.12.20181_.pdf": "b97524bb2962216fdd666945f25f9bc707a17ff2637823c9150e2a36dac0d6b1",
@@ -116,6 +116,15 @@
     "Prosto_o_Generali_z_mysla_o_domu_i_rodzinie_przewodnik_104ae57b86.pdf": "54179982fa501bca3e72dc88005519007f96c10ad0c0c42f19598f6ccfe21bbb"
   },
   "Generali_Travel": {
+    "Ogolne_Warunki_Ubezpieczenia_Generali_z_mysla_o_podrozy_obowiazujace_od_21_05_2026_r_9bc7c53061.pdf": "38d0e1e65b4cdb316647684cf6a6d229c61f5b3723ffe15b481f6dc132c0ac97",
+    "Karta_produktu_Ubezpieczenia_Generali_z_mysla_o_podrozy_obowiazujaca_od_21_05_2026_r_506fd190d6.pdf": "3d3bd37d1c1a624f9b59c068aa1c4fe39ba2c2080d0d59c4bcdd1d530ea5403f",
+    "Zalacznik_1_do_OWU_Generali_z_mysla_o_podrozy_Tabela_uszczerbkow_na_zdrowiu_obowiazujaca_od_21_05_2026_r_1ed1d5bae3.pdf": "4a6b64821ceebf4c391251b24234f46305935ed3f6b460ec62b6e751cf404a96",
+    "Karta_Produktu_Ubezpieczenie_Generali_z_mysla_o_podrozy_dla_sieci_dealerskiej_obowiazujaca_od_28_11_2024_r_PDF_2f93bd1138.pdf": "8a34f47ce5bbb045cd17811314154e0653e90184c5b13b6a36e4c07f97d152be",
+    "Ogolne_Warunki_Ubezpieczenia_Generali_z_mysla_o_podrozy_dla_sieci_dealerskiej_obowiazujace_od_28_11_2024_r_PDF_2cf61c118a.pdf": "b1f69994a76f66e9961821291365fbe342b46d5ead7983cda383187870c4d157",
+    "Zalacznik_nr_1_do_Ogolnych_Warunkow_Ubezpieczenia_Generali_z_mysla_o_podrozy_dla_sieci_dealerskiej_Tabela_uszczerbkow_na_zdrowiu_obowiazujaca_od_28_11_2024_r_PDF_a72fb33f00.pdf": "f86b18d24c938fe76c75be0bff5f71f8125af28afc47a819f2d89955356e58c7",
+    "Zalacznik_nr_1_do_Ogolne_Warunki_Ubezpieczenia_Generali_z_mysla_o_podrozy_Tabela_uszczerbkow_na_zdrowiu_obowiazujacy_od_14_05_2021_r_492d3649a6.pdf": "538e56894040173903e062ccff43f15043308df5c99c38c7930c0d3faf6fa95f",
+    "Ogolne_Warunki_Ubezpieczenia_Generali_z_mysla_o_podrozy_obowiazujace_od_20_01_2022_r_59d1f67df9.pdf": "0a1c86750d70992242df9f267a7ccfd53e6b8bc8536a2fad013496107df0f132",
+    "Zalacznik_nr_1_do_Ogolne_Warunki_Ubezpieczenia_Generali_z_mysla_o_podrozy_Tabela_uszczerbkow_na_zdrowiu_obowiazujacy_od_20_01_2022_r_95ebb02d0d.pdf": "460ff67f497c0765f6416b91fa117218a3b81d2980383bc073d71da568043d38",
     "OWU_Zalacznik_1_Generali_z_mysla_o_podrozy_Tabela_uszczerbkow_12_2018_5dbfb6e492_69b4ede9e1.pdf": "30f9ea636489d88b73f0d26e47b99ac48e1e9dc14b5e057d46e15e63c1a7a095"
   },
   "Compensa_NNW": {
@@ -207,5 +216,32 @@
   },
   "HDI_AC": {
     "WARTA_OWU_HDI_AutoCasco_Plus_C5645_int.pdf": "4cc694cb1a6fe19c49663ef1fae7f49393e09ac48de6a5371612a9a1a204087b"
+  },
+  "Generali_Maj\u0105tek": {
+    "251222_OWU_Z_mysla_o_domu_i_rodzinie_80cb5c0502.pdf": "30c882dbd1707a8c48f9b4aac7fbc2d16243ee9ec162b81dea232be7da617f76",
+    "Generali_z_mysla_o_domu_i_rodzinie_przewodnik_b4cfe514fb.pdf": "e9bb252a0c18bd99e67c63d12aeb508f865426afac6afccb6a4d8be3b2dd187a",
+    "prosto_o_generali_z_mysla_o_domu_i_rodzinie_przewodnik_d81c1d6220.pdf": "88905252be8cd25398f2c37d9a99079dd7ad82ed8e5bc1376c66a3d65213845e",
+    "240405_OWU_Z_mysla_o_domu_i_rodzinie_21a9e52cc4.pdf": "b4ea9cc719ad4bc34e69745258e9118a866728b893531f8c1bb354faf5dc96e5",
+    "240405_Karta_uzupelniajaca_informacje_o_produkcie_Generali_z_mysla_o_domu_i_rodzinie_aab6af8486.pdf": "5797b17aff043598d7a28b1e48539a551f2094164cd9aceca19fbeae117ab358",
+    "240930_OWU_Z_mysla_o_domu_i_rodzinie_13673dbb4b.pdf": "b9d9f78e2062ca96032567424c6f1c6b29b68127c79858bca198c75640f763a8"
+  },
+  "Warta_Maj\u0105tek": {
+    "OWU_Warta_Dom_C7177_int.pdf": "82c278808eb350d998b3f09ae90781575d4df4b2e0bbed3efea49b0c00885a55",
+    "OWU_Warta_Dom_Komfort_C7187_int.pdf": "1529dc7b53a1519230fc072f4cf90dc260823d4f6248553001506ca44dcc32ee",
+    "Tabela_norm_oceny_procentowej_stalego_uszczerbku_na_zdrowiu.pdf": "7b525bc4cd0045366447f7724784b09b94071e47421bcc42e571984437cbe457",
+    "Normy_zuzycia_technicznego_budynkow.pdf": "428281d66a1f3bef99011df028e685a85005bc767a9467695c15b17461e08e1d",
+    "Normy_trwalosci_elementow_budynku...pdf": "420173683514dd574c06582ef3260b83aa414c84a19fa3c4b7faeac16f148e15"
+  },
+  "PZU_Maj\u0105tek": {
+    "Ryzyko_pozaru_poradnik_dla_wlascicieli_domow.pdf": "4c49381c19c2f30d6b35f015e8a77ffd4cda4799ef3ac04347f5b8d7a20d4d86",
+    "PZU_Zapory_przeciwpowodziowe_onepager_v6.pdf": "0193f75a7fe05eddbdae32768d6674faf99e2edd0fa16636c958c87b493f2fa6",
+    "Ogolne_warunki_ubezpieczenia_PZU_Dom_obowiazujace_od_1.10.2026_r..pdf": "05b120c6a6d69eddfd247d5901ff64dc4a209934f0ef476a0c8d22bfd9271f9a",
+    "Dokument_zawierajacy_informacje_o_produkcie_PZU_Dom_obowiazujacy_od_1.10.2026_r..pdf": "52db15ae5fb51acccc2b0e56cdb4c21c77252cf4c6e369a11b9445b67270687d"
+  },
+  "Compensa_Maj\u0105tek": {
+    "OWU-Compensa-Rodzina-IV-od-21.05.2026-r.-nowy-IPID.pdf": "cd2ff57978445c4d4b3b7b1bf5d90be8788f8e614c85f3010a3822e0574bda88"
+  },
+  "Wiener_Maj\u0105tek": {
+    "owu_pakiet_4_katy_wiener_aneks_12022026.pdf": "f8c9217b373e002478ae59fb53c2a81f00a7a5efc3c9d6fc99c29d639c1bd1be"
   }
 }
