@@ -34,6 +34,9 @@ jobs:
       - name: Uruchom weryfikację
         env:
           GDRIVE_TOKEN_JSON: ${{ secrets.GDRIVE_TOKEN_JSON }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
           PYTHONUNBUFFERED: "1"
         run: python -u check_owu.py
 

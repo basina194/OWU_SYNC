@@ -13,6 +13,9 @@ import time
 import json
 import hashlib
 import mimetypes
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from datetime import datetime
 from io import BytesIO
 from urllib.parse import urljoin, urlparse, unquote
@@ -599,6 +602,88 @@ class DriveManager:
         return new_file["id"]
 
 # ==============================================================================
+# POWIADOMIENIA E-MAIL
+# ==============================================================================
+def send_email_notification(changes):
+    """Wysyła estetyczne powiadomienie e-mail w formacie HTML o wykrytych zmianach w OWU."""
+    smtp_user = os.environ.get("EMAIL_SENDER") or os.environ.get("SMTP_USER")
+    smtp_pass = os.environ.get("EMAIL_PASSWORD") or os.environ.get("SMTP_PASSWORD")
+    recipient = os.environ.get("EMAIL_RECEIVER") or smtp_user
+    smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
+    smtp_port = int(os.environ.get("SMTP_PORT", 587))
+
+    if not smtp_user or not smtp_pass or not recipient:
+        print("Powiadomienia e-mail: Brak skonfigurowanych zmiennych EMAIL_SENDER / EMAIL_PASSWORD (pomijam wysyłkę).")
+        return
+
+    subject = f"[OWU SYNC] Wykryto zmiany w dokumentach ({len(changes)})"
+
+    rows_html = ""
+    for c in changes:
+        action_color = "#10b981" if "Nowy" in c["action"] else ("#3b82f6" if "Zaktualizowana" in c["action"] else "#f59e0b")
+        drive_link = f"https://drive.google.com/drive/folders/{c['folder_id']}" if c.get('folder_id') else "#"
+        rows_html += f"""
+        <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; color: #1e293b;">{c['company']}</td>
+            <td style="padding: 10px; color: #334155;">{c['product']}</td>
+            <td style="padding: 10px;"><span style="background-color: {action_color}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">{c['action']}</span></td>
+            <td style="padding: 10px; font-family: monospace; font-size: 12px; color: #0f172a;">{c['filename']}</td>
+            <td style="padding: 10px;"><a href="{drive_link}" style="color: #2563eb; text-decoration: none; font-weight: 600; font-size: 12px;" target="_blank">Otwórz Dysk &rarr;</a></td>
+        </tr>
+        """
+
+    html_content = f"""
+    <html>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; padding: 20px; color: #1e293b;">
+        <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+            <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px 24px; color: #ffffff;">
+                <h2 style="margin: 0; font-size: 20px; font-weight: bold;">OWU Sync - Wykryto zmiany w dokumentach</h2>
+                <p style="margin: 6px 0 0 0; font-size: 13px; opacity: 0.9;">Zarejestrowano {len(changes)} zmian(y) podczas ostatniego cyklu skanowania.</p>
+            </div>
+            <div style="padding: 20px 24px;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+                    <thead>
+                        <tr style="background-color: #f1f5f9; color: #475569; font-size: 11px; text-transform: uppercase;">
+                            <th style="padding: 10px;">Firma</th>
+                            <th style="padding: 10px;">Produkt</th>
+                            <th style="padding: 10px;">Zdarzenie</th>
+                            <th style="padding: 10px;">Plik</th>
+                            <th style="padding: 10px;">Dysk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows_html}
+                    </tbody>
+                </table>
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; text-align: center;">
+                    <a href="https://basina194.github.io/OWU_SYNC/" style="display: inline-block; background-color: #2563eb; color: #ffffff; text-decoration: none; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;" target="_blank">Otwórz Panel OWU Hub</a>
+                </div>
+            </div>
+            <div style="background-color: #f8fafc; padding: 12px 24px; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0; text-align: center;">
+                Wiadomość wygenerowana automatycznie przez OWU Sync Bot w chmurze GitHub Actions.
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = smtp_user
+        msg["To"] = recipient
+        msg.attach(MIMEText(html_content, "html", "utf-8"))
+
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(smtp_user, smtp_pass)
+            server.sendmail(smtp_user, [recipient], msg.as_string())
+        print(f"Pomyślnie wysłano powiadomienie e-mail o zmianach na adres: {recipient}")
+    except Exception as err:
+        print(f"Błąd podczas wysyłania powiadomienia e-mail: {err}")
+
+
+# ==============================================================================
 # GŁÓWNA PĘTLA PROGRAMU
 # ==============================================================================
 def main():
@@ -617,6 +702,7 @@ def main():
     drive = DriveManager(service)
     session = create_http_session()
     has_changes = False
+    notification_changes = []
 
     for item in config:
         company = item.get("company", "")
@@ -703,6 +789,7 @@ def main():
                             archive_folder_name=archive_folder_name
                         )
                         has_changes = True
+                        notification_changes.append({"action": "Nowy dokument", "company": company, "product": product, "filename": filename, "folder_id": folder_id})
                     elif hash_changed:
                         print(f"-> Wykryto nową wersję pliku: {filename}")
                         drive.upload_file(
@@ -714,6 +801,7 @@ def main():
                             archive_folder_name=archive_folder_name
                         )
                         has_changes = True
+                        notification_changes.append({"action": "Zaktualizowana treść OWU", "company": company, "product": product, "filename": filename, "folder_id": folder_id})
                     else:
                         print(f"Brak zmian (plik aktualny na Dysku Google): {filename}")
 
@@ -733,6 +821,7 @@ def main():
                         archive_folder_name=archive_folder_name
                     )
                     has_changes = True
+                    notification_changes.append({"action": "Przeniesiono do archiwum", "company": company, "product": product, "filename": removed_fn, "folder_id": folder_id})
                 else:
                     print(f"-> Plik {removed_fn} usunięty z monitoringu (brak na Dysku Google - pomijam archiwizację).")
 
@@ -751,6 +840,9 @@ def main():
         build_dashboard.generate()
     except Exception as dash_err:
         print(f"Uwaga: Nie udało się zaktualizować panelu dashboard: {dash_err}")
+
+    if notification_changes:
+        send_email_notification(notification_changes)
 
 if __name__ == '__main__':
     main()
