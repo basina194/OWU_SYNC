@@ -132,6 +132,24 @@ ARCHIVE_REGEX = re.compile(
     re.I
 )
 
+def normalize_download_url(url):
+    """
+    Normalizuje URL pliku PDF przed pobraniem.
+    Obsługuje m.in. podglądy plików na GitHubie (/blob/ -> raw),
+    aby pobierana była fizyczna zawartość pliku binarnego, a nie podgląd HTML strony.
+    """
+    if not url:
+        return ""
+    parsed = urlparse(url)
+    if "github.com" in parsed.netloc.lower():
+        parts = parsed.path.strip("/").split("/")
+        # format: /{owner}/{repo}/blob/{branch}/{filepath}
+        if len(parts) >= 4 and parts[2] == "blob":
+            user, repo = parts[0], parts[1]
+            rest = "/".join(parts[3:])
+            return f"https://raw.githubusercontent.com/{user}/{repo}/{rest}"
+    return url
+
 def extract_pdf_items_from_html(base_url, html_text, session=None):
     """
     Ekstraktuje wszystkie dokumenty PDF ze strony HTML wraz z kontekstem i flagą archiwum.
@@ -244,10 +262,11 @@ def extract_pdf_items_from_html(base_url, html_text, session=None):
             # Czyszczenie dopisków o rozmiarze pliku np. "PDF 409,1 KB" aby cyfry nie zakłócały filtrów
             clean_text = re.sub(r'(?:PDF\s*)?\d+(?:[.,]\d+)?\s*(?:[kKmMgGtT]?[bB]|bajt[oó]w)\b', '', link_text, flags=re.I).strip()
 
-            if link_url not in seen_urls:
-                seen_urls.add(link_url)
+            download_url = normalize_download_url(link_url)
+            if download_url not in seen_urls:
+                seen_urls.add(download_url)
                 items.append({
-                    'url': link_url,
+                    'url': download_url,
                     'text': clean_text,
                     'context': cat_title,
                     'is_archive': is_arch
@@ -775,8 +794,15 @@ def main():
 
             for pdf_url in pdf_urls:
                 try:
-                    resp = session.get(pdf_url, timeout=30)
+                    dl_url = normalize_download_url(pdf_url)
+                    resp = session.get(dl_url, timeout=30)
                     resp.raise_for_status()
+
+                    # Bezpiecznik: jeśli serwer zwrócił stronę HTML zamiast pliku binarnego/PDF
+                    ct = resp.headers.get("Content-Type", "").lower()
+                    if ("text/html" in ct or resp.content.strip().startswith(b"<!DOCTYPE") or resp.content.strip().startswith(b"<html")) and not resp.content.startswith(b"%PDF"):
+                        print(f"-> Uwaga: Adres {dl_url} zwrócił stronę HTML, a nie plik binarny PDF. Pomijam.")
+                        continue
 
                     if len(pdf_urls) == 1 and item.get("filename"):
                         filename = item["filename"]
